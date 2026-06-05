@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import random
 import statistics
 import sys
 from pathlib import Path
@@ -27,10 +28,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from sim_core.domain_pack import read_tsv  # noqa: E402
+from sim_core.domain_pack import read_tsv, read_yaml  # noqa: E402
 from sim_core.engine import SYNCRETISM_TOLERANCE, run_scenario  # noqa: E402
+from sim_core.population import generate_agents  # noqa: E402
 
 DOMAIN = ROOT / "domain_packs" / "japan_religion"
+
+# 母集団サンプリング用 rng の seed オフセット。値自体に意味はなく、
+# シミュレーション rng の seed 空間（1–50）と重ならないことと、
+# 定数として明示されていることだけが要件（設計 rev3）。
+POPULATION_SEED_OFFSET = 10**6
+
+# 仮説判定の絶対下限（実装前に設計で宣言済み。事後変更禁止）
+# fixed8 (v0.4.0): H1=2, H5=2（8人村の per-capita 25%）
+# sampled60 (v0.5.0): H1=15, H5=15（60 × 0.25。per-capita 完全パリティ）
+ABS_FLOORS = {"fixed8": {"h1": 2, "h5": 2}, "sampled60": {"h1": 15, "h5": 15}}
 
 SALVATION_BELIEFS = {"jodo_buddhism"}
 PRACTICAL_BELIEFS = {"inari_belief", "ryujin_belief"}
@@ -164,12 +176,35 @@ def _anxiety_saturation(run_dir: Path) -> float:
     return sum(1 for t in turns if float(t["anxiety"]) >= 1.0) / len(turns)
 
 
-def run_sweep(name: str, out_root: Path, seeds: list[int] | None = None) -> list[dict]:
+def run_sweep(
+    name: str,
+    out_root: Path,
+    seeds: list[int] | None = None,
+    population: str = "sampled60",
+) -> list[dict]:
+    """1スイープを逐次実行する。
+
+    population:
+    - "sampled60": run の seed ごとに population.yaml から村を生成（母集団サンプリング）。
+      村は random.Random(POPULATION_SEED_OFFSET + seed) で決定的に生成され、
+      同じ seed なら scenario / delta が違っても同じ村になる（対応比較のため）。
+    - "fixed8": 従来の agents.tsv（v0.4.0 の再現用。results.tsv / stats.json とも
+      v0.4.0 と byte 一致することを完了基準2で要求）。
+    """
+    if population not in ("sampled60", "fixed8"):
+        raise ValueError(f"unknown population mode: {population}")
     spec = SWEEPS[name]
     seeds = seeds if seeds is not None else spec["seeds"]
     trait = spec["trait"]
     rows: list[dict] = []
     saturation_acc: dict[tuple, list[float]] = {}
+    pop_acc: dict[tuple, list[dict]] = {}
+    village_cache: dict[int, list[dict[str, str]]] = {}
+
+    belief_rows = read_tsv(DOMAIN / "data" / "beliefs.tsv")
+    pop_spec = (
+        read_yaml(DOMAIN / "data" / "population.yaml") if population == "sampled60" else None
+    )
 
     for scenario in spec["scenarios"]:
         for delta in spec["deltas"]:
@@ -180,6 +215,13 @@ def run_sweep(name: str, out_root: Path, seeds: list[int] | None = None) -> list
                 else:
                     run_id = f"{scenario}_{trait}_d{delta:+.2f}_s{seed:03d}"
                     adjustments = {trait: delta}
+                agents_rows = None
+                if population == "sampled60":
+                    if seed not in village_cache:
+                        village_cache[seed] = generate_agents(
+                            pop_spec, random.Random(POPULATION_SEED_OFFSET + seed), belief_rows
+                        )
+                    agents_rows = village_cache[seed]
                 run_dir = out_root / name / "runs" / run_id
                 summary = run_scenario(
                     DOMAIN,
@@ -187,7 +229,13 @@ def run_sweep(name: str, out_root: Path, seeds: list[int] | None = None) -> list
                     run_dir,
                     seed=seed,
                     trait_adjustments=adjustments,
+                    agents_rows=agents_rows,
                 )
+                if population == "sampled60":
+                    _annotate_summary(run_dir, POPULATION_SEED_OFFSET + seed)
+                    pop_acc.setdefault((scenario, delta), []).append(
+                        _population_aux(agents_rows, trait, delta, belief_rows)
+                    )
                 conversions = read_tsv(run_dir / "conversions.tsv")
                 metrics = compute_metrics(conversions, summary["final_agents"], scenario)
                 rows.append(
@@ -230,12 +278,132 @@ def run_sweep(name: str, out_root: Path, seeds: list[int] | None = None) -> list
         writer.writeheader()
         writer.writerows(rows)
 
-    stats = _build_stats(name, spec, rows, saturation_acc)
+    if population == "fixed8":
+        # v0.4.0 実装をそのまま通す（stats.json の byte 一致を保つ）
+        stats = _build_stats(name, spec, rows, saturation_acc)
+    else:
+        stats = _build_stats_sampled(name, spec, rows, saturation_acc, pop_acc)
     (sweep_dir / "stats.json").write_text(
         json.dumps(stats, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
     return rows
+
+
+def _annotate_summary(run_dir: Path, population_seed: int) -> None:
+    """summary.json に母集団情報を自己記述する（再現に必要な情報。codex MEDIUM-1）。"""
+    path = run_dir / "summary.json"
+    summary = json.loads(path.read_text(encoding="utf-8"))
+    summary["population_mode"] = "sampled60"
+    summary["population_seed"] = population_seed
+    path.write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+
+
+def _population_aux(
+    agents_rows: list[dict[str, str]],
+    trait: str | None,
+    delta: float,
+    belief_rows: list[dict[str, str]],
+) -> dict:
+    """stats 集計用の per-run 補助値。
+
+    - initial_shares: その run の生成時点での信仰別エージェント数割合
+      （= current_belief 列の構成比。条件内で平均して stats.json に記録する）
+    - trait スイープでは、delta 適用後の実効特性の run 内 min/mean/max、
+      クランプ発生数、（tolerance のみ）習合閾値以上の人数
+    """
+    n = len(agents_rows)
+    shares = {b["id"]: 0 for b in belief_rows}
+    for row in agents_rows:
+        shares[row["current_belief"]] += 1
+    aux: dict = {"initial_shares": {b: c / n for b, c in shares.items()}}
+    if trait is not None:
+        raw = [float(r[trait]) for r in agents_rows]
+        eff = [max(0.0, min(1.0, v + delta)) for v in raw]
+        aux["run_mean"] = sum(eff) / n
+        aux["run_min"] = min(eff)
+        aux["run_max"] = max(eff)
+        aux["clamped_agents"] = sum(1 for v in raw if not (0.0 <= v + delta <= 1.0))
+        if trait == "tolerance":
+            aux["threshold_crossers"] = sum(1 for v in eff if v >= SYNCRETISM_TOLERANCE)
+    return aux
+
+
+def _build_stats_sampled(
+    name: str, spec: dict, rows: list[dict], saturation_acc: dict, pop_acc: dict
+) -> dict:
+    """sampled60 用の stats。母集団が run ごとに変わるため、
+    実効 trait 分布・クランプ数・閾値跨ぎ人数は全て run 間の mean±std で記録する
+    （v0.4.0 の「条件ごと1値」はエージェント固定の帰結。設計 rev3 MEDIUM-7 対応）。
+    """
+    trait = spec["trait"]
+    conditions = []
+    for scenario in spec["scenarios"]:
+        for delta in spec["deltas"]:
+            cond_rows = [
+                r
+                for r in rows
+                if r["scenario"] == scenario and r["delta"] == f"{delta:+.2f}"
+            ]
+            if not cond_rows:
+                continue
+            cond: dict = {
+                "scenario": scenario,
+                "trait": trait or "none",
+                "delta": f"{delta:+.2f}",
+                "n_runs": len(cond_rows),
+            }
+            for metric in [
+                "conversions",
+                "syncretisms",
+                "conv_to_salvation",
+                "conv_to_practical",
+                "conv_to_other",
+                "early_conversions",
+            ]:
+                cond[metric] = _mean_std([float(r[metric]) for r in cond_rows])
+            cond["retention_rate"] = _mean_std([float(r["retention_rate"]) for r in cond_rows])
+            retentions = [
+                float(r["early_convert_retention"])
+                for r in cond_rows
+                if r["early_convert_retention"] != ""
+            ]
+            cond["early_convert_retention"] = {
+                **(_mean_std(retentions) if retentions else {"mean": None, "std": None}),
+                "n_with_early_conversions": len(retentions),
+                "n_na": len(cond_rows) - len(retentions),
+            }
+            aux_list = pop_acc.get((scenario, delta), [])
+            if aux_list:
+                belief_ids = sorted(aux_list[0]["initial_shares"])
+                cond["initial_shares_mean"] = {
+                    b: round(
+                        statistics.fmean(a["initial_shares"][b] for a in aux_list), 4
+                    )
+                    for b in belief_ids
+                }
+                if trait:
+                    cond["effective_trait"] = {
+                        "run_mean": _mean_std([a["run_mean"] for a in aux_list]),
+                        "run_min": _mean_std([a["run_min"] for a in aux_list]),
+                        "run_max": _mean_std([a["run_max"] for a in aux_list]),
+                        "clamped_agents": _mean_std(
+                            [float(a["clamped_agents"]) for a in aux_list]
+                        ),
+                    }
+                    if trait == "tolerance":
+                        cond["effective_trait"][
+                            "agents_at_or_above_syncretism_threshold"
+                        ] = _mean_std([float(a["threshold_crossers"]) for a in aux_list])
+            if name == "anxiety":
+                sat = saturation_acc.get((scenario, delta), [])
+                cond["anxiety_saturation_rate"] = (
+                    round(statistics.fmean(sat), 4) if sat else None
+                )
+            conditions.append(cond)
+    return {"sweep": name, "population": "sampled60", "conditions": conditions}
 
 
 def _mean_std(values: list[float]) -> dict:
@@ -295,11 +463,12 @@ def _build_stats(name: str, spec: dict, rows: list[dict], saturation_acc: dict) 
     return {"sweep": name, "conditions": conditions}
 
 
-def judge(out_root: Path) -> dict:
-    """tasks/todo.md（rev4）で宣言した判定基準を機械的に適用する。
+def judge(out_root: Path, floors: dict[str, int]) -> dict:
+    """設計で宣言した判定基準を機械的に適用する。
 
     判定語: consistent（整合）/ inconsistent（不整合）/ inconclusive（判定不能）。
-    閾値は実装前に設計で宣言済み。ここで動かさないこと。
+    絶対下限 floors は ABS_FLOORS（fixed8: v0.4.0 設計 rev4 / sampled60: v0.5.0 設計 rev3
+    の per-capita 完全パリティ 60×0.25=15）。実装前に宣言済み。ここで動かさないこと。
     """
     verdicts: dict[str, dict] = {}
 
@@ -314,12 +483,12 @@ def judge(out_root: Path) -> dict:
     threshold_rel = base["conversions"]["mean"] + base["conversions"]["std"]
     coping = fam["conv_to_salvation"]["mean"] + fam["conv_to_practical"]["mean"]
     coping_share = coping / fam_mean if fam_mean else 0.0
-    h1_a = fam_mean >= 2 and fam_mean > threshold_rel and coping_share >= 0.60
+    h1_a = fam_mean >= floors["h1"] and fam_mean > threshold_rel and coping_share >= 0.60
     verdicts["H1"] = {
         "verdict": "consistent" if h1_a else "inconsistent",
         "evidence": {
             "famine_mean_conversions": fam_mean,
-            "absolute_floor": 2,
+            "absolute_floor": floors["h1"],
             "baseline_mean_plus_1std": round(threshold_rel, 4),
             "coping_share_of_famine_conversions": round(coping_share, 4),
             "required_coping_share": 0.60,
@@ -386,12 +555,12 @@ def judge(out_root: Path) -> dict:
             "evidence": {"note": "早期改宗が発生した run がない"},
         }
     else:
-        h5 = early_mean >= 2 and retention <= 0.5
+        h5 = early_mean >= floors["h5"] and retention <= 0.5
         verdicts["H5"] = {
             "verdict": "consistent" if h5 else "inconsistent",
             "evidence": {
                 "miracle_rumor_early_conversions_mean": early_mean,
-                "required_min": 2,
+                "required_min": floors["h5"],
                 "early_convert_retention_mean": retention,
                 "required_max": 0.5,
                 "confound_note": "miracle_rumor シナリオには step20 shrine_patronage / "
@@ -420,7 +589,17 @@ def main() -> None:
         default="all",
         choices=["all", *SWEEPS.keys()],
     )
-    parser.add_argument("--output-dir", default=str(ROOT / "outputs" / "sweeps"))
+    parser.add_argument(
+        "--population",
+        default="sampled60",
+        choices=["sampled60", "fixed8"],
+        help="sampled60: seedごとに60人の村を生成（v0.5.0）/ fixed8: 従来のagents.tsv（v0.4.0再現）",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="省略時は sampled60 → outputs/sweeps、fixed8 → outputs/sweeps_fixed8",
+    )
     parser.add_argument(
         "--judge",
         action="store_true",
@@ -428,14 +607,18 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    out_root = Path(args.output_dir)
+    if args.output_dir:
+        out_root = Path(args.output_dir)
+    else:
+        subdir = "sweeps" if args.population == "sampled60" else "sweeps_fixed8"
+        out_root = ROOT / "outputs" / subdir
     names = list(SWEEPS.keys()) if args.sweep == "all" else [args.sweep]
     for name in names:
-        rows = run_sweep(name, out_root)
-        print(f"sweep {name}: {len(rows)} runs -> {out_root / name / 'results.tsv'}")
+        rows = run_sweep(name, out_root, population=args.population)
+        print(f"sweep {name}: {len(rows)} runs ({args.population}) -> {out_root / name / 'results.tsv'}")
 
     if args.judge:
-        verdicts = judge(out_root)
+        verdicts = judge(out_root, ABS_FLOORS[args.population])
         print(json.dumps(verdicts, ensure_ascii=False, indent=2))
 
 

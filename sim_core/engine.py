@@ -180,16 +180,20 @@ def run_scenario(
     output_dir: str | Path,
     seed: int = 42,
     trait_adjustments: dict[str, float] | None = None,
+    agents_rows: list[dict[str, str]] | None = None,
 ) -> dict[str, Any]:
     """シナリオを1回実行する。
 
     trait_adjustments: 特性名 → 加算デルタ。全エージェントの該当特性に
     加算して 0–1 にクランプする（スイープ実験用）。None なら既存挙動と完全に同一。
     乗算でなく加算なのは、上限クランプで条件間の差が潰れるのを避けるため。
+
+    agents_rows: agents.tsv の代わりに使うエージェント行（母集団サンプリング用）。
+    None なら従来どおり agents.tsv を読む（既存挙動と完全に同一）。
     """
     pack = load_domain_pack(domain_dir)
     scenario = read_yaml(pack.scenario_path(scenario_file))
-    agent_rows = read_tsv(pack.data_path("agents.tsv"))
+    agent_rows = agents_rows if agents_rows is not None else read_tsv(pack.data_path("agents.tsv"))
     belief_rows = read_tsv(pack.data_path("beliefs.tsv"))
     event_rows = read_tsv(pack.data_path("events.tsv"))
 

@@ -91,7 +91,7 @@ def fig2_anxiety(out_root: Path, fig_dir: Path) -> None:
     ax.set_xlabel("anxiety delta (additive, clamped to [0,1])")
     ax.set_ylabel("salvation+practical conversions (mean)")
     ax.set_title(
-        "Anxiety sweep: baseline stays at zero\n"
+        "Anxiety sweep: salvation+practical conversions by delta\n"
         f"(famine anxiety-saturation rate by delta: "
         f"{', '.join(f'{k}:{v:.0%}' for k, v in sorted(sat.items()))})",
         fontsize=9,
@@ -114,7 +114,7 @@ def fig3_practical(out_root: Path, fig_dir: Path) -> None:
     _line_by_delta(ax, stats, "famine", practical, "famine", "#c0392b")
     ax.set_xlabel("practical_benefit_need delta (additive, clamped to [0,1])")
     ax.set_ylabel("conversions to practical beliefs (mean)")
-    ax.set_title("Practical-need sweep: effect appears only under famine")
+    ax.set_title("Practical-need sweep: conversions to practical beliefs by delta")
     ax.legend()
     ax.grid(alpha=0.3)
     fig.tight_layout()
@@ -158,14 +158,24 @@ def fig4_tolerance(out_root: Path, fig_dir: Path) -> None:
         ax2.set_ylim(0, 1.05)
         if scenario == "famine":
             ax2.set_ylabel("retention rate")
-        # 閾値跨ぎ人数の注釈（条件ごとに1値、seed間不変）
-        crossers = [
-            c["effective_trait"]["agents_at_or_above_syncretism_threshold"] for c in conds
-        ]
-        for x, n in zip(xs, crossers):
-            ax.annotate(f"{n}/8", (x, ax.get_ylim()[1] * 0.92), ha="center", fontsize=8)
+        # 閾値跨ぎ人数の注釈。sampled60 では村が seed ごとに変わるため mean±std、
+        # fixed8（v0.4.0 スキーマ）では条件ごとの1値
+        total_agents = 60 if stats.get("population") == "sampled60" else 8
+        labels = []
+        for c in conds:
+            cross = c["effective_trait"]["agents_at_or_above_syncretism_threshold"]
+            if isinstance(cross, dict):
+                labels.append(f"{cross['mean']:.1f}±{cross['std']:.1f}")
+            else:
+                labels.append(str(cross))
+        for x, text in zip(xs, labels):
+            ax.annotate(
+                f"{text}/{total_agents}", (x, ax.get_ylim()[1] * 0.92), ha="center", fontsize=7
+            )
         ax.set_xlabel("tolerance delta")
-        ax.set_title(f"{scenario} (n/8 = agents over syncretism threshold 0.65)", fontsize=9)
+        ax.set_title(
+            f"{scenario} (n/{total_agents} = agents over syncretism threshold 0.65)", fontsize=9
+        )
         ax.grid(alpha=0.3)
         if scenario == "baseline":
             ax.set_ylabel("events per run (mean)")

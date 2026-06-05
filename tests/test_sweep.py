@@ -103,14 +103,15 @@ def test_no_early_conversions_is_na():
 
 
 def test_sweep_results_schema_and_determinism(tmp_path):
-    """同じスイープを2回実行して results.tsv が byte 一致すること（縮小版: seed 2個）。"""
-    rows = sweep_mod.run_sweep("tolerance", tmp_path / "r1", seeds=[1, 2])
-    sweep_mod.run_sweep("tolerance", tmp_path / "r2", seeds=[1, 2])
+    """同じスイープを2回実行して results.tsv が byte 一致すること（縮小版: seed 2個）。
+    fixed8（v0.4.0 互換パス）を明示指定。sampled60 の決定性は test_population 側。"""
+    rows = sweep_mod.run_sweep("tolerance", tmp_path / "r1", seeds=[1, 2], population="fixed8")
+    sweep_mod.run_sweep("tolerance", tmp_path / "r2", seeds=[1, 2], population="fixed8")
     f1 = (tmp_path / "r1" / "tolerance" / "results.tsv").read_bytes()
     f2 = (tmp_path / "r2" / "tolerance" / "results.tsv").read_bytes()
     assert f1 == f2
     # 残存ディレクトリがある状態での再実行でも一致（codex MEDIUM-9）
-    sweep_mod.run_sweep("tolerance", tmp_path / "r1", seeds=[1, 2])
+    sweep_mod.run_sweep("tolerance", tmp_path / "r1", seeds=[1, 2], population="fixed8")
     assert (tmp_path / "r1" / "tolerance" / "results.tsv").read_bytes() == f1
 
     header = f1.decode().splitlines()[0].split("\t")
@@ -125,6 +126,6 @@ def test_sweep_results_schema_and_determinism(tmp_path):
 
 
 def test_sweep_a_schema_uses_none_trait(tmp_path):
-    rows = sweep_mod.run_sweep("scenario_seeds", tmp_path, seeds=[1])
+    rows = sweep_mod.run_sweep("scenario_seeds", tmp_path, seeds=[1], population="fixed8")
     assert all(r["trait"] == "none" and r["delta"] == "+0.00" for r in rows)
     assert len(rows) == 3  # 3シナリオ × 1seed

@@ -14,3 +14,4 @@ outputs/runs/*
 
 # sweep raw outputs（集計 results.tsv / stats.json / figures はコミットする）
 outputs/sweeps/*/runs/
+outputs/sweeps_fixed8/

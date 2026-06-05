@@ -1,0 +1,61 @@
+id	label	role	anxiety	community_dependence	authority_trust	tradition_orientation	novelty_openness	salvation_need	practical_benefit_need	tolerance	current_belief	belief_strength	label_ja
+P001	Farmer 01	farmer	0.4122	0.9034	0.5433	0.7212	0.2989	0.3379	0.8164	0.6193	ujigami_shinto	0.528	農民01
+P002	Farmer 02	farmer	0.5806	0.8039	0.5429	0.6605	0.2869	0.4032	0.7149	0.6569	ujigami_shinto	0.770	農民02
+P003	Farmer 03	farmer	0.3861	0.8299	0.5854	0.7515	0.2320	0.3313	0.6670	0.4832	ujigami_shinto	0.631	農民03
+P004	Farmer 04	farmer	0.4359	0.7554	0.4125	0.7703	0.2495	0.2352	0.8610	0.5635	ujigami_shinto	0.693	農民04
+P005	Farmer 05	farmer	0.6182	0.9064	0.3890	0.7398	0.3532	0.4007	0.8847	0.5313	ryujin_belief	0.749	農民05
+P006	Farmer 06	farmer	0.4528	0.8410	0.5718	0.8631	0.3013	0.3714	0.6683	0.4883	ujigami_shinto	0.739	農民06
+P007	Farmer 07	farmer	0.4215	0.8317	0.5287	0.8219	0.2699	0.3354	0.7820	0.6168	ujigami_shinto	0.656	農民07
+P008	Farmer 08	farmer	0.4975	0.7071	0.3704	0.8288	0.4160	0.3724	0.7545	0.4709	classical_shinto	0.651	農民08
+P009	Farmer 09	farmer	0.5649	0.8295	0.5665	0.7157	0.3033	0.4586	0.7987	0.5402	ryujin_belief	0.581	農民09
+P010	Farmer 10	farmer	0.6097	0.7014	0.5481	0.8569	0.3927	0.4077	0.8542	0.5545	ujigami_shinto	0.668	農民10
+P011	Farmer 11	farmer	0.3935	0.9088	0.4968	0.7080	0.3011	0.3464	0.7456	0.5131	ryujin_belief	0.662	農民11
+P012	Farmer 12	farmer	0.5270	0.8100	0.3667	0.7151	0.2225	0.3703	0.8666	0.6216	inari_belief	0.739	農民12
+P013	Farmer 13	farmer	0.4413	0.9020	0.5215	0.6800	0.1840	0.2335	0.8413	0.4899	ryujin_belief	0.533	農民13
+P014	Farmer 14	farmer	0.4627	0.7167	0.3983	0.7866	0.2204	0.2955	0.8308	0.5391	ujigami_shinto	0.597	農民14
+P015	Farmer 15	farmer	0.3857	0.7928	0.4610	0.7051	0.2061	0.4460	0.7824	0.4802	inari_belief	0.682	農民15
+P016	Farmer 16	farmer	0.3850	0.7043	0.3952	0.8325	0.2185	0.3991	0.8228	0.5607	classical_shinto	0.566	農民16
+P017	Farmer 17	farmer	0.5715	0.8240	0.4136	0.8156	0.2748	0.3682	0.7371	0.5814	ujigami_shinto	0.518	農民17
+P018	Farmer 18	farmer	0.6123	0.9101	0.4335	0.8660	0.2545	0.4554	0.8385	0.5299	ujigami_shinto	0.576	農民18
+P019	Farmer 19	farmer	0.5909	0.7091	0.5567	0.8909	0.3169	0.2712	0.8683	0.6637	ryujin_belief	0.711	農民19
+P020	Farmer 20	farmer	0.4707	0.7833	0.4094	0.8218	0.2839	0.2766	0.6851	0.5898	ujigami_shinto	0.589	農民20
+P021	Farmer 21	farmer	0.4581	0.9092	0.5759	0.6643	0.2282	0.3087	0.8969	0.6178	ujigami_shinto	0.602	農民21
+P022	Farmer 22	farmer	0.5419	0.9010	0.5837	0.7425	0.3918	0.3949	0.7763	0.6665	ryujin_belief	0.570	農民22
+P023	Farmer 23	farmer	0.4003	0.7407	0.5786	0.7111	0.3622	0.3741	0.8619	0.5183	ujigami_shinto	0.602	農民23
+P024	Farmer 24	farmer	0.5882	0.8450	0.5890	0.8729	0.2125	0.3623	0.6850	0.4394	inari_belief	0.522	農民24
+P025	Household keeper 01	household	0.8191	0.7788	0.4618	0.6276	0.4177	0.8207	0.3670	0.6337	jodo_buddhism	0.525	家内01
+P026	Household keeper 02	household	0.8438	0.7155	0.6020	0.5899	0.2965	0.9189	0.4287	0.5830	jodo_buddhism	0.701	家内02
+P027	Household keeper 03	household	0.6576	0.7924	0.3896	0.5375	0.4672	0.8310	0.2577	0.6202	ujigami_shinto	0.572	家内03
+P028	Household keeper 04	household	0.6547	0.7986	0.4708	0.7129	0.4482	0.8006	0.2908	0.6945	ujigami_shinto	0.530	家内04
+P029	Household keeper 05	household	0.6395	0.5825	0.6158	0.5509	0.3732	0.8380	0.3052	0.5951	inari_belief	0.774	家内05
+P030	Household keeper 06	household	0.8628	0.6067	0.4316	0.6283	0.4652	0.8603	0.3952	0.7388	ujigami_shinto	0.578	家内06
+P031	Household keeper 07	household	0.7038	0.6391	0.3995	0.5474	0.4660	0.8375	0.3865	0.7344	jodo_buddhism	0.782	家内07
+P032	Household keeper 08	household	0.7036	0.6585	0.4560	0.6833	0.4444	0.8027	0.3102	0.7106	ujigami_shinto	0.674	家内08
+P033	Household keeper 09	household	0.6888	0.5849	0.4385	0.4974	0.3623	0.7470	0.2480	0.7325	ujigami_shinto	0.587	家内09
+P034	Household keeper 10	household	0.7484	0.7870	0.4170	0.6003	0.4208	0.7485	0.4578	0.6216	inari_belief	0.733	家内10
+P035	Household keeper 11	household	0.8272	0.6567	0.4057	0.6034	0.4506	0.8004	0.4445	0.6140	jodo_buddhism	0.773	家内11
+P036	Household keeper 12	household	0.7059	0.7967	0.5729	0.6977	0.4318	0.9091	0.3955	0.6228	jodo_buddhism	0.630	家内12
+P037	Merchant 01	merchant	0.4016	0.5903	0.2906	0.3455	0.8112	0.3240	0.8718	0.6599	inari_belief	0.755	商人01
+P038	Merchant 02	merchant	0.3250	0.5113	0.2919	0.3359	0.7351	0.2300	0.8769	0.5450	inari_belief	0.606	商人02
+P039	Merchant 03	merchant	0.2600	0.4922	0.4289	0.4255	0.6763	0.2770	0.7960	0.5318	inari_belief	0.659	商人03
+P040	Merchant 04	merchant	0.3857	0.5352	0.3948	0.5055	0.6372	0.2488	0.8549	0.5840	inari_belief	0.624	商人04
+P041	Merchant 05	merchant	0.4477	0.6502	0.2961	0.4851	0.5916	0.1472	0.8628	0.7406	ujigami_shinto	0.548	商人05
+P042	Merchant 06	merchant	0.4419	0.5048	0.3962	0.5338	0.6692	0.2983	0.9167	0.6727	ujigami_shinto	0.757	商人06
+P043	Artisan 01	artisan	0.6104	0.5171	0.2723	0.3401	0.6822	0.4667	0.7119	0.5925	ujigami_shinto	0.704	職人01
+P044	Artisan 02	artisan	0.4635	0.5036	0.2696	0.4552	0.6398	0.5655	0.7239	0.7308	zen_buddhism	0.580	職人02
+P045	Artisan 03	artisan	0.6103	0.4134	0.4162	0.4821	0.7883	0.4981	0.6368	0.8018	inari_belief	0.791	職人03
+P046	Artisan 04	artisan	0.5727	0.4839	0.2695	0.3581	0.6603	0.5481	0.7603	0.6086	inari_belief	0.680	職人04
+P047	Artisan 05	artisan	0.4083	0.4509	0.2896	0.4599	0.6310	0.3756	0.6353	0.5850	ujigami_shinto	0.688	職人05
+P048	Artisan 06	artisan	0.5805	0.4296	0.2983	0.4102	0.6956	0.4706	0.5902	0.7440	zen_buddhism	0.737	職人06
+P049	Religious specialist 01	religious_specialist	0.4437	0.3409	0.3278	0.7054	0.7646	0.7169	0.3020	0.6682	zen_buddhism	0.532	宗教者01
+P050	Religious specialist 02	religious_specialist	0.2383	0.3893	0.3409	0.7316	0.7627	0.8136	0.2428	0.7201	jodo_buddhism	0.672	宗教者02
+P051	Religious specialist 03	religious_specialist	0.3307	0.2956	0.3368	0.5002	0.6862	0.6879	0.2832	0.6959	mountain_belief	0.735	宗教者03
+P052	Religious specialist 04	religious_specialist	0.3282	0.3654	0.3006	0.5489	0.5809	0.6466	0.3536	0.8116	mountain_belief	0.749	宗教者04
+P053	Religious specialist 05	religious_specialist	0.4469	0.3208	0.4103	0.5982	0.7587	0.8170	0.2833	0.6409	mountain_belief	0.686	宗教者05
+P054	Religious specialist 06	religious_specialist	0.2963	0.2108	0.3034	0.6022	0.6773	0.7867	0.3503	0.7761	mountain_belief	0.769	宗教者06
+P055	Village authority 01	authority	0.2982	0.9390	0.8837	0.8857	0.2311	0.2777	0.5310	0.4821	classical_shinto	0.781	村役01
+P056	Village authority 02	authority	0.3831	0.9442	0.9257	0.8753	0.1639	0.2435	0.5499	0.5397	classical_shinto	0.663	村役02
+P057	Village authority 03	authority	0.3799	0.8763	0.8421	0.7409	0.2025	0.3587	0.4814	0.4152	classical_shinto	0.697	村役03
+P058	Elder 01	elder	0.4517	0.9071	0.6457	0.8365	0.1953	0.6252	0.3301	0.4798	ujigami_shinto	0.766	古老01
+P059	Elder 02	elder	0.3480	0.8794	0.6056	0.8284	0.1528	0.6568	0.3205	0.5867	jodo_buddhism	0.714	古老02
+P060	Elder 03	elder	0.3947	0.8263	0.5357	0.8747	0.0714	0.6695	0.4880	0.5091	jodo_buddhism	0.567	古老03
