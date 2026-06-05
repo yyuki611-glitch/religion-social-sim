@@ -1,0 +1,11 @@
+id: famine
+label: Famine pressure
+steps: 50
+events:
+  - step: 8
+    id: famine
+  - step: 18
+    id: epidemic
+  - step: 35
+    id: generation_shift
+

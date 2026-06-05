@@ -1,0 +1,475 @@
+{
+  "conditions": [
+    {
+      "anxiety_saturation_rate": 0.0,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "-0.20",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.55,
+        "mean": 0.2437,
+        "min": 0.05
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.0,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "-0.10",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.65,
+        "mean": 0.3438,
+        "min": 0.15
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.0,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.75,
+        "mean": 0.4437,
+        "min": 0.25
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.0,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "+0.10",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.85,
+        "mean": 0.5437,
+        "min": 0.35
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.0,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "+0.20",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.95,
+        "mean": 0.6438,
+        "min": 0.45
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.01,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.8,
+        "std": 0.4
+      },
+      "conversions": {
+        "mean": 1.7667,
+        "std": 0.423
+      },
+      "delta": "-0.20",
+      "early_conversions": {
+        "mean": 0.9,
+        "std": 0.3
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 3,
+        "n_with_early_conversions": 27,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.55,
+        "mean": 0.2437,
+        "min": 0.05
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.7792,
+        "std": 0.0529
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.0275,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.8333,
+        "std": 0.3727
+      },
+      "conversions": {
+        "mean": 1.8,
+        "std": 0.4
+      },
+      "delta": "-0.10",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.65,
+        "mean": 0.3438,
+        "min": 0.15
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.775,
+        "std": 0.05
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.065,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.8667,
+        "std": 0.3399
+      },
+      "conversions": {
+        "mean": 1.8333,
+        "std": 0.3727
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.75,
+        "mean": 0.4437,
+        "min": 0.25
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.7708,
+        "std": 0.0466
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.125,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.9,
+        "std": 0.3
+      },
+      "conversions": {
+        "mean": 1.8667,
+        "std": 0.3399
+      },
+      "delta": "+0.10",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.85,
+        "mean": 0.5437,
+        "min": 0.35
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.7667,
+        "std": 0.0425
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    },
+    {
+      "anxiety_saturation_rate": 0.215,
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.9,
+        "std": 0.3
+      },
+      "conversions": {
+        "mean": 1.8667,
+        "std": 0.3399
+      },
+      "delta": "+0.20",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "clamped_agents": 0,
+        "max": 0.95,
+        "mean": 0.6438,
+        "min": 0.45
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.7667,
+        "std": 0.0425
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "anxiety"
+    }
+  ],
+  "sweep": "anxiety"
+}

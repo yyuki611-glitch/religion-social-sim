@@ -1,0 +1,7 @@
+id	label	type	x	y	affinity	label_ja
+village_center	Village center	settlement	0	0	ujigami_shinto	村の中心
+rice_fields	Rice fields	agriculture	-2	1	ryujin_belief	田んぼ
+market	Market	commerce	2	0	inari_belief	市場
+local_shrine	Local shrine	shrine	0	2	classical_shinto	神社
+temple	Temple	temple	1	3	jodo_buddhism	寺
+mountain_pass	Mountain pass	nature	-3	3	mountain_belief	峠

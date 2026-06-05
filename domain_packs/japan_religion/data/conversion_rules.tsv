@@ -1,0 +1,8 @@
+id	label	condition	effect
+anxiety_salvation	Anxiety increases salvation seeking	anxiety + salvation_need is high	boost jodo_buddhism
+harvest_practical_benefit	Harvest pressure increases practical prayer	anxiety + practical_benefit_need is high	boost inari_belief,ryujin_belief
+community_retention	Community dependence preserves local belief	community_dependence + tradition_orientation is high	reinforce ujigami_shinto
+authority_alignment	Authority signal accelerates official belief	authority_trust + authority_signal is high	boost classical_shinto
+rumor_conversion	Rumor creates short-term conversion pressure	rumor_signal is high	boost target_belief
+tolerance_syncretism	Tolerance allows mixed belief	tolerance is high	allow syncretism
+

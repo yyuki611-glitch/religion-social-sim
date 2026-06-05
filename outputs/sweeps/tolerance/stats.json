@@ -1,0 +1,475 @@
+{
+  "conditions": [
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "-0.20",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 0,
+        "clamped_agents": 0,
+        "max": 0.65,
+        "mean": 0.4312,
+        "min": 0.25
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "-0.10",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 1,
+        "clamped_agents": 0,
+        "max": 0.75,
+        "mean": 0.5312,
+        "min": 0.35
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 4,
+        "clamped_agents": 0,
+        "max": 0.85,
+        "mean": 0.6312,
+        "min": 0.45
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "+0.10",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 7,
+        "clamped_agents": 0,
+        "max": 0.95,
+        "mean": 0.7312,
+        "min": 0.55
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "+0.20",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 30,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 8,
+        "clamped_agents": 1,
+        "max": 1.0,
+        "mean": 0.825,
+        "min": 0.65
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.8667,
+        "std": 0.3399
+      },
+      "conversions": {
+        "mean": 1.8333,
+        "std": 0.3727
+      },
+      "delta": "-0.20",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 0,
+        "clamped_agents": 0,
+        "max": 0.65,
+        "mean": 0.4312,
+        "min": 0.25
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.7708,
+        "std": 0.0466
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.8667,
+        "std": 0.3399
+      },
+      "conversions": {
+        "mean": 1.8333,
+        "std": 0.3727
+      },
+      "delta": "-0.10",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 1,
+        "clamped_agents": 0,
+        "max": 0.75,
+        "mean": 0.5312,
+        "min": 0.35
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.7708,
+        "std": 0.0466
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.9667,
+        "std": 0.1795
+      },
+      "conv_to_salvation": {
+        "mean": 0.8667,
+        "std": 0.3399
+      },
+      "conversions": {
+        "mean": 1.8333,
+        "std": 0.3727
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 4,
+        "clamped_agents": 0,
+        "max": 0.85,
+        "mean": 0.6312,
+        "min": 0.45
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.7708,
+        "std": 0.0466
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 1.5667,
+        "std": 0.4955
+      },
+      "conv_to_salvation": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 2.5667,
+        "std": 0.4955
+      },
+      "delta": "+0.10",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 7,
+        "clamped_agents": 0,
+        "max": 0.95,
+        "mean": 0.7312,
+        "min": 0.55
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.6792,
+        "std": 0.0619
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 1.1,
+        "std": 0.3
+      },
+      "trait": "tolerance"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 1.5667,
+        "std": 0.4955
+      },
+      "conv_to_salvation": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 2.5667,
+        "std": 0.4955
+      },
+      "delta": "+0.20",
+      "early_conversions": {
+        "mean": 0.9333,
+        "std": 0.2494
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 28,
+        "std": 0.0
+      },
+      "effective_trait": {
+        "agents_at_or_above_syncretism_threshold": 8,
+        "clamped_agents": 1,
+        "max": 1.0,
+        "mean": 0.825,
+        "min": 0.65
+      },
+      "n_runs": 30,
+      "retention_rate": {
+        "mean": 0.6792,
+        "std": 0.0619
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 1.1,
+        "std": 0.3
+      },
+      "trait": "tolerance"
+    }
+  ],
+  "sweep": "tolerance"
+}

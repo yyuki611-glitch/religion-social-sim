@@ -1,0 +1,6 @@
+id	label	effect
+same_belief_trust	Same belief increases trust gradually
+conversion_family_tension	Conversion away from household belief creates tension
+shared_crisis_ritual	Shared crisis ritual increases community bond
+exclusive_claim_conflict	Low tolerance plus exclusive claim increases conflict
+

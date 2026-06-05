@@ -1,0 +1,9 @@
+id: baseline
+label: Baseline village
+steps: 50
+events:
+  - step: 10
+    id: good_harvest
+  - step: 30
+    id: generation_shift
+

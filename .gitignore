@@ -1,0 +1,16 @@
+.env
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+node_modules/
+outputs/runs/*
+!outputs/runs/.gitkeep
+*.sqlite
+*.db
+
+# sweep raw outputs（集計 results.tsv / stats.json / figures はコミットする）
+outputs/sweeps/*/runs/

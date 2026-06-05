@@ -1,0 +1,9 @@
+id	label	description
+belief_population	Belief population	Number of agents whose primary belief is each belief
+belief_strength	Belief strength	Average strength by belief
+conversion_count	Conversion count	Number of primary belief changes
+syncretism_count	Syncretism count	Number of mixed belief states
+conflict_count	Conflict count	Number of belief-driven conflict events
+retention_rate	Retention rate	Share of agents retaining inherited or initial belief
+rumor_path	Rumor path	Observed path of rumor-driven belief change
+

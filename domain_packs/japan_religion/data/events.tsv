@@ -1,0 +1,11 @@
+id	label	type	anxiety_delta	authority_signal	community_signal	rumor_signal	target_belief	label_ja
+famine	Famine	stress	0.35	0.00	0.20	0.10	inari_belief	飢饉
+epidemic	Epidemic	stress	0.45	0.00	0.10	0.20	jodo_buddhism	疫病
+war_rumor	War rumor	stress	0.30	0.10	0.15	0.25	classical_shinto	戦の噂
+good_harvest	Good harvest	relief	-0.20	0.00	0.15	0.05	ryujin_belief	豊作
+miracle_rumor	Miracle rumor	rumor	0.10	0.00	0.10	0.60	inari_belief	奇跡の噂
+temple_corruption	Temple corruption	scandal	0.10	-0.10	-0.05	0.35	jodo_buddhism	寺の腐敗
+shrine_patronage	Shrine patronage	authority	0.00	0.60	0.25	0.10	classical_shinto	神社への庇護
+new_teacher_arrival	New teacher arrival	diffusion	0.05	0.10	0.05	0.25	zen_buddhism	新しい導師の到来
+authority_ban	Authority ban	suppression	0.20	-0.50	-0.10	0.25	mountain_belief	お上の禁令
+generation_shift	Generation shift	generation	0.00	0.00	-0.10	0.00		世代交代

@@ -1,0 +1,10 @@
+name: japan_religion
+label: Japanese Religion Spread Simulation
+description: >
+  A domain pack for testing how Japanese religious beliefs spread, mix,
+  decline, or persist under anxiety, authority, community, rumor, and
+  generational pressure.
+default_scenario: baseline.yaml
+time_unit: step
+initial_steps: 50
+

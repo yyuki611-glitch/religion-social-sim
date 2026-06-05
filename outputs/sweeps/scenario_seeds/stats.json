@@ -1,0 +1,125 @@
+{
+  "conditions": [
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "early_convert_retention": {
+        "mean": null,
+        "n_na": 50,
+        "n_with_early_conversions": 0,
+        "std": null
+      },
+      "n_runs": 50,
+      "retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "none"
+    },
+    {
+      "conv_to_other": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conv_to_practical": {
+        "mean": 0.98,
+        "std": 0.14
+      },
+      "conv_to_salvation": {
+        "mean": 0.82,
+        "std": 0.3842
+      },
+      "conversions": {
+        "mean": 1.8,
+        "std": 0.4
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 0.96,
+        "std": 0.196
+      },
+      "early_convert_retention": {
+        "mean": 1.0,
+        "n_na": 2,
+        "n_with_early_conversions": 48,
+        "std": 0.0
+      },
+      "n_runs": 50,
+      "retention_rate": {
+        "mean": 0.775,
+        "std": 0.05
+      },
+      "scenario": "famine",
+      "syncretisms": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "trait": "none"
+    },
+    {
+      "conv_to_other": {
+        "mean": 4.7,
+        "std": 0.5385
+      },
+      "conv_to_practical": {
+        "mean": 3.24,
+        "std": 0.4716
+      },
+      "conv_to_salvation": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "conversions": {
+        "mean": 7.94,
+        "std": 0.7046
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 2.8,
+        "std": 0.6633
+      },
+      "early_convert_retention": {
+        "mean": 0.1183,
+        "n_na": 0,
+        "n_with_early_conversions": 50,
+        "std": 0.1708
+      },
+      "n_runs": 50,
+      "retention_rate": {
+        "mean": 0.37,
+        "std": 0.0245
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 0.04,
+        "std": 0.196
+      },
+      "trait": "none"
+    }
+  ],
+  "sweep": "scenario_seeds"
+}

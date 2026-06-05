@@ -1,0 +1,8 @@
+id	label	family	appeal	label_ja
+classical_shinto	Classical Shinto	shinto	kinship,land,ritual_continuity	古典神道
+ujigami_shinto	Ujigami / local shrine	shinto	community,ancestor,local_protection	氏神信仰
+inari_belief	Inari belief	folk_shinto	practical_benefit,commerce,harvest	稲荷信仰
+ryujin_belief	Ryujin belief	folk_shinto	water,weather,agriculture	龍神信仰
+jodo_buddhism	Jodo Buddhism	buddhism	salvation,grief,afterlife	浄土仏教
+zen_buddhism	Zen Buddhism	buddhism	discipline,elite_culture,self_cultivation	禅仏教
+mountain_belief	Mountain belief	folk_religion	nature,awe,ascetic_power	山岳信仰

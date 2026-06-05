@@ -1,0 +1,151 @@
+sweep	scenario	trait	delta	seed	steps	conversions	syncretisms	retention_rate	conv_to_salvation	conv_to_practical	conv_to_other	early_conversions	early_convert_retention
+scenario_seeds	baseline	none	+0.00	1	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	2	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	3	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	4	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	5	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	6	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	7	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	8	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	9	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	10	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	11	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	12	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	13	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	14	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	15	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	16	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	17	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	18	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	19	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	20	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	21	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	22	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	23	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	24	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	25	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	26	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	27	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	28	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	29	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	30	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	31	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	32	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	33	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	34	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	35	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	36	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	37	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	38	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	39	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	40	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	41	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	42	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	43	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	44	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	45	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	46	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	47	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	48	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	49	50	0	0	1.000	0	0	0	0	
+scenario_seeds	baseline	none	+0.00	50	50	0	0	1.000	0	0	0	0	
+scenario_seeds	famine	none	+0.00	1	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	2	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	3	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	4	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	5	50	1	0	0.875	1	0	0	0	
+scenario_seeds	famine	none	+0.00	6	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	7	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	8	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	9	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	10	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	11	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	12	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	13	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	14	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	15	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	16	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	17	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	18	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	19	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	20	50	1	0	0.875	0	1	0	0	
+scenario_seeds	famine	none	+0.00	21	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	22	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	23	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	24	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	25	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	26	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	27	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	28	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	29	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	30	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	31	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	32	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	33	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	34	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	35	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	36	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	37	50	1	0	0.875	0	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	38	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	39	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	40	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	41	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	42	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	43	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	44	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	45	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	46	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	47	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	48	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	49	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	famine	none	+0.00	50	50	2	0	0.750	1	1	0	1	1.000
+scenario_seeds	miracle_rumor	none	+0.00	1	50	9	0	0.375	0	4	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	2	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	3	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	4	50	8	0	0.375	0	4	4	4	0.250
+scenario_seeds	miracle_rumor	none	+0.00	5	50	9	1	0.250	0	3	6	1	0.000
+scenario_seeds	miracle_rumor	none	+0.00	6	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	7	50	9	0	0.375	0	4	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	8	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	9	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	10	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	11	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	12	50	9	0	0.375	0	4	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	13	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	14	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	15	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	16	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	17	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	18	50	8	0	0.375	0	4	4	4	0.250
+scenario_seeds	miracle_rumor	none	+0.00	19	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	20	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	21	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	22	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	23	50	9	1	0.250	0	3	6	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	24	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	25	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	26	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	27	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	28	50	9	0	0.375	0	4	5	4	0.000
+scenario_seeds	miracle_rumor	none	+0.00	29	50	9	0	0.375	0	4	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	30	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	31	50	8	0	0.375	0	4	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	32	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	33	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	34	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	35	50	8	0	0.375	0	3	5	1	0.000
+scenario_seeds	miracle_rumor	none	+0.00	36	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	37	50	7	0	0.375	0	3	4	2	0.500
+scenario_seeds	miracle_rumor	none	+0.00	38	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	39	50	8	0	0.375	0	4	4	4	0.250
+scenario_seeds	miracle_rumor	none	+0.00	40	50	8	0	0.375	0	3	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	41	50	6	0	0.375	0	2	4	2	0.500
+scenario_seeds	miracle_rumor	none	+0.00	42	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	43	50	8	0	0.375	0	3	5	2	0.000
+scenario_seeds	miracle_rumor	none	+0.00	44	50	9	0	0.375	0	4	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	45	50	9	0	0.375	0	4	5	4	0.000
+scenario_seeds	miracle_rumor	none	+0.00	46	50	7	0	0.375	0	3	4	2	0.500
+scenario_seeds	miracle_rumor	none	+0.00	47	50	9	0	0.375	0	4	5	3	0.000
+scenario_seeds	miracle_rumor	none	+0.00	48	50	7	0	0.375	0	3	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	49	50	8	0	0.375	0	4	4	3	0.333
+scenario_seeds	miracle_rumor	none	+0.00	50	50	7	0	0.375	0	3	4	3	0.333

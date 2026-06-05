@@ -1,0 +1,11 @@
+id: miracle_rumor
+label: Miracle rumor
+steps: 50
+events:
+  - step: 5
+    id: miracle_rumor
+  - step: 20
+    id: shrine_patronage
+  - step: 34
+    id: temple_corruption
+
