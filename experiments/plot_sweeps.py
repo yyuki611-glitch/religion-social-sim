@@ -188,6 +188,61 @@ def fig4_tolerance(out_root: Path, fig_dir: Path) -> None:
     plt.close(fig)
 
 
+def fig5_tolerance_graded(out_root: Path, fig_dir: Path) -> None:
+    """スイープ E（graded 習合メカニズム、H6 検証）。famine 主・baseline 参考。"""
+    stats = _read_stats(out_root / "tolerance_graded")
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.5))
+    for ax, scenario in zip(axes, ["famine", "baseline"]):
+        conds = _conditions(stats, scenario)
+        xs = [float(c["delta"]) for c in conds]
+        ax.errorbar(
+            xs,
+            [c["conversions"]["mean"] for c in conds],
+            yerr=[c["conversions"]["std"] for c in conds],
+            marker="o",
+            capsize=3,
+            label="conversions",
+            color="#c0392b",
+        )
+        ax.errorbar(
+            xs,
+            [c["syncretisms"]["mean"] for c in conds],
+            yerr=[c["syncretisms"]["std"] for c in conds],
+            marker="s",
+            capsize=3,
+            label="syncretisms",
+            color="#27ae60",
+        )
+        ax2 = ax.twinx()
+        shares = [c["syncretism_share"]["mean"] for c in conds]
+        ax2.plot(
+            xs,
+            shares,
+            marker="^",
+            linestyle="--",
+            color="#8e44ad",
+            label="syncretism share (right)",
+        )
+        ax2.set_ylim(0, max(0.3, max(s for s in shares if s is not None) * 1.3))
+        if scenario == "baseline":
+            ax2.set_ylabel("syncretism share")
+        ax.set_xlabel("tolerance delta")
+        ax.set_title(f"{scenario}" + (" (primary)" if scenario == "famine" else " (reference)"), fontsize=9)
+        ax.grid(alpha=0.3)
+        if scenario == "famine":
+            ax.set_ylabel("events per run (mean)")
+            h1, l1 = ax.get_legend_handles_labels()
+            h2, l2 = ax2.get_legend_handles_labels()
+            ax.legend(h1 + h2, l1 + l2, fontsize=8)
+    fig.suptitle(
+        "Graded syncretism mechanism (sweep E): does tolerance shift belief change toward syncretism?",
+        fontsize=10,
+    )
+    fig.tight_layout()
+    fig.savefig(fig_dir / "fig5_tolerance_graded.png", dpi=150)
+    plt.close(fig)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sweeps-dir", default=str(ROOT / "outputs" / "sweeps"))
@@ -199,6 +254,8 @@ def main() -> None:
     fig2_anxiety(out_root, fig_dir)
     fig3_practical(out_root, fig_dir)
     fig4_tolerance(out_root, fig_dir)
+    if (out_root / "tolerance_graded" / "stats.json").exists():
+        fig5_tolerance_graded(out_root, fig_dir)
     for p in sorted(fig_dir.glob("*.png")):
         print(p)
 

@@ -82,7 +82,20 @@ SWEEPS: dict[str, dict] = {
         "deltas": DELTAS,
         "seeds": list(range(1, 31)),
     },
+    # スイープ E（v0.6.0）: graded 習合メカニズムで H6 を検証する唯一のスイープ。
+    # A–D は threshold のまま（2メカニズム併存の理由は README 参照）
+    "tolerance_graded": {
+        "scenarios": ["baseline", "famine"],
+        "trait": "tolerance",
+        "deltas": DELTAS,
+        "seeds": list(range(1, 31)),
+        "syncretism": "graded",
+    },
 }
+
+# H6 の効果量下限（設計 rev3 で宣言。3 = 60 × 0.05、村の5%を最小の集合現象とする。
+# H1/H5 の per-capita 25% パリティとは別基準＝H6 には引き継ぐ過去の宣言値が存在しない）
+H6_SYNC_FLOOR = 3
 
 RESULT_FIELDS = [
     "sweep",
@@ -181,6 +194,7 @@ def run_sweep(
     out_root: Path,
     seeds: list[int] | None = None,
     population: str = "sampled60",
+    syncretism: str | None = None,
 ) -> list[dict]:
     """1スイープを逐次実行する。
 
@@ -196,6 +210,8 @@ def run_sweep(
     spec = SWEEPS[name]
     seeds = seeds if seeds is not None else spec["seeds"]
     trait = spec["trait"]
+    # CLI/引数で明示されなければスイープ定義の既定値（A–D: threshold / E: graded）
+    syncretism_mode = syncretism or spec.get("syncretism", "threshold")
     rows: list[dict] = []
     saturation_acc: dict[tuple, list[float]] = {}
     pop_acc: dict[tuple, list[dict]] = {}
@@ -230,12 +246,21 @@ def run_sweep(
                     seed=seed,
                     trait_adjustments=adjustments,
                     agents_rows=agents_rows,
+                    syncretism_mode=syncretism_mode,
                 )
                 if population == "sampled60":
                     _annotate_summary(run_dir, POPULATION_SEED_OFFSET + seed)
-                    pop_acc.setdefault((scenario, delta), []).append(
-                        _population_aux(agents_rows, trait, delta, belief_rows)
-                    )
+                    aux = _population_aux(agents_rows, trait, delta, belief_rows)
+                    if syncretism_mode == "graded":
+                        # H6 用補助値（graded スイープのみ。A–D の stats.json を変えない）
+                        total_changes = summary["conversions"] + summary["syncretisms"]
+                        aux["syncretism_share"] = (
+                            summary["syncretisms"] / total_changes if total_changes else None
+                        )
+                        aux["final_secondary_holders"] = sum(
+                            1 for a in summary["final_agents"] if a["secondary_belief"]
+                        )
+                    pop_acc.setdefault((scenario, delta), []).append(aux)
                 conversions = read_tsv(run_dir / "conversions.tsv")
                 metrics = compute_metrics(conversions, summary["final_agents"], scenario)
                 rows.append(
@@ -376,6 +401,15 @@ def _build_stats_sampled(
                 "n_na": len(cond_rows) - len(retentions),
             }
             aux_list = pop_acc.get((scenario, delta), [])
+            if aux_list and "syncretism_share" in aux_list[0]:
+                shares = [a["syncretism_share"] for a in aux_list if a["syncretism_share"] is not None]
+                cond["syncretism_share"] = {
+                    **(_mean_std(shares) if shares else {"mean": None, "std": None}),
+                    "n_na": len(aux_list) - len(shares),
+                }
+                cond["final_secondary_holders"] = _mean_std(
+                    [float(a["final_secondary_holders"]) for a in aux_list]
+                )
             if aux_list:
                 belief_ids = sorted(aux_list[0]["initial_shares"])
                 cond["initial_shares_mean"] = {
@@ -568,18 +602,65 @@ def judge(out_root: Path, floors: dict[str, int]) -> dict:
             },
         }
 
-    # --- H3 / H4 / H6: 設計上スイープなし or トートロジー ---
+    # --- H3 / H4: 設計上スイープなし ---
     verdicts["H3"] = {"verdict": "inconclusive", "evidence": {"note": "専用スイープなし（未検証）"}}
     verdicts["H4"] = {"verdict": "inconclusive", "evidence": {"note": "専用スイープなし（未検証）"}}
-    verdicts["H6"] = {
-        "verdict": "inconclusive",
+
+    # --- H6（v0.6.0、スイープ E = graded 習合メカニズム）---
+    e_stats_path = out_root / "tolerance_graded" / "stats.json"
+    if e_stats_path.exists():
+        verdicts["H6"] = _judge_h6(json.loads(e_stats_path.read_text(encoding="utf-8")))
+    else:
+        verdicts["H6"] = {
+            "verdict": "inconclusive",
+            "evidence": {
+                "note": "graded 習合メカニズムのスイープ（tolerance_graded）が未実行。"
+                "threshold メカニズムでは tolerance >= 0.65 の二値ゲートが習合を直接決める"
+                "トートロジーのため検証不能"
+            },
+        }
+    return verdicts
+
+
+def _judge_h6(stats: dict) -> dict:
+    """H6 判定（設計 rev3 で宣言した (a)(b)(c) 基準。famine 側が判定対象）。
+
+    (a) syncretisms の条件平均が tolerance デルタに対し単調増加（隣接減少1箇所以下）
+    (b) syncretism_share も単調増加（習合が改宗を置き換えていること）
+    (c) 効果量下限: syncretisms の最大条件平均 >= H6_SYNC_FLOOR（=3、村の5%）
+    """
+    conds = [c for c in stats["conditions"] if c["scenario"] == "famine"]
+    conds.sort(key=lambda c: float(c["delta"]))
+    sync_series = [c["syncretisms"]["mean"] for c in conds]
+    conv_series = [c["conversions"]["mean"] for c in conds]
+    share_series = [c["syncretism_share"]["mean"] for c in conds]
+
+    if all((s or 0) + c < 1 for s, c in zip(sync_series, conv_series)):
+        return {
+            "verdict": "inconclusive",
+            "evidence": {"note": "belief-change イベントがほぼゼロ", "syncretisms": sync_series},
+        }
+
+    def monotonic(series: list) -> bool:
+        vals = [v if v is not None else 0.0 for v in series]
+        return sum(1 for i in range(len(vals) - 1) if vals[i + 1] < vals[i]) <= 1
+
+    a = monotonic(sync_series)
+    b = monotonic(share_series)
+    c = max(sync_series) >= H6_SYNC_FLOOR
+    passed = sum([a, b, c])
+    verdict = "consistent" if passed == 3 else ("inconsistent" if passed == 0 else "conditionally_consistent")
+    return {
+        "verdict": verdict,
         "evidence": {
-            "note": "エンジンが tolerance >= 0.65 で習合を直接ゲートしており、"
-            "tolerance を上げると習合が増えるのはモデル定義の再現（トートロジー）。"
-            "スイープ tolerance は感度分析として報告"
+            "criteria": {"a_syncretisms_monotonic": a, "b_share_monotonic": b, "c_effect_floor": c},
+            "famine_syncretisms_by_delta": sync_series,
+            "famine_conversions_by_delta": conv_series,
+            "famine_syncretism_share_by_delta": share_series,
+            "effect_floor": H6_SYNC_FLOOR,
+            "note": "判定対象はマクロな置換パターン。ミクロルールに tolerance が入っている事実は判定根拠にしない",
         },
     }
-    return verdicts
 
 
 def main() -> None:
@@ -601,6 +682,12 @@ def main() -> None:
         help="省略時は sampled60 → outputs/sweeps、fixed8 → outputs/sweeps_fixed8",
     )
     parser.add_argument(
+        "--syncretism",
+        default=None,
+        choices=["threshold", "graded"],
+        help="習合メカニズムの上書き。省略時はスイープ定義の既定値（A–D: threshold / E: graded）",
+    )
+    parser.add_argument(
         "--judge",
         action="store_true",
         help="実行後に設計宣言済みの基準で仮説判定を出力する（要: 全スイープの stats.json）",
@@ -614,7 +701,7 @@ def main() -> None:
         out_root = ROOT / "outputs" / subdir
     names = list(SWEEPS.keys()) if args.sweep == "all" else [args.sweep]
     for name in names:
-        rows = run_sweep(name, out_root, population=args.population)
+        rows = run_sweep(name, out_root, population=args.population, syncretism=args.syncretism)
         print(f"sweep {name}: {len(rows)} runs ({args.population}) -> {out_root / name / 'results.tsv'}")
 
     if args.judge:

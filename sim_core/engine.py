@@ -21,7 +21,21 @@ EVENT_DECAY = 0.92  # イベント効果の1ステップごとの減衰率
 EVENT_MIN_WEIGHT = 0.05  # この重みを下回ったイベントは失効
 STRENGTH_CAP = 0.90  # 通常成長での信仰強度の上限（鉄壁化を防ぐ）
 PRESSURE_STEPS_TO_CONVERT = 3  # 改宗に必要な連続圧力ステップ数
-SYNCRETISM_TOLERANCE = 0.65  # 習合が起きる寛容度の下限
+SYNCRETISM_TOLERANCE = 0.65  # 習合が起きる寛容度の下限（syncretism_mode="threshold" のみ使用）
+
+# --- graded 習合メカニズム（v0.6.0、設計: tasks/todo.md rev3）---
+# 改宗トリガー時の「旧信仰を保持（習合的改宗）か完全改宗か」を競合スコアで決める。
+# 重みは threshold 実験の改宗時 gap 分布（中央値0.18 / p90 0.29、v0.5.0 タグ時点の
+# famine 20run・450件から較正）で固定済み。スイープE実行後の変更は禁止。
+W_KEEP_TOLERANCE = 0.50  # 寛容: 併存への抵抗の低さ
+W_KEEP_STRENGTH = 0.30  # 旧信仰への愛着（改宗時点の侵食後 strength）
+W_KEEP_TRADITION = 0.20  # 伝統: 捨てることへの抵抗
+GAP_REF = 0.30  # drop 項の正規化基準（観測 p90。これ以上で頭打ち）
+W_DROP_NOVELTY = 0.35  # 新奇志向: 過去を引きずらない
+# 副次取り込み（改宗なしの習合）の確率。最大0.50で意図的に頭打ち（改宗より稀な現象）
+W_SYNC_OPEN_TOLERANCE = 0.25
+W_SYNC_OPEN_NOVELTY = 0.15
+W_SYNC_OPEN_ANXIETY = 0.10
 
 # 信念の訴求タグ → エージェント特性のマッピング
 APPEAL_TRAITS: dict[str, list[str]] = {
@@ -62,6 +76,31 @@ TRAIT_KEYS = [
 
 def _clamp(x: float, lo: float = 0.0, hi: float = 1.0) -> float:
     return max(lo, min(hi, x))
+
+
+def keep_decision(
+    tolerance: float, old_strength: float, tradition: float, novelty: float, gap: float
+) -> tuple[bool, float, float]:
+    """graded 習合: 改宗トリガー時に旧信仰を副次として保持するか（習合的改宗）。
+
+    (keep するか, keep_score, drop_score) を返す。同値は drop（完全改宗）。
+    """
+    keep_score = (
+        W_KEEP_TOLERANCE * tolerance
+        + W_KEEP_STRENGTH * old_strength
+        + W_KEEP_TRADITION * tradition
+    )
+    drop_score = min(1.0, gap / GAP_REF) + W_DROP_NOVELTY * novelty
+    return keep_score > drop_score, keep_score, drop_score
+
+
+def syncretism_openness(tolerance: float, novelty: float, anxiety: float) -> float:
+    """graded 習合: 改宗なしの副次取り込みが成立する確率（最大0.50）。"""
+    return (
+        W_SYNC_OPEN_TOLERANCE * tolerance
+        + W_SYNC_OPEN_NOVELTY * novelty
+        + W_SYNC_OPEN_ANXIETY * anxiety
+    )
 
 
 @dataclass
@@ -181,6 +220,7 @@ def run_scenario(
     seed: int = 42,
     trait_adjustments: dict[str, float] | None = None,
     agents_rows: list[dict[str, str]] | None = None,
+    syncretism_mode: str = "threshold",
 ) -> dict[str, Any]:
     """シナリオを1回実行する。
 
@@ -190,7 +230,12 @@ def run_scenario(
 
     agents_rows: agents.tsv の代わりに使うエージェント行（母集団サンプリング用）。
     None なら従来どおり agents.tsv を読む（既存挙動と完全に同一）。
+
+    syncretism_mode: "threshold"（既定）= tolerance >= 0.65 の二値ゲート（v0.5.0 までと
+    byte 同一）。"graded" = keep/drop 競合スコア + 確率的副次取り込み（v0.6.0、H6 検証用）。
     """
+    if syncretism_mode not in ("threshold", "graded"):
+        raise ValueError(f"unknown syncretism_mode: {syncretism_mode}")
     pack = load_domain_pack(domain_dir)
     scenario = read_yaml(pack.scenario_path(scenario_file))
     agent_rows = agents_rows if agents_rows is not None else read_tsv(pack.data_path("agents.tsv"))
@@ -283,7 +328,17 @@ def run_scenario(
                     f"pull={scores[best_other][1]} anxiety={anxiety:.2f}"
                 )
                 old = agent.belief
-                keep_old_as_secondary = agent.traits["tolerance"] >= SYNCRETISM_TOLERANCE
+                if syncretism_mode == "graded":
+                    keep_old_as_secondary, keep_s, drop_s = keep_decision(
+                        agent.traits["tolerance"],
+                        agent.strength,
+                        agent.traits["tradition_orientation"],
+                        agent.traits["novelty_openness"],
+                        gap,
+                    )
+                    reason += f" keep={keep_s:.2f} drop={drop_s:.2f}"
+                else:
+                    keep_old_as_secondary = agent.traits["tolerance"] >= SYNCRETISM_TOLERANCE
                 agent.secondary_belief = old if keep_old_as_secondary else None
                 agent.belief = best_other
                 agent.strength = _clamp(0.35 + 0.3 * challengers[best_other], 0.05)
@@ -302,7 +357,40 @@ def run_scenario(
                 converted = True
 
             # 習合（改宗には至らないが、副次信仰として取り込む）
-            if (
+            if syncretism_mode == "graded":
+                # graded: tolerance の二値ゲートを外し、圧力到達時に確率判定。
+                # rng 消費はこの分岐内でのみ発生（threshold パスの rng 消費列は不変）
+                if (
+                    not converted
+                    and agent.secondary_belief != best_other
+                    and threshold * 0.5 < gap <= threshold
+                ):
+                    agent.syncretism_pressure[best_other] = agent.syncretism_pressure.get(best_other, 0) + 1
+                    if agent.syncretism_pressure[best_other] >= PRESSURE_STEPS_TO_CONVERT:
+                        sync_p = syncretism_openness(
+                            agent.traits["tolerance"],
+                            agent.traits["novelty_openness"],
+                            anxiety,
+                        )
+                        if rng.random() < sync_p:
+                            agent.secondary_belief = best_other
+                            agent.syncretism_pressure = {}
+                            conversions.append(
+                                {
+                                    "step": step,
+                                    "agent_id": agent.id,
+                                    "kind": "syncretism",
+                                    "from_belief": agent.belief,
+                                    "to_belief": best_other,
+                                    "reason": (
+                                        f"sync_p={sync_p:.2f} tolerance={agent.traits['tolerance']:.2f} "
+                                        f"gap={gap:.2f} pull={scores[best_other][1]}"
+                                    ),
+                                }
+                            )
+                        else:
+                            agent.syncretism_pressure[best_other] = 0
+            elif (
                 not converted
                 and agent.traits["tolerance"] >= SYNCRETISM_TOLERANCE
                 and agent.secondary_belief != best_other
