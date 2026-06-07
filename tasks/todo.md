@@ -1,175 +1,251 @@
-# H3・H4 専用スイープ（6仮説完全制覇）v0.7.0
+# v2.0「ムラからクニへ」— 郡モデル（16村×400人）への根本再設計
 
-2026-06-07 設計 rev3。
-- rev2: evaluator モード1指摘（HIGH4・MEDIUM4）反映
-- rev3: codex-reviewer 指摘（HIGH2・CRITICAL1・MEDIUM2・LOW3）反映。ただし指摘3の
-  「community_pressure が改宗確率に1:1で効く」は belief.py 実測で誤り（係数0.15）と確認、
-  指摘5の「下限3件は理論上限」も v0.4.0 実績（8人村で庇護後4件）と矛盾するため棄却。
-  即時/遅延の構造非対称・解釈ルール事前宣言・診断キー・スキーマ防御テストは採用
-v0.4.0 から「判定不能（未検証）」のまま残っていた最後の2仮説に専用スイープで判定を出し、
-「3つの問い・6つの仮説を立てて、全部に答えて、限界も明示した」という完結の形を作る。
+2026-06-07 設計 rev3（rev2: evaluator HIGH5・MEDIUM3 / rev3: codex HIGH2・MEDIUM4 反映）。
+プラン承認済み。
+出典: docs/references.md「郡モデル（v2.0）のライト調査」。
 
-- **H3**: 強い共同体依存は、地域の神社や家の信仰（氏神信仰・古典神道）を保存する
-- **H4**: 権威による庇護は、制度と結びついた信念を加速させる
+## 動機（作者の問題提起）
 
-## 配線の開示（設計段階で宣言）
+「なぜムラなのか。400人ですら少なく感じる」——単一村・全対全の構造が人数の上限を
+作っていた。人数を増やすのではなく**構造を変える**：村内は全員顔見知り（現エンジンの
+仮定が正当な範囲）、村と村は宗教者・商人だけが橋渡しする**郡**にする。
 
-v0.6.0 の批判レビューで確立した規律に従い、先に配線を開示する:
-- H3: community_dependence は信念スコアの共同体項（多数派信仰への引力 ×0.35）と
-  openness の community_pressure 項に直接入っている。「共同体依存が同調を生む」はミクロ配線
-- H4: shrine_patronage イベントは `target_belief=classical_shinto`・`authority_signal=0.60`・
-  **`community_signal=0.25`** と定義されており、「庇護が古典神道に向かう」方向は配線そのもの。
-  さらに community_signal 経由の引力も混ざるため、「権威」単独の測定純度は完全ではない
-  （← evaluator MEDIUM-2。authority_trust デルタが動かすのは authority_signal 項と openness の
-  authority 項であり、デルタへの応答は権威チャネルに帰属できるが、改宗数の水準には
-  community 寄与が含まれる）
-- よって判定対象は方向性ではなく**定量応答**（デルタへの単調性・効果量）に限る。
-  README の「主張できること・できないこと」にも追記する
+## 史実の根拠（references.md に出典記録済み）
 
-## 仮説が落ちる余地（事前見積もり）
+- 1村400人 = 江戸の平均的な村（40〜50戸）。16村で郡 ≈ 6,400人
+- 村に武士は不在。百姓系が約9割、職人・商人・宗教者・村役は少数
+- 寺請制度: 全員が檀家+氏子 → モデルの「信仰」は**「主たる信心」**と再解釈して宣言
+- 村間伝播の担い手 = 御師・講・旅僧・行商 → **橋渡し = religious_specialist + merchant**
+- 仏教内の規模感（浄土系優位・禅系次点）は現代統計の代理。**確率の具体値は設計仮定**
+  （感度分析スイープで守る）
 
-- **H3 は本当に落ちうる**: community_dependence は2つの**逆方向チャネル**を持つ。
-  (i) 多数派信仰への引力（信念スコアの community 項 ×0.35。**閾値型・遅延**: gap>threshold が
-  3ステップ続いて初めて改宗が起きる）、
-  (ii) openness の community_pressure = dep × (1 − 自信仰のシェア)（**即時・線形**だが係数は
-  belief.py 実測で **0.15**（最大寄与 +0.15）。codex 指摘の「1:1で効く」は誤り）。
-  さらに famine イベント自体が community_signal=0.20 を持ち、dep が高いほど稲荷への
-  イベント引力も強まる（dep×0.20×1.6）。危機で地元信仰のシェアが下がった村では
-  (ii)+イベント項が (i) を上回り、高 dep がむしろ保存を**壊す**方向に働きうる
-- **逆転時の解釈ルールを事前宣言**（← codex HIGH-1）: famine 側で local_retention が dep に
-  対し**単調減少**した場合、それは測定の失敗ではなく「このモデルでは共同体依存は危機下で
-  保存ではなく雪崩を加速する」という**正当な不整合（仮説の棄却）**として記録する。
-  谷型（非単調）は「条件付き判定不能」とし、チャネル帰属の診断を experiment_log に書く。
-  baseline 側は belief-change が少なく効果量下限を満たさない可能性が高い（参考系列）
-- **H4 の効果規模の事前見積もり**: shrine_patronage の信念スコア寄与は
-  1.6 × 0.60 × auth_trust = **0.96 × auth_trust**（auth_trust=0.5 の代表的エージェントで ≈0.48。
-  改宗時 gap の典型値 0.18 を大きく超える）で、
-  v0.4.0 実績では8人村で庇護後に**4件**の古典神道改宗が観測された（per-capita 50%）。
-  60人村で下限3件（5%）は十分到達可能（← codex MEDIUM-5 の「理論上限に近い」は実績と矛盾
-  するため棄却）。一方 authority_trust **デルタ ±0.20** が動かすのは openness の権威項
-  （係数0.1 → 最大±0.02）とイベント項（±0.20×0.96 ≈ ±0.19 のスコア差）で、デルタ応答が
-  フラット＝判定不能になる可能性は受け入れる（v0.5.0 不安スイープと同じ扱い）
+## 新しい問い Q4（郡モデルの研究的ペイオフ）
 
-## スイープ定義
+**噂・信仰は村から村へどう旅するか**（伝播の地理・速度・到達範囲）。
+併せて「少数信仰が特定の村に飛び地として生き残るか」（隠れ念仏的パターン）を観察する。
 
-| スイープ | 軸 | 対象 |
-|---|---|---|
-| F `community` | {baseline, famine} × community_dependence デルタ {-0.20, -0.10, 0, +0.10, +0.20} × seed 1–30（300 run） | H3 |
-| G `authority` | {baseline, miracle_rumor} × authority_trust デルタ 同5段階 × seed 1–30（300 run） | H4（miracle_rumor は step 20 に shrine_patronage（唯一の権威庇護イベント）を含むため対象シナリオに採用。baseline は権威イベントなしの対照） |
+## 1. 母集団: `district.yaml` + `generate_district()`
 
-- メカニズムは **threshold**（H1/H2/H5 と同一系。習合ゲートは H3/H4 の対象外なので
-  graded を持ち出さず、A–D との比較可能性を保つ）
-- population は sampled60（v0.5.0 と同一）。rng 規律・run_id 形式・決定性要件は既存スイープと同一
-- **results.tsv のスキーマは変更しない**（全スイープ共通スキーマの byte 互換を守る）。
-  H3/H4 固有の指標は graded 方式と同じく **aux → stats.json** に記録する
+### district スペック（新ファイル。population.yaml は不変）
+- 16村 × 400人 = 6,400人（村サイズは一律400。サイズ変動は次フェーズ）
+- **隣接グラフ**: 4×4 格子、辺は上下左右（24辺）。yaml に明示的な隣接リストで宣言（決定的）
+- 村ごとのロール構成（1村400人。身分構成の史実 + 既存7ロールの再配分）:
 
-## クランプ飽和の事前開示
+| ロール | 人数/村 | 比率 | 根拠 |
+|---|---|---|---|
+| farmer | 300 | 75% | 百姓系。水呑・本百姓を区別しない簡略化 |
+| household | 48 | 12% | 農家の家内（百姓系に含めると約90%で史実の80–85%+αに整合） |
+| artisan | 16 | 4% | 村方の職人 |
+| merchant | 12 | 3% | 在郷商人・行商（**橋渡し**） |
+| religious_specialist | 8 | 2% | 寺僧・神職・山伏・御師（**橋渡し**） |
+| elder | 12 | 3% | 高齢層 |
+| authority | 4 | 1% | 庄屋・組頭層 |
 
-- community_dependence の center は farmer 0.82 / authority 0.88 / elder 0.80（村の約半数が高位）。
-  デルタ +0.20 で大量に 1.0 クランプが発生し、上端で条件差が圧縮される。
-  実効分布とクランプ数は stats.json に記録（既存の仕組み）し、単調性判定は圧縮を含む
-  全5条件で行う（フラット化で落ちるならそれも結果）
-- **クランプの非対称性（← evaluator MEDIUM-3）**: クランプは +側条件のみで発生し、−側の
-  条件差は正常に伸びる。「単調性は低 dep 側で確認しやすく、高 dep 側は圧縮される」という
-  読み方の注意を experiment_log に記録する
-- authority_trust は村役 0.85 のみ高位（3人）で飽和の影響は小さい
+- 特性 center/spread は v0.5.0 の宣言値を引き継ぐ（特性の根拠は引き続き設計仮定。
+  今回の根本見直しは「構造と構成比」であり、心理特性の数値はスコープ外と明示）
+- 信仰確率（ロール別）も v0.5.0 の表を基礎に、ライト調査の順序情報
+  （氏神=村落日常の中心 / 浄土系優位・禅系次点 / 稲荷=商人）と矛盾しないことを確認して
+  再宣言する。**具体値が設計仮定であることは変わらない**ため、感度分析（後述）で守る
+- ID: `V{村番号:02d}-P{連番:03d}`（例 V03-P012）。agents_rows に **`village` 列**を追加
+- `generate_district(spec, rng, belief_rows)`: 村順 → 村内ロール順 → エージェント順の
+  rng 消費（v0.5.0 の決定性規約踏襲）。validate（合計人数・隣接リストの対称性・
+  確率合計・center 範囲）。golden fixture テスト
 
-## 判定指標（stats.json のキー名を宣言）
+## 2. エンジン: 村モード（後方互換絶対）
 
-- **`local_retention`** {"mean","std"}（スイープF）: run ごとに「初期信仰が地域信仰だった
-  エージェントのうち、最終ステップでも同じ信仰を保持している割合」
-  - **地域信仰の定義と根拠（← evaluator MEDIUM-1）**: `ujigami_shinto`（appeal: community,
-    ancestor, local_protection = 地域の神社）+ `classical_shinto`（appeal: kinship, land,
-    ritual_continuity = 家・土地の信仰）。H3 の文言「地域の神社**や家の**信仰」の両半分に
-    appeal タグで対応する2信念を採用する
-  - **分母は run 開始時の地域信仰保持者数で固定**（← evaluator HIGH-2。途中で改宗しても
-    分母は変わらない。population.yaml 上の期待値は村の約45%＝約27人）。分母ゼロの run は
-    N/A（n_na 記録）
-  - **計算元（← evaluator HIGH-1）**: `summary["final_agents"]` には初期信仰が含まれない
-    （id/label/belief/secondary/strength のみ。エンジン実装確認済み）。**`agents_rows` の
-    `current_belief`（初期信仰）と `final_agents` の `belief`（最終信仰）を id で突き合わせて
-    計算する**。実装は `_population_aux` に summary を渡すか、ループ内で id→初期信仰マップを
-    作る
-- **`conv_to_classical_post_patronage`** {"mean","std"}（スイープG）: run ごとに
-  「step 20–25（shrine_patronage 発火後5ステップ）の古典神道への改宗数」を conversions.tsv
-  から計算。baseline では同じ step 窓で計測（イベントなしの対照値）
-  - **窓の交絡を事前開示（← evaluator HIGH-4）**: EVENT_DECAY=0.92 のため step 5 の
-    miracle_rumor（稲荷向け）は step 20 で重み 0.92^15 ≈ 0.29、step 25 で ≈ 0.19 と**まだ有効**。
-    この窓の測定は shrine_patronage 単独ではなく「噂の残存 + 庇護」の複合場での古典神道改宗
-    である。ただし噂は稲荷向け（競合方向）なので、庇護効果を**過大評価する方向には働かない**。
-    experiment_log の限界に追記する（完了基準に含める）
-- どちらも aux 経由で stats.json に集計（graded の syncretism_share と同じ実装パターン）
+### モード判定
+- `agents_rows` の行に `village` キーが**ある場合のみ**郡モード。
+  ない場合（agents.tsv / 旧 generate_agents）は**既存コードパスを1行も変えない**
+  （v0.4.0 / v0.5.0 / v1.0.1 タグとの byte 一致を完了基準に。syncretism_mode の前例）
 
-## 判定基準（実装前に宣言・事後変更禁止）
+### 村内シェアの実装方針（← evaluator HIGH-2。変更箇所を明示）
+- `AgentState` に `village` 属性を追加（legacy では空文字。属性追加は rng 消費に影響しない）
+- district モードでは step 開始時に `shares_by_village = {village: {belief: count}}` と
+  村ごとの人数 `n_by_village` を構築。legacy モードの `shares` 構築コードは**そのまま分岐の
+  else 側に温存**（1行も変えない）
+- エージェント知覚の注入点は2箇所:
+  (1) `_belief_score(..., shares, n_agents, ...)` に渡す引数を「そのエージェントの知覚シェア・
+  知覚人数」に差し替える。**知覚プロファイルは (weighted_counts, weighted_denominator) の
+  ペアで定義**（← codex Q3。非橋渡し: counts=自村信者数, denom=400 / 橋渡し:
+  counts=自村+Σ隣接村×W, denom=400+Σ隣接村人数×W）。counts ≤ denom が成分ごとに成立する
+  ため知覚シェアは常に ≤ 1.0。自分自身の除外（legacy の others = shares−1 と同様）も
+  知覚カウント・分母の両方に適用。**`perceived_share ≤ 1.0` の単体テストを完了基準に追加**。
+  BRIDGE_WEIGHT の意味を定数コメントに明記（0=村内のみ＝非橋渡しと同一挙動 /
+  0.5=半分よそ者 / 1.0=隣接村を自村と同格に知覚）
+  (2) `conversion_pressure` の `community_pressure = dep × (1 − shares.get(own)/len(agents))`
+  の分母 `len(agents)` と分子 shares も同じ知覚プロファイルに差し替え
+- `belief_shares.tsv` は district モードでは `village` 列を追加して村別に出力
+  （新指標の計算に必要。legacy モードのファイルスキーマは不変）
+- 実装順: **先に legacy byte 互換テスト（旧タグ diff）を固定 → 村モードに着手**
 
-効果量下限は v0.5.0 不安スイープの教訓（平坦系列を整合と誤判定しない）に従い必須とする。
+### 橋渡し（最小メカニズム）
+- BRIDGE_ROLES = {religious_specialist, merchant}
+- 橋渡しエージェントの**シェア知覚**は「自村 + 隣接村（重み BRIDGE_WEIGHT=0.5）」。
+  非橋渡しは自村のみ
+- **イベントの局所性**: イベントに regional / local の区分を導入
+  - regional（famine, epidemic, good_harvest, shrine_patronage, temple_corruption,
+    generation_shift）: 全村に従来どおり作用（飢饉・疫病・領主の act は郡全域、史実整合）
+  - local（**miracle_rumor のみ**）: 発生村（origin）の住民にフル、
+    隣接村の**橋渡しエージェントにのみ** BRIDGE_EVENT_WEIGHT=0.5 で作用。それ以外は 0
+  - origin はシナリオ yaml に明示（`origin: V06`、4×4格子の内側）。legacy モードでは無視
+- **配線と創発の区別（最重要論点。rev3 で文言を正確化 ← codex Q1）**:
+  - 配線されているもの: (a) **イベント配送**は距離1まで（発生村フル + 隣接村橋渡し0.5）、
+    (b) **橋渡しの村間シェア知覚エッジ**は全隣接村に常設（イベントと無関係の社会知覚
+    ネットワーク。これも配線である）
+  - 創発なのは「その固定ネットワークの上で、改宗の連鎖が実際に距離2以遠へ届くか・
+    どの速さで・どこまで」（届かない可能性も構造上ある）
+  - 指標もこの区別に対応させる: 隣接村（部分曝露あり）と距離2以遠（社会連鎖のみ）を
+    分けて報告（`villages_reached_d2plus` を併記）
 
-- **H3 整合**（F・famine 側が主判定。baseline は参考）:
-  (a) community デルタと local_retention の条件平均が単調増加（隣接減少1箇所以下）
-  (b) **かつ** 効果量下限: 条件平均の max − min ≥ **0.05**（= 5パーセントポイント。
-  地元信仰保持者約27人に対し1.4人分の差。H6 と同じ「村の5%」系の最小効果量）
-  - 単調**減少** + 効果量下限成立 → **不整合（正当な棄却）**。谷型 → 条件付き判定不能
-    （前掲の事前宣言ルール）
-  - **N/A 無効化閾値**（← codex LOW-6a）: 分母ゼロ run が条件あたり **5件超**（30 runs の
-    1/6）なら H3 判定自体を判定不能とする
-  - **診断キー**（← codex LOW-6b。判定には使わない）: stats.json に `local_retention_ujigami`
-    と `local_retention_classical` を分解記録（異質な2母集団——氏神は農民・家内に広く、
-    古典神道は村役・古老に集中——の合算が判定を曖昧にしないかの検査用）
-- **H4 整合**（G・miracle_rumor 側が主判定。baseline は対照）:
-  (a) authority デルタと conv_to_classical_post_patronage の条件平均が単調増加（同上）
-  (b) **かつ** 効果量下限: 最大条件平均 ≥ **3**（= 60 × 0.05、H6 と同一の新規最小効果量）
-  - **(c) は整合条件ではなく測定の妥当性チェック**（← evaluator HIGH-3）: baseline 側の
-    同窓改宗 mean が miracle_rumor 側の 1/2 以下であること＝「測った改宗が庇護イベント由来」
-    の確認。**(c) が失敗した場合は (a)(b) の成否にかかわらず判定を「判定不能（測定の妥当性
-    不成立）」とし、交絡注記を experiment_log に記録する**。(c) 成立時のみ (a)(b) で
-    整合/条件付き/不整合を判定する
-  - (c) の限界の明示（← codex HIGH-2）: (c) は「イベントの構造分離」の確認であって
-    **authority_trust デルタには感応しない**（全デルタ条件で同じ判定になる）。権威*感度*の
-    判定はあくまで (a)(b) が担う。この役割分担を experiment_log にも書く
-  - 噂残存の定量（← codex の補強）: step 20 時点の噂残存はスコア寄与 ≈ 0.046×novelty
-    （庇護の権威項 0.96×auth_trust の 1/70 以下）でスコア面の交絡は小さい。実質的な交絡は
-    「step 5–10 に稲荷へ流れた人口が窓の時点で競合構造を変えている」という**状態面**にあり、
-    これは rev2 で宣言済みの複合場の注記でカバーする
-- 部分成立（(a)(b) の片方のみ）は「条件付き整合」、両方不成立は「不整合」、
-  対象イベント反応がほぼゼロは「判定不能」
-- 判定語は従来どおり。方向性の配線は判定根拠にしない
+### 定数（実装後・実験前に凍結）
+- BRIDGE_WEIGHT = 0.5 / BRIDGE_EVENT_WEIGHT = 0.5（御師・行商の「半分よそ者」性の表現）
+- **較正不能性の開示（← evaluator MEDIUM）**: この2定数には較正データが存在せず、
+  スイープ H が観察するのは橋渡し**人数**の感度であって**重み**の感度ではない。
+  「BRIDGE_WEIGHT は感度未観察の設計仮定であり、Q4 の数値（到達村数・速度）はこの仮定に
+  依存する」と README「主張できること・できないこと」に明記する。重みスイープは次フェーズ候補
+- **橋渡しの特性バイアスの開示（← evaluator MEDIUM）**: 橋渡し役（宗教者 tolerance 0.72・
+  商人 novelty 0.70 など）はもともと改宗しやすい特性を持つ。「新しいものに開かれた人が
+  村々を繋ぐ」のは御師・行商の史実像と整合する設計だが、伝播速度を速める方向のバイアス
+  として配線開示に含める
 
-## スコープ
+## 3. 実験の再宣言（v2.0）
 
-1. **run_sweep.py**: SWEEPS に F/G を追加、aux に local_retention / post-patronage 改宗数を追加、
-   _build_stats_sampled に2キーの集計を追加（**graded キーと同様、該当スイープのみに出力**。
-   A–E の stats.json は不変 = byte 互換維持）、judge() に H3/H4 の宣言基準を実装
-   （stats.json が無ければ従来どおり判定不能）
-2. **plot_sweeps.py**: fig6（F: community デルタ × local_retention、2シナリオ）、
-   fig7（G: authority デルタ × 庇護後改宗数、miracle_rumor 主・baseline 対照）
-3. **エンジン変更なし**（trait_adjustments と既存イベントで完結）
-4. **テスト**: F/G の縮小版決定性、local_retention 計算の単体テスト（合成データ）、
-   post-patronage 窓の計算単体テスト、A–E の stats.json に新キーが混入しないテスト、
-   **RESULT_FIELDS が宣言済みリストと完全一致するスキーマ防御テスト**（← codex LOW-6c。
-   F/G 実装時の誤った列追加で完了基準4の byte 一致が壊れるのを防ぐ）
-5. **ドキュメント**: README（結果2節・発見の要約 6/6 完成・配線開示追記・図2枚）、
-   experiment_log、hypotheses、CHANGELOG 0.7.0、pyproject
+### 共通
+- population は district（6,400人）。seeds **1–10**（v1.0 の 30 から削減）
+  - 根拠（← evaluator HIGH-4。experiment_log に探索実験として記録する）: 2026-06-07 の
+    スケール探索（famine、seeds 1–3）で **per-capita 改宗数の seed 間分散**が
+    N=60: ±0.044 → N=600: ±0.020 → N=6,000: ±0.004 と縮むことを実測
+  - **開示**: 新指標（villages_reached / arrival_step / minority_pockets）は v2.0 初導入で
+    seeds=10 での分散は未実測。スイープ H の結果報告時に実測分散を併記し、ばらつきが
+    大きければ H のみ seeds 追加を検討（判定基準には使わないので基準凍結に抵触しない）
+- **estimand 変更の明示（← evaluator HIGH-5）**: v0.5.0–v1.0 の community 項は
+  「村全体60人のシェア」、v2.0 は「自村400人のシェア（橋渡しは隣接込み）」を参照する。
+  共同体連鎖の強度・速度が変わるため、**H1/H3 を含む全仮説の効果量は v1.0 と直接比較
+  できない**（参考対比に留める）。この注記を experiment_log v2.0 冒頭に再掲する
+- メカニズムは threshold（graded は H6 のみ、v0.6.0 と同じ役割分担）
+- 判定語・基準凍結・配線開示の規律は全バージョンから継承
+
+### スイープ（A–G の再実行 + 新規 H・S）
+- A–G: 軸は v0.7.0 と同一、population だけ district に
+- **H `bridge_density`（Q4 の検証・目玉）**: miracle_rumor（local, origin=V06）×
+  橋渡し人数バリアント {村あたり 5, 10, 20(基準), 40} × seeds 1–10。
+  district スペックから merchant+religious_specialist 数を比例変更した派生スペックを
+  決定的に生成
+- **S `initial_share_robustness`（初期分布ロバスト性 ← codex Q6 で改名・射程明示）**:
+  信仰確率の摂動バリアント（氏神→稲荷へ10pp / 浄土→禅へ10pp / 龍神→氏神へ10pp /
+  山岳2倍 / 基準）× famine × seeds 1–10。**6仮説の判定が基準バリアントと一致するか**を確認
+  - 射程の明示: これは「初期分布の仮定」のロバスト性であり、メカニズム重み
+    （conversion_pressure 係数・anxiety_delta・appeal マッピング）の感度は**カバーしない**
+    （次フェーズ候補と明記）
+  - **verdict_margin の併記**: 各判定について「実測値 − 基準下限」の余裕を stats/judge の
+    evidence に出力し、「全バリアント合格だが余裕が紙一重」の空振り合格を検出可能にする
+
+### 新指標（stats.json、スイープH等。定義を rev2 で確定 ← evaluator HIGH-3 / MEDIUM）
+- 基準時点 = **step 4（噂発火 step 5 の直前）**の村別信者数（belief_shares.tsv の village 列から）
+- `arrival_step`: 村ごとに「対象信念の村内信者数が step 4 の値を初めて上回った step」
+  （step 5–50 のどこか。存在しなければ未到達）。`arrival_step_mean` は到達村の平均（n 記録）
+- `villages_reached`: **arrival_step が存在する村の数（発生村を除く15村中）**。
+  「最終時点で増えているか」ではなく到達ベースにする——step 20 の神社庇護・step 34 の
+  寺スキャンダルが後から上書きしても到達の事実は消えない（イベント交絡の回避）
+- `minority_pockets`: **郡全体の初期シェアが5%未満**の信念（郡レベルの少数信仰）について、
+  最終時点で**村内シェア ≥ 5%（≥20人）を保つ村**の数（=「全体では少数だが局所的に厚い」
+  飛び地の操作化）
+- results.tsv のスキーマは**不変**（新指標は全て aux → stats.json。v0.6/0.7 の前例）
+
+### 判定基準の再宣言（per-capita 規律の継承。実装前に凍結）
+- **H1**: famine の mean(conversions) ≥ **1,600**（= 6,400×25% パリティ）かつ > baseline mean+1σ
+  かつ改宗先の60%以上が救済+実利系
+- **H2/H3**: 単調性 + 効果量下限（H3: local_retention の max−min ≥ 0.05 で据え置き=割合基準は
+  N 非依存）
+- **H5（rev2 で再定義 ← evaluator HIGH-1）**: 噂が**局所イベント**になったため、判定の
+  分母・分子とも「**イベントがフルに作用する範囲 = 発生村400人**」に揃える（隣接村の
+  橋渡しは減衰0.5の部分曝露であり、フル曝露集団に含めるのは過大分母）。
+  - 早期改宗（噂後5ステップ・**発生村内**）≥ **100件**（= 400×25% パリティ）、
+    early_convert_retention（発生村内）≤ 0.5
+  - **到達可能性の机上見積もり**: v0.7.0 実測では rumor の早期改宗は人口の32%
+    （19.4/60）。発生村400人なら期待値 ≈ 128件 > 100件で到達可能。
+    rev1 の「2,000人×25%=500件」は同じ実測から期待 ≈ 130–160件で**構造的に不可能**
+    だったため、凍結前に修正した（実験後の変更ではない）
+  - 発生村の外（隣接村・郡全体）の早期改宗は **Q4 の記述的報告**で扱い、H5 の判定には
+    使わない（分母と分子の整合）
+  - rev1 の「2,000人×25%=500件」基準は**撤回済み**（古い設計断片と混同しないこと）
+- **H4**: shrine_patronage は regional のまま → 窓内改宗 ≥ 6,400×5% = **320**、
+  baseline 対照 1/2 ゲートは据え置き
+- **H6**: graded・famine（regional）なので v0.6.0 基準の per-capita スケール
+  （習合数下限 = 6,400×5% = 320）
+- **Q4（新しい問いの記述的報告。整合/不整合の対象ではない）**: villages_reached・
+  arrival_step・橋渡し密度への応答を記述統計で報告（仮説を事前に立てていないため
+  「判定」はせず、観察として報告。次フェーズで仮説化）
+
+### 計算量
+- 6,400人 × 50step ≈ 4.5秒/run（N=6,000 実測）。A–G ≈ 430 run + H 40 + S 50 ≈ 520 run
+  ≈ 40分 + 決定性2回 ≈ 1.5時間。バックグラウンド実行
+
+## 4. テスト
+
+- 既存52件パス維持（legacy パス不変。**legacy 分岐前のコードを村モードと共通 helper 化
+  するリファクタは禁止——コード重複を許容して byte 互換を守る** ← codex Q5）
+- 旧タグ byte 一致: fixed8 ↔ v0.4.0、sampled60 A–D ↔ v0.5.0（村モード追加後に再確認）。
+  **`scripts/verify_legacy_bytes.sh` として非対話スクリプト化**（git show タグ:パス | diff。
+  merge 前に必ず実行する手順として docs に記載 ← codex Q7）
+- **新指標の合成データ単体テスト（← codex Q7）**: 2〜3村のモックで
+  villages_reached（未到達村を数えない）/ arrival_step（step 4 基準・発火直前の境界）/
+  minority_pockets（20人=5% ちょうどの境界）/ villages_reached_d2plus（隣接と距離2の区別）
+  を固定
+- 知覚プロファイル: `perceived_share ≤ 1.0`、BRIDGE_WEIGHT=0 で非橋渡しと同一挙動（← codex Q3）
+- generate_district: 決定性（2回生成一致）・golden fixture・validate（人数/隣接対称/確率和）
+- エンジン村モード: 村内シェアの単体（2村の合成データで「他村の信者はシェアに入らない」）、
+  橋渡し知覚の単体（隣接村の重み0.5）、local イベントの到達範囲（発生村フル/隣接橋渡し0.5/
+  非隣接0）
+- スイープ H/S の縮小版決定性、RESULT_FIELDS スキーマ防御（既存）
+
+## 5. ドキュメント
+
+- README: 「なぜ郡か」（作者の問いから始める）・郡の構造図・Q4 の結果・
+  「主たる信心」再解釈・出典・配線開示の更新（噂伝播の距離1配線/距離2創発の区別）
+- experiment_log: v2.0 セクション（v1.0 との参考対比、estimand 変更=村内シェア化を明示）
+- hypotheses: 6仮説の v2.0 判定列を追加
+- CHANGELOG 2.0.0 / pyproject 2.0.0
+- ビューア郡対応は**スコープ外**（次フェーズ候補に記録。村単位の従来ビューは不変で動く）
 
 ## 完了基準
 
-1. スイープ F/G（計600 run）が完走し、results.tsv ×2 + stats.json ×2 + 図2枚が生成。2回実行 byte 一致
-2. stats.json に宣言キー（local_retention / conv_to_classical_post_patronage）の mean±std が存在
-3. H3/H4 の判定が宣言基準で行われ、数値根拠付きで experiment_log に記録（6仮説すべてに判定が揃う）
-4. 既存テスト42件パス維持 + 新規テスト全パス。既存スイープ A–E の results.tsv / stats.json が
-   再実行で byte 不変（**比較参照は v0.6.0 タグ** ← evaluator MEDIUM-4。共通スキーマ・aux 分岐の互換確認）
-5. 静的チェック: README 図パス整合（7枚）、git status に runs/ なし
-6. GitHub 目視確認は push 後に 作者確認
+1. generate_district が決定的に 6,400人・16村を生成（golden fixture・validate テスト）
+2. デフォルト（村列なし）で旧タグと byte 一致: fixed8↔v0.4.0、sampled60↔v0.5.0 の
+   results.tsv/stats.json（タグ diff）
+3. スイープ A–H+S（約520 run）完走、各2回実行 byte 一致
+4. 6仮説の判定が再宣言基準（上記凍結値）で機械適用され、experiment_log に v1.0 対比付きで記録。
+   感度分析 S で「判定が基準バリアントと一致するか」が報告される
+5. Q4 の記述的報告（villages_reached / arrival_step / 橋渡し密度応答）が README と
+   experiment_log に図付きで載る
+6. pytest 全件パス。静的チェック（図パス・git status に runs/ なし）
+7. GitHub 目視は push 後に 作者確認
 
 ## やらないこと
 
-- 新イベント・新シナリオの追加（既存 shrine_patronage を使う。「権威イベントの種類を増やした
-  検証」は次フェーズ）
-- graded メカニズムでの H3/H4（threshold で統一）
-- 統計的検定・不偏分散移行（次フェーズ宣言済み）
-- README 冒頭の「発見ファースト」再構成（v1.0 で実施）
+- 村サイズの変動・郡の地理的多様化（次フェーズ）
+- ビューアの郡対応（次フェーズ）
+- 心理特性 center 値の根拠化（今回は構造と構成比が対象と明示）
+- 統計的検定・graded 全面移行（継続して次フェーズ）
+- 武士・城下町・藩レベルの構造（スコープ外）
 
 ## 進め方
 
-1. 設計レビュー: codex-reviewer（恒久対処済みで復帰）+ evaluator モード1 並行。APPROVE まで実装しない
-2. 実装 → 検証 → evaluator モード2
-3. PR → merge（既承認の運用に従う）
+1. 設計レビュー: codex-reviewer + evaluator モード1 並行（**最優先論点 = 噂伝播の
+   配線/創発の区別、H5 基準の再定義、橋渡しメカニズムの妥当性**）。APPROVE まで実装しない
+2. 実装（エンジンは「legacy byte 互換テストを先に固定 → 村モード着手」の順）
+3. **パイロット（← codex Q4）**: 凍結前に famine district seeds 1–3 を実行し、H1/H3 の
+   方向と規模を実測。下限（パリティ固定値）が構造的に不可能と判明した場合のみ、
+   H5 rev2 と同じ手続き（理由を文書化して凍結前に修正）を踏む。パリティ値の上方・下方への
+   「調整」はしない（到達可能性の確認のみ）
+4. 定数・基準の凍結コミット → 実験 → evaluator モード2
+5. PR → merge → タグ v2.0.0
+
+## 凍結前パイロット記録（2026-06-07、seeds 1–3、宣言済み手続きの履行）
+
+- famine: conv 1068.3 ± 16.0（coping 96.5%）→ H1 floor 1600 に**届かない見込み**
+- miracle_rumor: early_origin 83.0（ret 0.079）→ H5 floor 100 に**届かない見込み**
+- 判断: どちらも「構造的に不可能」ではなく「郡 estimand での真の量的応答」であるため、
+  **パリティ下限は変更せず凍結**する。不整合判定が出る場合はそれを v0.4.0 H1 と同様の
+  誠実な結果として報告する（村内に閉じた共同体連鎖は浸透を浅くする、という所見）
+- Q4 予告: villages_reached 2.33 / **d2plus 0.0**（基準密度では噂は隣村止まり）

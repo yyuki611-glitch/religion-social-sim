@@ -1,0 +1,155 @@
+# 郡スペック（v2.0、設計: tasks/todo.md rev3。出典: docs/references.md「郡モデルのライト調査」）
+#
+# - 1村400人 = 江戸時代の平均的な村（40〜50戸・約400人）の史実に基づく
+# - 16村 = 4×4格子の隣接グラフ（街道）。郡 ≈ 6,400人
+# - 村に武士は不在（城下町集住）。百姓系（farmer+household+elder）≈ 90% は
+#   身分別人口（農民80–85%）の史実に整合
+# - 橋渡し（村間を行き来して隣接村を知覚する）= religious_specialist + merchant。
+#   御師・講・旅僧・行商の史実に基づく
+# - 信仰の確率は v0.5.0 の設計仮定を基礎に、ライト調査の順序情報（氏神=村落日常の中心 /
+#   仏教内は浄土系優位・禅系次点 / 稲荷=商人）と矛盾しないことを確認して再宣言したもの。
+#   ※具体値は歴史史料に基づかない設計上の仮定（スイープ S で初期分布ロバスト性を検証）
+# - モデルの「信仰」は所属ではなく「主たる信心」（寺請制度下では全員が檀家+氏子のため）
+villages: 16
+village_size: 400
+spread: 0.12
+strength_range: [0.50, 0.80]
+# 4×4 格子（row-major: V01..V04 / V05..V08 / V09..V12 / V13..V16）の上下左右
+adjacency:
+  V01: [V02, V05]
+  V02: [V01, V03, V06]
+  V03: [V02, V04, V07]
+  V04: [V03, V08]
+  V05: [V01, V06, V09]
+  V06: [V02, V05, V07, V10]
+  V07: [V03, V06, V08, V11]
+  V08: [V04, V07, V12]
+  V09: [V05, V10, V13]
+  V10: [V06, V09, V11, V14]
+  V11: [V07, V10, V12, V15]
+  V12: [V08, V11, V16]
+  V13: [V09, V14]
+  V14: [V10, V13, V15]
+  V15: [V11, V14, V16]
+  V16: [V12, V15]
+bridge_roles: [religious_specialist, merchant]
+roles:
+  - id: farmer
+    label: Farmer
+    label_ja: 農民
+    count: 300
+    traits:
+      anxiety: 0.50
+      community_dependence: 0.82
+      authority_trust: 0.48
+      tradition_orientation: 0.78
+      novelty_openness: 0.30
+      salvation_need: 0.35
+      practical_benefit_need: 0.78
+      tolerance: 0.55
+    beliefs:
+      ujigami_shinto: 0.5
+      ryujin_belief: 0.3
+      inari_belief: 0.1
+      classical_shinto: 0.1
+  - id: household
+    label: Household keeper
+    label_ja: 家内
+    count: 48
+    traits:
+      anxiety: 0.75
+      community_dependence: 0.70
+      authority_trust: 0.50
+      tradition_orientation: 0.60
+      novelty_openness: 0.35
+      salvation_need: 0.85
+      practical_benefit_need: 0.35
+      tolerance: 0.70
+    beliefs:
+      jodo_buddhism: 0.5
+      ujigami_shinto: 0.3
+      inari_belief: 0.2
+  - id: artisan
+    label: Artisan
+    label_ja: 職人
+    count: 16
+    traits:
+      anxiety: 0.50
+      community_dependence: 0.50
+      authority_trust: 0.35
+      tradition_orientation: 0.40
+      novelty_openness: 0.75
+      salvation_need: 0.45
+      practical_benefit_need: 0.65
+      tolerance: 0.70
+    beliefs:
+      inari_belief: 0.5
+      ujigami_shinto: 0.3
+      zen_buddhism: 0.2
+  - id: merchant
+    label: Merchant
+    label_ja: 商人
+    count: 12
+    traits:
+      anxiety: 0.35
+      community_dependence: 0.55
+      authority_trust: 0.35
+      tradition_orientation: 0.45
+      novelty_openness: 0.70
+      salvation_need: 0.25
+      practical_benefit_need: 0.86
+      tolerance: 0.65
+    beliefs:
+      inari_belief: 0.7
+      ujigami_shinto: 0.2
+      zen_buddhism: 0.1
+  - id: religious_specialist
+    label: Religious specialist
+    label_ja: 宗教者
+    count: 8
+    traits:
+      anxiety: 0.33
+      community_dependence: 0.33
+      authority_trust: 0.33
+      tradition_orientation: 0.62
+      novelty_openness: 0.70
+      salvation_need: 0.70
+      practical_benefit_need: 0.33
+      tolerance: 0.72
+    beliefs:
+      jodo_buddhism: 0.4
+      mountain_belief: 0.4
+      zen_buddhism: 0.2
+  - id: elder
+    label: Elder
+    label_ja: 古老
+    count: 12
+    traits:
+      anxiety: 0.45
+      community_dependence: 0.80
+      authority_trust: 0.60
+      tradition_orientation: 0.86
+      novelty_openness: 0.15
+      salvation_need: 0.60
+      practical_benefit_need: 0.40
+      tolerance: 0.55
+    beliefs:
+      ujigami_shinto: 0.4
+      classical_shinto: 0.3
+      jodo_buddhism: 0.3
+  - id: authority
+    label: Village authority
+    label_ja: 村役
+    count: 4
+    traits:
+      anxiety: 0.30
+      community_dependence: 0.88
+      authority_trust: 0.85
+      tradition_orientation: 0.85
+      novelty_openness: 0.20
+      salvation_need: 0.30
+      practical_benefit_need: 0.50
+      tolerance: 0.45
+    beliefs:
+      classical_shinto: 0.8
+      ujigami_shinto: 0.2

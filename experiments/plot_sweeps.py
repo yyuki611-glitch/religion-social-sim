@@ -300,6 +300,39 @@ def fig7_authority(out_root: Path, fig_dir: Path) -> None:
     plt.close(fig)
 
 
+def fig8_bridge_density(out_root: Path, fig_dir: Path) -> None:
+    """スイープ H（v2.0・Q4）: 橋渡し密度 × 噂の伝播地理。記述的報告（判定なし）。"""
+    stats = _read_stats(out_root / "bridge_density")
+    conds = sorted(stats["conditions"], key=lambda c: float(c["delta"]))
+    xs = [float(c["delta"]) for c in conds]
+    fig, ax = plt.subplots(figsize=(7, 4.5))
+    ax.errorbar(
+        xs,
+        [c["villages_reached"]["mean"] for c in conds],
+        yerr=[c["villages_reached"]["std"] for c in conds],
+        marker="o",
+        capsize=3,
+        label="villages reached (of 15)",
+        color="#2980b9",
+    )
+    ax.plot(
+        xs,
+        [c["villages_reached_d2plus"]["mean"] for c in conds],
+        marker="s",
+        label="reached at distance 2+ (social chain only)",
+        color="#c0392b",
+    )
+    ax.set_xlabel("bridge agents per village (merchant + religious specialist)")
+    ax.set_ylabel("villages reached by the rumor's target belief")
+    ax.set_ylim(-0.2, 5)
+    ax.set_title("Rumor geography (sweep H): more bridges reach more neighbors,\nbut never beyond distance 1", fontsize=10)
+    ax.legend(fontsize=8)
+    ax.grid(alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(fig_dir / "fig8_bridge_density.png", dpi=150)
+    plt.close(fig)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sweeps-dir", default=str(ROOT / "outputs" / "sweeps"))
@@ -317,6 +350,8 @@ def main() -> None:
         fig6_community(out_root, fig_dir)
     if (out_root / "authority" / "stats.json").exists():
         fig7_authority(out_root, fig_dir)
+    if (out_root / "bridge_density" / "stats.json").exists():
+        fig8_bridge_density(out_root, fig_dir)
     for p in sorted(fig_dir.glob("*.png")):
         print(p)
 

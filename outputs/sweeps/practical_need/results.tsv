@@ -1,301 +1,101 @@
 sweep	scenario	trait	delta	seed	steps	conversions	syncretisms	retention_rate	conv_to_salvation	conv_to_practical	conv_to_other	early_conversions	early_convert_retention
-practical_need	baseline	practical_benefit_need	-0.20	1	50	5	1	0.917	3	1	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	2	50	4	1	0.933	3	0	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.20	3	50	5	2	0.917	4	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	4	50	4	2	0.933	1	0	3	1	1.000
-practical_need	baseline	practical_benefit_need	-0.20	5	50	1	0	0.983	0	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	6	50	2	0	0.967	1	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	7	50	7	2	0.883	1	0	6	0	
-practical_need	baseline	practical_benefit_need	-0.20	8	50	4	1	0.933	1	0	3	0	
-practical_need	baseline	practical_benefit_need	-0.20	9	50	5	2	0.917	4	0	1	2	1.000
-practical_need	baseline	practical_benefit_need	-0.20	10	50	5	2	0.917	5	0	0	3	1.000
-practical_need	baseline	practical_benefit_need	-0.20	11	50	2	0	0.967	0	0	2	0	
-practical_need	baseline	practical_benefit_need	-0.20	12	50	5	1	0.917	2	0	3	0	
-practical_need	baseline	practical_benefit_need	-0.20	13	50	3	1	0.950	3	0	0	1	1.000
-practical_need	baseline	practical_benefit_need	-0.20	14	50	1	1	0.983	1	0	0	0	
-practical_need	baseline	practical_benefit_need	-0.20	15	50	5	2	0.917	3	0	2	1	1.000
-practical_need	baseline	practical_benefit_need	-0.20	16	50	2	0	0.967	1	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	17	50	3	2	0.950	2	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	18	50	3	2	0.950	2	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	19	50	3	1	0.950	1	0	2	0	
-practical_need	baseline	practical_benefit_need	-0.20	20	50	1	0	0.983	0	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	21	50	7	3	0.883	4	0	3	0	
-practical_need	baseline	practical_benefit_need	-0.20	22	50	6	0	0.900	3	0	3	0	
-practical_need	baseline	practical_benefit_need	-0.20	23	50	3	1	0.950	0	0	3	0	
-practical_need	baseline	practical_benefit_need	-0.20	24	50	4	2	0.933	1	2	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.20	25	50	3	1	0.950	2	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.20	26	50	4	0	0.933	3	0	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.20	27	50	3	2	0.950	0	2	1	2	1.000
-practical_need	baseline	practical_benefit_need	-0.20	28	50	2	1	0.967	0	0	2	0	
-practical_need	baseline	practical_benefit_need	-0.20	29	50	5	2	0.917	3	0	2	0	
-practical_need	baseline	practical_benefit_need	-0.20	30	50	4	0	0.933	3	1	0	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	1	50	4	1	0.933	3	1	0	2	1.000
-practical_need	baseline	practical_benefit_need	-0.10	2	50	3	1	0.950	2	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	3	50	6	3	0.900	4	1	1	2	1.000
-practical_need	baseline	practical_benefit_need	-0.10	4	50	4	3	0.933	1	1	2	0	
-practical_need	baseline	practical_benefit_need	-0.10	5	50	0	0	1.000	0	0	0	0	
-practical_need	baseline	practical_benefit_need	-0.10	6	50	2	0	0.967	1	0	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	7	50	6	2	0.900	1	0	5	0	
-practical_need	baseline	practical_benefit_need	-0.10	8	50	2	0	0.967	1	0	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	9	50	5	4	0.917	3	1	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	10	50	4	2	0.933	3	1	0	2	1.000
-practical_need	baseline	practical_benefit_need	-0.10	11	50	1	1	0.983	0	1	0	0	
-practical_need	baseline	practical_benefit_need	-0.10	12	50	4	2	0.933	2	0	2	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	13	50	4	3	0.933	3	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	14	50	1	1	0.983	1	0	0	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	15	50	5	4	0.917	3	1	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	16	50	1	0	0.983	1	0	0	0	
-practical_need	baseline	practical_benefit_need	-0.10	17	50	4	1	0.933	2	1	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	18	50	3	2	0.950	2	0	1	2	1.000
-practical_need	baseline	practical_benefit_need	-0.10	19	50	2	2	0.967	1	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	20	50	2	1	0.967	0	1	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	21	50	6	4	0.900	4	1	1	3	1.000
-practical_need	baseline	practical_benefit_need	-0.10	22	50	5	2	0.917	3	1	1	1	1.000
-practical_need	baseline	practical_benefit_need	-0.10	23	50	2	1	0.967	0	0	2	2	1.000
-practical_need	baseline	practical_benefit_need	-0.10	24	50	7	2	0.883	1	4	2	2	1.000
-practical_need	baseline	practical_benefit_need	-0.10	25	50	4	2	0.933	2	2	0	2	1.000
-practical_need	baseline	practical_benefit_need	-0.10	26	50	5	0	0.917	3	1	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	27	50	4	1	0.933	0	3	1	3	1.000
-practical_need	baseline	practical_benefit_need	-0.10	28	50	1	1	0.983	0	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	29	50	4	2	0.933	3	0	1	0	
-practical_need	baseline	practical_benefit_need	-0.10	30	50	4	1	0.933	3	1	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	1	50	6	3	0.900	3	3	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	2	50	4	3	0.933	2	1	1	0	
-practical_need	baseline	practical_benefit_need	+0.00	3	50	6	2	0.900	3	2	1	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	4	50	5	4	0.917	1	3	1	3	1.000
-practical_need	baseline	practical_benefit_need	+0.00	5	50	0	0	1.000	0	0	0	0	
-practical_need	baseline	practical_benefit_need	+0.00	6	50	1	1	0.983	1	0	0	0	
-practical_need	baseline	practical_benefit_need	+0.00	7	50	6	3	0.900	1	1	4	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	8	50	5	0	0.917	1	2	2	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	9	50	4	2	0.933	1	2	1	3	1.000
-practical_need	baseline	practical_benefit_need	+0.00	10	50	4	1	0.933	2	2	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	11	50	2	0	0.967	0	1	1	0	
-practical_need	baseline	practical_benefit_need	+0.00	12	50	5	3	0.917	2	3	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	13	50	4	3	0.933	2	2	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	14	50	1	0	0.983	0	0	1	0	
-practical_need	baseline	practical_benefit_need	+0.00	15	50	6	4	0.900	3	3	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.00	16	50	3	2	0.950	1	2	0	0	
-practical_need	baseline	practical_benefit_need	+0.00	17	50	3	1	0.950	1	2	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	18	50	2	2	0.967	1	0	1	0	
-practical_need	baseline	practical_benefit_need	+0.00	19	50	3	3	0.950	1	1	1	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	20	50	3	2	0.950	0	2	1	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	21	50	6	4	0.900	3	2	1	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	22	50	5	2	0.917	3	1	1	3	1.000
-practical_need	baseline	practical_benefit_need	+0.00	23	50	4	1	0.933	0	3	1	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	24	50	9	4	0.850	1	5	3	3	1.000
-practical_need	baseline	practical_benefit_need	+0.00	25	50	7	2	0.883	2	5	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	26	50	6	2	0.900	3	3	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.00	27	50	4	1	0.933	0	4	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.00	28	50	1	1	0.983	0	0	1	1	1.000
-practical_need	baseline	practical_benefit_need	+0.00	29	50	4	1	0.933	2	2	0	0	
-practical_need	baseline	practical_benefit_need	+0.00	30	50	5	3	0.917	3	2	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	1	50	8	5	0.867	2	6	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	2	50	4	2	0.933	2	2	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	3	50	8	2	0.867	3	5	0	5	1.000
-practical_need	baseline	practical_benefit_need	+0.10	4	50	5	1	0.917	1	4	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.10	5	50	0	0	1.000	0	0	0	0	
-practical_need	baseline	practical_benefit_need	+0.10	6	50	2	1	0.967	1	1	0	0	
-practical_need	baseline	practical_benefit_need	+0.10	7	50	4	1	0.933	0	1	3	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	8	50	4	1	0.933	1	3	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.10	9	50	5	3	0.917	0	5	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	10	50	4	0	0.933	1	3	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	11	50	4	1	0.933	0	4	0	0	
-practical_need	baseline	practical_benefit_need	+0.10	12	50	3	0	0.950	0	3	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.10	13	50	6	6	0.900	1	5	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.10	14	50	4	2	0.933	0	4	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.10	15	50	6	3	0.900	1	5	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.10	16	50	4	1	0.933	1	3	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.10	17	50	5	2	0.917	1	4	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	18	50	2	1	0.967	0	1	1	1	1.000
-practical_need	baseline	practical_benefit_need	+0.10	19	50	3	2	0.950	0	2	1	0	
-practical_need	baseline	practical_benefit_need	+0.10	20	50	4	1	0.933	0	3	1	1	1.000
-practical_need	baseline	practical_benefit_need	+0.10	21	50	8	4	0.867	0	7	1	1	1.000
-practical_need	baseline	practical_benefit_need	+0.10	22	50	7	3	0.883	1	5	1	5	1.000
-practical_need	baseline	practical_benefit_need	+0.10	23	50	3	0	0.950	0	3	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.10	24	50	11	4	0.817	0	10	1	6	1.000
-practical_need	baseline	practical_benefit_need	+0.10	25	50	10	2	0.833	1	9	0	6	1.000
-practical_need	baseline	practical_benefit_need	+0.10	26	50	7	3	0.883	2	5	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.10	27	50	5	3	0.917	0	5	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.10	28	50	0	0	1.000	0	0	0	0	
-practical_need	baseline	practical_benefit_need	+0.10	29	50	4	3	0.933	1	3	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.10	30	50	8	4	0.867	3	5	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	1	50	8	3	0.867	0	8	0	5	1.000
-practical_need	baseline	practical_benefit_need	+0.20	2	50	4	2	0.933	0	4	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.20	3	50	10	2	0.833	2	8	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	4	50	4	2	0.933	0	4	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.20	5	50	4	3	0.933	0	4	0	0	
-practical_need	baseline	practical_benefit_need	+0.20	6	50	1	0	0.983	0	1	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.20	7	50	5	1	0.917	0	3	2	3	1.000
-practical_need	baseline	practical_benefit_need	+0.20	8	50	5	1	0.917	1	4	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.20	9	50	6	1	0.900	0	6	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	10	50	5	1	0.917	0	5	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.20	11	50	6	2	0.900	0	6	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.20	12	50	8	3	0.867	0	8	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	13	50	5	1	0.917	0	5	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	14	50	5	0	0.917	0	5	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	15	50	9	3	0.850	0	9	0	6	1.000
-practical_need	baseline	practical_benefit_need	+0.20	16	50	6	1	0.900	0	6	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.20	17	50	6	1	0.900	1	5	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	18	50	6	2	0.900	1	5	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.20	19	50	5	2	0.917	0	5	0	3	1.000
-practical_need	baseline	practical_benefit_need	+0.20	20	50	4	2	0.933	0	4	0	1	1.000
-practical_need	baseline	practical_benefit_need	+0.20	21	50	8	2	0.867	0	8	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	22	50	8	2	0.867	1	6	1	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	23	50	6	0	0.900	0	6	0	4	1.000
-practical_need	baseline	practical_benefit_need	+0.20	24	50	12	2	0.800	0	12	0	8	1.000
-practical_need	baseline	practical_benefit_need	+0.20	25	50	10	0	0.833	0	10	0	7	1.000
-practical_need	baseline	practical_benefit_need	+0.20	26	50	8	3	0.867	1	7	0	5	1.000
-practical_need	baseline	practical_benefit_need	+0.20	27	50	5	2	0.917	0	5	0	2	1.000
-practical_need	baseline	practical_benefit_need	+0.20	28	50	1	0	0.983	0	1	0	0	
-practical_need	baseline	practical_benefit_need	+0.20	29	50	5	2	0.917	1	3	1	3	1.000
-practical_need	baseline	practical_benefit_need	+0.20	30	50	6	2	0.900	0	6	0	4	1.000
-practical_need	famine	practical_benefit_need	-0.20	1	50	26	2	0.617	14	12	0	12	0.750
-practical_need	famine	practical_benefit_need	-0.20	2	50	24	3	0.633	13	11	0	10	0.800
-practical_need	famine	practical_benefit_need	-0.20	3	50	23	6	0.667	17	5	1	5	0.600
-practical_need	famine	practical_benefit_need	-0.20	4	50	24	2	0.650	14	9	1	9	0.778
-practical_need	famine	practical_benefit_need	-0.20	5	50	17	2	0.767	11	6	0	5	0.400
-practical_need	famine	practical_benefit_need	-0.20	6	50	20	0	0.683	12	8	0	7	1.000
-practical_need	famine	practical_benefit_need	-0.20	7	50	23	3	0.650	15	5	3	5	1.000
-practical_need	famine	practical_benefit_need	-0.20	8	50	20	1	0.733	12	7	1	7	0.571
-practical_need	famine	practical_benefit_need	-0.20	9	50	27	1	0.567	14	12	1	10	1.000
-practical_need	famine	practical_benefit_need	-0.20	10	50	25	3	0.600	12	13	0	12	0.917
-practical_need	famine	practical_benefit_need	-0.20	11	50	21	0	0.683	12	9	0	9	0.778
-practical_need	famine	practical_benefit_need	-0.20	12	50	25	5	0.583	13	12	0	10	1.000
-practical_need	famine	practical_benefit_need	-0.20	13	50	26	3	0.600	13	12	1	10	0.800
-practical_need	famine	practical_benefit_need	-0.20	14	50	22	1	0.650	9	13	0	13	0.923
-practical_need	famine	practical_benefit_need	-0.20	15	50	30	4	0.550	17	12	1	9	0.778
-practical_need	famine	practical_benefit_need	-0.20	16	50	20	1	0.717	12	8	0	8	0.625
-practical_need	famine	practical_benefit_need	-0.20	17	50	23	2	0.633	13	10	0	10	0.900
-practical_need	famine	practical_benefit_need	-0.20	18	50	27	3	0.600	15	11	1	10	0.800
-practical_need	famine	practical_benefit_need	-0.20	19	50	20	1	0.717	11	8	1	8	0.750
-practical_need	famine	practical_benefit_need	-0.20	20	50	24	1	0.650	14	9	1	8	0.750
-practical_need	famine	practical_benefit_need	-0.20	21	50	25	3	0.617	12	12	1	12	0.917
-practical_need	famine	practical_benefit_need	-0.20	22	50	27	4	0.567	13	14	0	7	1.000
-practical_need	famine	practical_benefit_need	-0.20	23	50	21	2	0.717	10	9	2	10	0.700
-practical_need	famine	practical_benefit_need	-0.20	24	50	27	0	0.617	12	14	1	13	0.769
-practical_need	famine	practical_benefit_need	-0.20	25	50	24	2	0.667	10	14	0	14	0.786
-practical_need	famine	practical_benefit_need	-0.20	26	50	26	1	0.633	14	12	0	10	0.700
-practical_need	famine	practical_benefit_need	-0.20	27	50	24	3	0.633	12	12	0	9	0.778
-practical_need	famine	practical_benefit_need	-0.20	28	50	19	3	0.717	10	8	1	7	0.857
-practical_need	famine	practical_benefit_need	-0.20	29	50	23	5	0.633	14	9	0	9	0.889
-practical_need	famine	practical_benefit_need	-0.20	30	50	21	2	0.700	15	6	0	6	0.500
-practical_need	famine	practical_benefit_need	-0.10	1	50	24	3	0.617	11	13	0	13	0.923
-practical_need	famine	practical_benefit_need	-0.10	2	50	21	2	0.650	9	12	0	12	1.000
-practical_need	famine	practical_benefit_need	-0.10	3	50	22	4	0.683	15	6	1	6	0.667
-practical_need	famine	practical_benefit_need	-0.10	4	50	21	2	0.667	11	10	0	10	0.900
-practical_need	famine	practical_benefit_need	-0.10	5	50	15	5	0.800	9	6	0	5	0.400
-practical_need	famine	practical_benefit_need	-0.10	6	50	18	1	0.717	11	7	0	6	0.833
-practical_need	famine	practical_benefit_need	-0.10	7	50	22	3	0.683	14	6	2	5	1.000
-practical_need	famine	practical_benefit_need	-0.10	8	50	16	1	0.750	10	6	0	6	0.833
-practical_need	famine	practical_benefit_need	-0.10	9	50	26	3	0.583	13	12	1	12	1.000
-practical_need	famine	practical_benefit_need	-0.10	10	50	24	0	0.600	10	14	0	13	1.000
-practical_need	famine	practical_benefit_need	-0.10	11	50	21	1	0.700	11	10	0	8	0.875
-practical_need	famine	practical_benefit_need	-0.10	12	50	25	2	0.583	12	13	0	13	1.000
-practical_need	famine	practical_benefit_need	-0.10	13	50	23	5	0.633	11	12	0	11	0.909
-practical_need	famine	practical_benefit_need	-0.10	14	50	20	0	0.667	7	13	0	12	1.000
-practical_need	famine	practical_benefit_need	-0.10	15	50	24	2	0.633	14	10	0	11	0.818
-practical_need	famine	practical_benefit_need	-0.10	16	50	18	0	0.717	9	9	0	9	0.889
-practical_need	famine	practical_benefit_need	-0.10	17	50	21	3	0.667	10	11	0	9	1.000
-practical_need	famine	practical_benefit_need	-0.10	18	50	25	3	0.617	13	11	1	10	0.900
-practical_need	famine	practical_benefit_need	-0.10	19	50	17	3	0.733	8	9	0	10	0.900
-practical_need	famine	practical_benefit_need	-0.10	20	50	22	2	0.667	11	10	1	9	0.778
-practical_need	famine	practical_benefit_need	-0.10	21	50	25	3	0.583	11	14	0	15	1.000
-practical_need	famine	practical_benefit_need	-0.10	22	50	27	6	0.567	13	14	0	8	1.000
-practical_need	famine	practical_benefit_need	-0.10	23	50	19	3	0.717	8	11	0	11	0.818
-practical_need	famine	practical_benefit_need	-0.10	24	50	24	1	0.633	10	13	1	12	0.917
-practical_need	famine	practical_benefit_need	-0.10	25	50	22	1	0.650	6	16	0	14	1.000
-practical_need	famine	practical_benefit_need	-0.10	26	50	24	2	0.650	13	11	0	10	0.700
-practical_need	famine	practical_benefit_need	-0.10	27	50	22	2	0.650	10	12	0	9	1.000
-practical_need	famine	practical_benefit_need	-0.10	28	50	19	5	0.717	9	9	1	7	0.857
-practical_need	famine	practical_benefit_need	-0.10	29	50	26	2	0.567	11	15	0	14	1.000
-practical_need	famine	practical_benefit_need	-0.10	30	50	19	3	0.700	11	8	0	6	0.833
-practical_need	famine	practical_benefit_need	+0.00	1	50	26	1	0.567	10	16	0	16	1.000
-practical_need	famine	practical_benefit_need	+0.00	2	50	21	3	0.650	9	12	0	12	1.000
-practical_need	famine	practical_benefit_need	+0.00	3	50	20	2	0.683	10	9	1	8	1.000
-practical_need	famine	practical_benefit_need	+0.00	4	50	22	2	0.633	11	11	0	10	1.000
-practical_need	famine	practical_benefit_need	+0.00	5	50	16	5	0.750	6	10	0	8	0.875
-practical_need	famine	practical_benefit_need	+0.00	6	50	20	2	0.667	10	10	0	9	1.000
-practical_need	famine	practical_benefit_need	+0.00	7	50	22	2	0.667	13	7	2	7	1.000
-practical_need	famine	practical_benefit_need	+0.00	8	50	13	0	0.783	7	6	0	5	1.000
-practical_need	famine	practical_benefit_need	+0.00	9	50	37	5	0.433	13	24	0	20	1.000
-practical_need	famine	practical_benefit_need	+0.00	10	50	27	2	0.550	9	18	0	17	1.000
-practical_need	famine	practical_benefit_need	+0.00	11	50	18	0	0.717	8	10	0	8	0.875
-practical_need	famine	practical_benefit_need	+0.00	12	50	28	2	0.533	12	16	0	14	1.000
-practical_need	famine	practical_benefit_need	+0.00	13	50	23	3	0.617	10	13	0	13	1.000
-practical_need	famine	practical_benefit_need	+0.00	14	50	21	1	0.650	7	14	0	12	1.000
-practical_need	famine	practical_benefit_need	+0.00	15	50	28	3	0.550	14	14	0	13	0.923
-practical_need	famine	practical_benefit_need	+0.00	16	50	21	3	0.667	9	12	0	10	0.900
-practical_need	famine	practical_benefit_need	+0.00	17	50	21	1	0.650	9	12	0	10	1.000
-practical_need	famine	practical_benefit_need	+0.00	18	50	25	2	0.600	11	13	1	11	1.000
-practical_need	famine	practical_benefit_need	+0.00	19	50	22	3	0.683	8	14	0	12	1.000
-practical_need	famine	practical_benefit_need	+0.00	20	50	22	1	0.650	10	12	0	11	1.000
-practical_need	famine	practical_benefit_need	+0.00	21	50	29	3	0.533	11	18	0	17	1.000
-practical_need	famine	practical_benefit_need	+0.00	22	50	26	5	0.567	12	14	0	9	1.000
-practical_need	famine	practical_benefit_need	+0.00	23	50	19	0	0.683	6	13	0	12	1.000
-practical_need	famine	practical_benefit_need	+0.00	24	50	26	4	0.600	10	15	1	14	0.929
-practical_need	famine	practical_benefit_need	+0.00	25	50	26	2	0.583	6	20	0	19	0.947
-practical_need	famine	practical_benefit_need	+0.00	26	50	20	5	0.667	8	12	0	9	1.000
-practical_need	famine	practical_benefit_need	+0.00	27	50	21	2	0.650	9	12	0	10	1.000
-practical_need	famine	practical_benefit_need	+0.00	28	50	19	4	0.683	8	11	0	7	1.000
-practical_need	famine	practical_benefit_need	+0.00	29	50	29	3	0.533	11	18	0	16	1.000
-practical_need	famine	practical_benefit_need	+0.00	30	50	16	3	0.733	9	7	0	7	1.000
-practical_need	famine	practical_benefit_need	+0.10	1	50	37	2	0.400	10	27	0	22	1.000
-practical_need	famine	practical_benefit_need	+0.10	2	50	30	4	0.550	9	21	0	18	1.000
-practical_need	famine	practical_benefit_need	+0.10	3	50	21	2	0.650	10	11	0	9	1.000
-practical_need	famine	practical_benefit_need	+0.10	4	50	34	2	0.483	11	23	0	18	1.000
-practical_need	famine	practical_benefit_need	+0.10	5	50	21	3	0.650	5	16	0	12	1.000
-practical_need	famine	practical_benefit_need	+0.10	6	50	35	4	0.517	11	24	0	18	0.944
-practical_need	famine	practical_benefit_need	+0.10	7	50	28	5	0.583	11	16	1	12	1.000
-practical_need	famine	practical_benefit_need	+0.10	8	50	17	2	0.733	8	9	0	8	1.000
-practical_need	famine	practical_benefit_need	+0.10	9	50	40	7	0.400	6	34	0	28	0.929
-practical_need	famine	practical_benefit_need	+0.10	10	50	31	3	0.517	6	25	0	20	1.000
-practical_need	famine	practical_benefit_need	+0.10	11	50	20	1	0.700	8	12	0	11	1.000
-practical_need	famine	practical_benefit_need	+0.10	12	50	30	5	0.517	12	18	0	16	1.000
-practical_need	famine	practical_benefit_need	+0.10	13	50	31	4	0.533	11	20	0	16	0.938
-practical_need	famine	practical_benefit_need	+0.10	14	50	28	5	0.617	9	19	0	15	1.000
-practical_need	famine	practical_benefit_need	+0.10	15	50	39	13	0.450	11	28	0	18	1.000
-practical_need	famine	practical_benefit_need	+0.10	16	50	26	2	0.617	9	17	0	14	1.000
-practical_need	famine	practical_benefit_need	+0.10	17	50	30	5	0.533	9	21	0	17	1.000
-practical_need	famine	practical_benefit_need	+0.10	18	50	32	6	0.517	11	20	1	16	0.938
-practical_need	famine	practical_benefit_need	+0.10	19	50	31	5	0.567	8	23	0	19	0.947
-practical_need	famine	practical_benefit_need	+0.10	20	50	20	0	0.667	9	11	0	10	1.000
-practical_need	famine	practical_benefit_need	+0.10	21	50	41	7	0.417	7	34	0	26	1.000
-practical_need	famine	practical_benefit_need	+0.10	22	50	36	9	0.417	13	23	0	15	1.000
-practical_need	famine	practical_benefit_need	+0.10	23	50	26	3	0.600	6	20	0	16	1.000
-practical_need	famine	practical_benefit_need	+0.10	24	50	32	5	0.517	9	23	0	18	1.000
-practical_need	famine	practical_benefit_need	+0.10	25	50	29	2	0.533	5	24	0	21	0.952
-practical_need	famine	practical_benefit_need	+0.10	26	50	25	4	0.583	7	18	0	14	1.000
-practical_need	famine	practical_benefit_need	+0.10	27	50	27	5	0.550	9	18	0	13	1.000
-practical_need	famine	practical_benefit_need	+0.10	28	50	33	5	0.550	9	24	0	18	1.000
-practical_need	famine	practical_benefit_need	+0.10	29	50	36	4	0.467	10	26	0	19	0.947
-practical_need	famine	practical_benefit_need	+0.10	30	50	21	3	0.667	9	12	0	8	1.000
-practical_need	famine	practical_benefit_need	+0.20	1	50	41	6	0.367	5	36	0	29	0.966
-practical_need	famine	practical_benefit_need	+0.20	2	50	39	2	0.383	4	35	0	22	0.955
-practical_need	famine	practical_benefit_need	+0.20	3	50	34	7	0.450	9	25	0	18	1.000
-practical_need	famine	practical_benefit_need	+0.20	4	50	39	8	0.383	4	35	0	28	1.000
-practical_need	famine	practical_benefit_need	+0.20	5	50	31	6	0.533	4	27	0	22	1.000
-practical_need	famine	practical_benefit_need	+0.20	6	50	38	5	0.417	4	34	0	25	1.000
-practical_need	famine	practical_benefit_need	+0.20	7	50	44	7	0.300	8	36	0	26	0.962
-practical_need	famine	practical_benefit_need	+0.20	8	50	35	4	0.500	9	26	0	20	0.950
-practical_need	famine	practical_benefit_need	+0.20	9	50	41	3	0.333	2	39	0	33	0.970
-practical_need	famine	practical_benefit_need	+0.20	10	50	36	4	0.467	5	31	0	25	0.960
-practical_need	famine	practical_benefit_need	+0.20	11	50	27	6	0.600	6	21	0	15	0.933
-practical_need	famine	practical_benefit_need	+0.20	12	50	40	8	0.400	9	31	0	21	1.000
-practical_need	famine	practical_benefit_need	+0.20	13	50	44	6	0.417	6	38	0	22	1.000
-practical_need	famine	practical_benefit_need	+0.20	14	50	35	6	0.433	3	32	0	20	1.000
-practical_need	famine	practical_benefit_need	+0.20	15	50	38	6	0.450	6	32	0	21	0.952
-practical_need	famine	practical_benefit_need	+0.20	16	50	35	6	0.483	7	28	0	21	1.000
-practical_need	famine	practical_benefit_need	+0.20	17	50	40	5	0.417	7	33	0	26	1.000
-practical_need	famine	practical_benefit_need	+0.20	18	50	38	6	0.433	6	32	0	23	1.000
-practical_need	famine	practical_benefit_need	+0.20	19	50	33	3	0.483	3	30	0	23	1.000
-practical_need	famine	practical_benefit_need	+0.20	20	50	32	6	0.533	9	23	0	18	1.000
-practical_need	famine	practical_benefit_need	+0.20	21	50	41	3	0.367	2	39	0	31	0.968
-practical_need	famine	practical_benefit_need	+0.20	22	50	45	9	0.267	5	40	0	22	1.000
-practical_need	famine	practical_benefit_need	+0.20	23	50	36	2	0.450	6	30	0	24	0.958
-practical_need	famine	practical_benefit_need	+0.20	24	50	39	5	0.467	7	32	0	22	0.909
-practical_need	famine	practical_benefit_need	+0.20	25	50	40	8	0.433	5	35	0	25	1.000
-practical_need	famine	practical_benefit_need	+0.20	26	50	29	3	0.517	5	24	0	15	1.000
-practical_need	famine	practical_benefit_need	+0.20	27	50	32	8	0.533	7	25	0	13	1.000
-practical_need	famine	practical_benefit_need	+0.20	28	50	39	8	0.400	4	35	0	27	1.000
-practical_need	famine	practical_benefit_need	+0.20	29	50	41	7	0.367	7	34	0	29	0.931
-practical_need	famine	practical_benefit_need	+0.20	30	50	32	7	0.500	8	24	0	19	1.000
+practical_need	baseline	practical_benefit_need	-0.20	1	50	570	78	0.911	78	8	484	50	1.000
+practical_need	baseline	practical_benefit_need	-0.20	2	50	563	97	0.912	68	9	486	64	1.000
+practical_need	baseline	practical_benefit_need	-0.20	3	50	574	75	0.910	70	6	498	54	1.000
+practical_need	baseline	practical_benefit_need	-0.20	4	50	552	82	0.914	65	12	475	57	1.000
+practical_need	baseline	practical_benefit_need	-0.20	5	50	616	73	0.904	57	7	552	58	1.000
+practical_need	baseline	practical_benefit_need	-0.20	6	50	589	72	0.908	68	7	514	54	1.000
+practical_need	baseline	practical_benefit_need	-0.20	7	50	639	93	0.900	73	9	557	61	1.000
+practical_need	baseline	practical_benefit_need	-0.20	8	50	644	107	0.899	66	8	570	63	1.000
+practical_need	baseline	practical_benefit_need	-0.20	9	50	622	90	0.903	70	8	544	52	1.000
+practical_need	baseline	practical_benefit_need	-0.20	10	50	621	82	0.903	52	5	564	60	1.000
+practical_need	baseline	practical_benefit_need	-0.10	1	50	304	93	0.953	78	22	204	54	1.000
+practical_need	baseline	practical_benefit_need	-0.10	2	50	343	109	0.946	65	25	253	52	1.000
+practical_need	baseline	practical_benefit_need	-0.10	3	50	311	87	0.951	66	22	223	44	1.000
+practical_need	baseline	practical_benefit_need	-0.10	4	50	315	98	0.951	65	24	226	52	1.000
+practical_need	baseline	practical_benefit_need	-0.10	5	50	301	74	0.953	55	27	219	53	1.000
+practical_need	baseline	practical_benefit_need	-0.10	6	50	316	80	0.951	66	21	229	41	1.000
+practical_need	baseline	practical_benefit_need	-0.10	7	50	350	103	0.945	69	22	259	43	1.000
+practical_need	baseline	practical_benefit_need	-0.10	8	50	316	93	0.951	62	28	226	59	1.000
+practical_need	baseline	practical_benefit_need	-0.10	9	50	325	89	0.949	69	22	234	53	1.000
+practical_need	baseline	practical_benefit_need	-0.10	10	50	328	88	0.949	48	16	264	56	1.000
+practical_need	baseline	practical_benefit_need	+0.00	1	50	278	105	0.957	61	68	149	65	1.000
+practical_need	baseline	practical_benefit_need	+0.00	2	50	313	122	0.951	54	81	178	85	1.000
+practical_need	baseline	practical_benefit_need	+0.00	3	50	290	102	0.955	51	79	160	75	1.000
+practical_need	baseline	practical_benefit_need	+0.00	4	50	275	111	0.957	51	86	138	74	1.000
+practical_need	baseline	practical_benefit_need	+0.00	5	50	269	83	0.958	46	80	143	60	1.000
+practical_need	baseline	practical_benefit_need	+0.00	6	50	275	95	0.957	56	70	149	63	1.000
+practical_need	baseline	practical_benefit_need	+0.00	7	50	311	115	0.951	58	79	174	73	1.000
+practical_need	baseline	practical_benefit_need	+0.00	8	50	274	98	0.957	46	68	160	62	1.000
+practical_need	baseline	practical_benefit_need	+0.00	9	50	286	102	0.955	52	74	160	70	1.000
+practical_need	baseline	practical_benefit_need	+0.00	10	50	283	100	0.956	40	63	180	64	1.000
+practical_need	baseline	practical_benefit_need	+0.10	1	50	368	115	0.943	33	240	95	101	1.000
+practical_need	baseline	practical_benefit_need	+0.10	2	50	388	111	0.939	28	255	105	111	1.000
+practical_need	baseline	practical_benefit_need	+0.10	3	50	372	103	0.942	33	240	99	118	1.000
+practical_need	baseline	practical_benefit_need	+0.10	4	50	354	101	0.945	23	240	91	98	1.000
+practical_need	baseline	practical_benefit_need	+0.10	5	50	353	83	0.945	29	230	94	112	1.000
+practical_need	baseline	practical_benefit_need	+0.10	6	50	388	116	0.939	34	229	125	102	1.000
+practical_need	baseline	practical_benefit_need	+0.10	7	50	373	110	0.942	37	226	110	112	1.000
+practical_need	baseline	practical_benefit_need	+0.10	8	50	354	96	0.945	28	214	112	100	1.000
+practical_need	baseline	practical_benefit_need	+0.10	9	50	372	107	0.942	34	235	103	107	1.000
+practical_need	baseline	practical_benefit_need	+0.10	10	50	357	85	0.944	15	237	105	99	1.000
+practical_need	baseline	practical_benefit_need	+0.20	1	50	549	101	0.914	11	506	32	169	1.000
+practical_need	baseline	practical_benefit_need	+0.20	2	50	530	90	0.917	8	487	35	192	1.000
+practical_need	baseline	practical_benefit_need	+0.20	3	50	508	95	0.921	14	458	36	173	1.000
+practical_need	baseline	practical_benefit_need	+0.20	4	50	492	98	0.923	11	446	35	162	1.000
+practical_need	baseline	practical_benefit_need	+0.20	5	50	497	78	0.922	11	439	47	160	1.000
+practical_need	baseline	practical_benefit_need	+0.20	6	50	515	97	0.920	13	446	56	153	1.000
+practical_need	baseline	practical_benefit_need	+0.20	7	50	487	89	0.924	8	444	35	198	1.000
+practical_need	baseline	practical_benefit_need	+0.20	8	50	481	82	0.925	5	434	42	141	1.000
+practical_need	baseline	practical_benefit_need	+0.20	9	50	518	91	0.919	6	467	45	181	1.000
+practical_need	baseline	practical_benefit_need	+0.20	10	50	524	88	0.918	4	466	54	169	1.000
+practical_need	famine	practical_benefit_need	-0.20	1	50	1685	262	0.762	527	553	605	513	0.805
+practical_need	famine	practical_benefit_need	-0.20	2	50	1577	292	0.776	502	554	521	495	0.881
+practical_need	famine	practical_benefit_need	-0.20	3	50	1564	239	0.773	463	617	484	552	0.922
+practical_need	famine	practical_benefit_need	-0.20	4	50	1596	264	0.770	496	555	545	505	0.883
+practical_need	famine	practical_benefit_need	-0.20	5	50	1599	242	0.767	467	658	474	595	0.911
+practical_need	famine	practical_benefit_need	-0.20	6	50	1574	238	0.773	490	574	510	527	0.873
+practical_need	famine	practical_benefit_need	-0.20	7	50	1703	236	0.755	494	691	518	632	0.899
+practical_need	famine	practical_benefit_need	-0.20	8	50	1603	261	0.769	488	607	508	563	0.877
+practical_need	famine	practical_benefit_need	-0.20	9	50	1632	254	0.763	494	643	495	578	0.910
+practical_need	famine	practical_benefit_need	-0.20	10	50	1604	263	0.770	489	588	527	538	0.898
+practical_need	famine	practical_benefit_need	-0.10	1	50	1065	265	0.844	425	496	144	463	0.933
+practical_need	famine	practical_benefit_need	-0.10	2	50	1113	276	0.840	423	537	153	480	0.938
+practical_need	famine	practical_benefit_need	-0.10	3	50	1123	245	0.835	402	555	166	515	0.953
+practical_need	famine	practical_benefit_need	-0.10	4	50	1080	285	0.843	431	494	155	455	0.956
+practical_need	famine	practical_benefit_need	-0.10	5	50	1112	240	0.835	390	583	139	541	0.950
+practical_need	famine	practical_benefit_need	-0.10	6	50	1091	226	0.840	403	542	146	505	0.945
+practical_need	famine	practical_benefit_need	-0.10	7	50	1195	243	0.823	390	656	149	591	0.975
+practical_need	famine	practical_benefit_need	-0.10	8	50	1114	260	0.837	389	562	163	503	0.948
+practical_need	famine	practical_benefit_need	-0.10	9	50	1183	240	0.825	417	613	153	551	0.949
+practical_need	famine	practical_benefit_need	-0.10	10	50	1095	257	0.842	403	522	170	477	0.943
+practical_need	famine	practical_benefit_need	+0.00	1	50	1050	239	0.840	398	618	34	553	0.991
+practical_need	famine	practical_benefit_need	+0.00	2	50	1089	236	0.836	401	647	41	582	0.979
+practical_need	famine	practical_benefit_need	+0.00	3	50	1066	227	0.838	398	632	36	581	0.991
+practical_need	famine	practical_benefit_need	+0.00	4	50	1017	234	0.845	393	586	38	522	0.994
+practical_need	famine	practical_benefit_need	+0.00	5	50	1047	227	0.840	363	655	29	589	0.993
+practical_need	famine	practical_benefit_need	+0.00	6	50	1069	214	0.838	363	666	40	591	0.990
+practical_need	famine	practical_benefit_need	+0.00	7	50	1134	256	0.827	379	719	36	646	0.994
+practical_need	famine	practical_benefit_need	+0.00	8	50	1089	245	0.836	370	674	45	607	0.987
+practical_need	famine	practical_benefit_need	+0.00	9	50	1117	232	0.830	390	684	43	615	0.997
+practical_need	famine	practical_benefit_need	+0.00	10	50	1057	219	0.840	375	638	44	572	0.988
+practical_need	famine	practical_benefit_need	+0.10	1	50	1304	284	0.803	393	900	11	758	0.996
+practical_need	famine	practical_benefit_need	+0.10	2	50	1371	282	0.793	405	948	18	794	0.996
+practical_need	famine	practical_benefit_need	+0.10	3	50	1373	299	0.791	395	964	14	824	0.994
+practical_need	famine	practical_benefit_need	+0.10	4	50	1259	284	0.808	395	850	14	738	0.993
+practical_need	famine	practical_benefit_need	+0.10	5	50	1321	287	0.798	369	945	7	804	0.995
+practical_need	famine	practical_benefit_need	+0.10	6	50	1301	281	0.802	364	919	18	787	0.990
+practical_need	famine	practical_benefit_need	+0.10	7	50	1420	307	0.786	385	1027	8	866	0.992
+practical_need	famine	practical_benefit_need	+0.10	8	50	1317	296	0.801	366	934	17	791	0.991
+practical_need	famine	practical_benefit_need	+0.10	9	50	1375	292	0.792	406	953	16	804	0.989
+practical_need	famine	practical_benefit_need	+0.10	10	50	1275	278	0.807	365	900	10	761	0.996
+practical_need	famine	practical_benefit_need	+0.20	1	50	1964	357	0.714	370	1588	6	1248	0.985
+practical_need	famine	practical_benefit_need	+0.20	2	50	2115	426	0.690	350	1758	7	1325	0.985
+practical_need	famine	practical_benefit_need	+0.20	3	50	2069	360	0.700	372	1691	6	1311	0.983
+practical_need	famine	practical_benefit_need	+0.20	4	50	1968	385	0.713	377	1588	3	1235	0.988
+practical_need	famine	practical_benefit_need	+0.20	5	50	1973	410	0.714	354	1618	1	1251	0.984
+practical_need	famine	practical_benefit_need	+0.20	6	50	1979	401	0.713	371	1604	4	1226	0.985
+practical_need	famine	practical_benefit_need	+0.20	7	50	2309	405	0.663	347	1961	1	1467	0.983
+practical_need	famine	practical_benefit_need	+0.20	8	50	2088	392	0.697	361	1719	8	1318	0.989
+practical_need	famine	practical_benefit_need	+0.20	9	50	2105	400	0.698	416	1687	2	1297	0.983
+practical_need	famine	practical_benefit_need	+0.20	10	50	1856	364	0.734	346	1507	3	1211	0.979

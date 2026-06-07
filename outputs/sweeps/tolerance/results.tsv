@@ -1,301 +1,101 @@
 sweep	scenario	trait	delta	seed	steps	conversions	syncretisms	retention_rate	conv_to_salvation	conv_to_practical	conv_to_other	early_conversions	early_convert_retention
-tolerance	baseline	tolerance	-0.20	1	50	4	0	0.933	3	1	0	2	1.000
-tolerance	baseline	tolerance	-0.20	2	50	4	0	0.933	2	1	1	1	1.000
-tolerance	baseline	tolerance	-0.20	3	50	6	0	0.900	3	2	1	2	1.000
-tolerance	baseline	tolerance	-0.20	4	50	5	0	0.917	1	1	3	2	1.000
-tolerance	baseline	tolerance	-0.20	5	50	0	0	1.000	0	0	0	0	
-tolerance	baseline	tolerance	-0.20	6	50	1	0	0.983	1	0	0	1	1.000
-tolerance	baseline	tolerance	-0.20	7	50	6	0	0.900	1	1	4	1	1.000
-tolerance	baseline	tolerance	-0.20	8	50	5	0	0.917	1	2	2	1	1.000
-tolerance	baseline	tolerance	-0.20	9	50	4	0	0.933	1	2	1	1	1.000
-tolerance	baseline	tolerance	-0.20	10	50	4	0	0.933	2	2	0	1	1.000
-tolerance	baseline	tolerance	-0.20	11	50	2	0	0.967	0	1	1	0	
-tolerance	baseline	tolerance	-0.20	12	50	4	0	0.933	1	3	0	0	
-tolerance	baseline	tolerance	-0.20	13	50	4	0	0.933	2	2	0	1	1.000
-tolerance	baseline	tolerance	-0.20	14	50	1	0	0.983	0	0	1	0	
-tolerance	baseline	tolerance	-0.20	15	50	6	0	0.900	3	3	0	3	1.000
-tolerance	baseline	tolerance	-0.20	16	50	3	0	0.950	1	2	0	1	1.000
-tolerance	baseline	tolerance	-0.20	17	50	3	0	0.950	1	2	0	2	1.000
-tolerance	baseline	tolerance	-0.20	18	50	2	0	0.967	1	0	1	0	
-tolerance	baseline	tolerance	-0.20	19	50	2	0	0.967	1	0	1	0	
-tolerance	baseline	tolerance	-0.20	20	50	3	0	0.950	0	2	1	1	1.000
-tolerance	baseline	tolerance	-0.20	21	50	5	0	0.917	2	1	2	1	1.000
-tolerance	baseline	tolerance	-0.20	22	50	5	0	0.917	3	1	1	2	1.000
-tolerance	baseline	tolerance	-0.20	23	50	4	0	0.933	0	3	1	1	1.000
-tolerance	baseline	tolerance	-0.20	24	50	9	0	0.850	1	5	3	3	1.000
-tolerance	baseline	tolerance	-0.20	25	50	6	0	0.900	1	5	0	2	1.000
-tolerance	baseline	tolerance	-0.20	26	50	6	0	0.900	3	3	0	2	1.000
-tolerance	baseline	tolerance	-0.20	27	50	4	0	0.933	0	4	0	3	1.000
-tolerance	baseline	tolerance	-0.20	28	50	1	0	0.983	0	0	1	0	
-tolerance	baseline	tolerance	-0.20	29	50	4	0	0.933	2	1	1	0	
-tolerance	baseline	tolerance	-0.20	30	50	5	0	0.917	3	2	0	4	1.000
-tolerance	baseline	tolerance	-0.10	1	50	4	0	0.933	3	1	0	2	1.000
-tolerance	baseline	tolerance	-0.10	2	50	4	1	0.933	2	1	1	0	
-tolerance	baseline	tolerance	-0.10	3	50	6	0	0.900	3	2	1	2	1.000
-tolerance	baseline	tolerance	-0.10	4	50	5	2	0.917	1	2	2	1	1.000
-tolerance	baseline	tolerance	-0.10	5	50	0	0	1.000	0	0	0	0	
-tolerance	baseline	tolerance	-0.10	6	50	1	1	0.983	1	0	0	0	
-tolerance	baseline	tolerance	-0.10	7	50	6	2	0.900	1	1	4	1	1.000
-tolerance	baseline	tolerance	-0.10	8	50	5	0	0.917	1	2	2	1	1.000
-tolerance	baseline	tolerance	-0.10	9	50	4	1	0.933	1	2	1	2	1.000
-tolerance	baseline	tolerance	-0.10	10	50	4	0	0.933	2	2	0	1	1.000
-tolerance	baseline	tolerance	-0.10	11	50	2	0	0.967	0	1	1	0	
-tolerance	baseline	tolerance	-0.10	12	50	4	0	0.933	1	3	0	0	
-tolerance	baseline	tolerance	-0.10	13	50	4	1	0.933	2	2	0	1	1.000
-tolerance	baseline	tolerance	-0.10	14	50	1	0	0.983	0	0	1	0	
-tolerance	baseline	tolerance	-0.10	15	50	6	3	0.900	3	3	0	3	1.000
-tolerance	baseline	tolerance	-0.10	16	50	3	2	0.950	1	2	0	0	
-tolerance	baseline	tolerance	-0.10	17	50	3	1	0.950	1	2	0	2	1.000
-tolerance	baseline	tolerance	-0.10	18	50	2	0	0.967	1	0	1	0	
-tolerance	baseline	tolerance	-0.10	19	50	2	0	0.967	1	0	1	0	
-tolerance	baseline	tolerance	-0.10	20	50	3	1	0.950	0	2	1	1	1.000
-tolerance	baseline	tolerance	-0.10	21	50	6	2	0.900	3	2	1	1	1.000
-tolerance	baseline	tolerance	-0.10	22	50	5	1	0.917	3	1	1	4	1.000
-tolerance	baseline	tolerance	-0.10	23	50	4	0	0.933	0	3	1	1	1.000
-tolerance	baseline	tolerance	-0.10	24	50	9	1	0.850	1	5	3	2	1.000
-tolerance	baseline	tolerance	-0.10	25	50	6	0	0.900	1	5	0	2	1.000
-tolerance	baseline	tolerance	-0.10	26	50	6	0	0.900	3	3	0	2	1.000
-tolerance	baseline	tolerance	-0.10	27	50	4	0	0.933	0	4	0	3	1.000
-tolerance	baseline	tolerance	-0.10	28	50	1	1	0.983	0	0	1	1	1.000
-tolerance	baseline	tolerance	-0.10	29	50	4	0	0.933	2	1	1	0	
-tolerance	baseline	tolerance	-0.10	30	50	5	2	0.917	3	2	0	2	1.000
-tolerance	baseline	tolerance	+0.00	1	50	6	3	0.900	3	3	0	1	1.000
-tolerance	baseline	tolerance	+0.00	2	50	4	3	0.933	2	1	1	0	
-tolerance	baseline	tolerance	+0.00	3	50	6	2	0.900	3	2	1	2	1.000
-tolerance	baseline	tolerance	+0.00	4	50	5	4	0.917	1	3	1	3	1.000
-tolerance	baseline	tolerance	+0.00	5	50	0	0	1.000	0	0	0	0	
-tolerance	baseline	tolerance	+0.00	6	50	1	1	0.983	1	0	0	0	
-tolerance	baseline	tolerance	+0.00	7	50	6	3	0.900	1	1	4	1	1.000
-tolerance	baseline	tolerance	+0.00	8	50	5	0	0.917	1	2	2	1	1.000
-tolerance	baseline	tolerance	+0.00	9	50	4	2	0.933	1	2	1	3	1.000
-tolerance	baseline	tolerance	+0.00	10	50	4	1	0.933	2	2	0	1	1.000
-tolerance	baseline	tolerance	+0.00	11	50	2	0	0.967	0	1	1	0	
-tolerance	baseline	tolerance	+0.00	12	50	5	3	0.917	2	3	0	2	1.000
-tolerance	baseline	tolerance	+0.00	13	50	4	3	0.933	2	2	0	2	1.000
-tolerance	baseline	tolerance	+0.00	14	50	1	0	0.983	0	0	1	0	
-tolerance	baseline	tolerance	+0.00	15	50	6	4	0.900	3	3	0	3	1.000
-tolerance	baseline	tolerance	+0.00	16	50	3	2	0.950	1	2	0	0	
-tolerance	baseline	tolerance	+0.00	17	50	3	1	0.950	1	2	0	2	1.000
-tolerance	baseline	tolerance	+0.00	18	50	2	2	0.967	1	0	1	0	
-tolerance	baseline	tolerance	+0.00	19	50	3	3	0.950	1	1	1	2	1.000
-tolerance	baseline	tolerance	+0.00	20	50	3	2	0.950	0	2	1	2	1.000
-tolerance	baseline	tolerance	+0.00	21	50	6	4	0.900	3	2	1	1	1.000
-tolerance	baseline	tolerance	+0.00	22	50	5	2	0.917	3	1	1	3	1.000
-tolerance	baseline	tolerance	+0.00	23	50	4	1	0.933	0	3	1	1	1.000
-tolerance	baseline	tolerance	+0.00	24	50	9	4	0.850	1	5	3	3	1.000
-tolerance	baseline	tolerance	+0.00	25	50	7	2	0.883	2	5	0	2	1.000
-tolerance	baseline	tolerance	+0.00	26	50	6	2	0.900	3	3	0	2	1.000
-tolerance	baseline	tolerance	+0.00	27	50	4	1	0.933	0	4	0	3	1.000
-tolerance	baseline	tolerance	+0.00	28	50	1	1	0.983	0	0	1	1	1.000
-tolerance	baseline	tolerance	+0.00	29	50	4	1	0.933	2	2	0	0	
-tolerance	baseline	tolerance	+0.00	30	50	5	3	0.917	3	2	0	2	1.000
-tolerance	baseline	tolerance	+0.10	1	50	6	5	0.900	3	3	0	3	1.000
-tolerance	baseline	tolerance	+0.10	2	50	4	3	0.933	2	1	1	0	
-tolerance	baseline	tolerance	+0.10	3	50	6	4	0.900	3	2	1	2	1.000
-tolerance	baseline	tolerance	+0.10	4	50	5	4	0.917	1	3	1	3	1.000
-tolerance	baseline	tolerance	+0.10	5	50	0	0	1.000	0	0	0	0	
-tolerance	baseline	tolerance	+0.10	6	50	1	1	0.983	1	0	0	0	
-tolerance	baseline	tolerance	+0.10	7	50	6	3	0.900	1	1	4	1	1.000
-tolerance	baseline	tolerance	+0.10	8	50	5	3	0.917	1	3	1	2	1.000
-tolerance	baseline	tolerance	+0.10	9	50	4	3	0.933	1	2	1	3	1.000
-tolerance	baseline	tolerance	+0.10	10	50	5	4	0.917	2	3	0	2	1.000
-tolerance	baseline	tolerance	+0.10	11	50	3	1	0.950	0	2	1	0	
-tolerance	baseline	tolerance	+0.10	12	50	5	5	0.917	2	3	0	2	1.000
-tolerance	baseline	tolerance	+0.10	13	50	4	3	0.933	2	2	0	2	1.000
-tolerance	baseline	tolerance	+0.10	14	50	1	0	0.983	0	0	1	0	
-tolerance	baseline	tolerance	+0.10	15	50	6	4	0.900	3	3	0	3	1.000
-tolerance	baseline	tolerance	+0.10	16	50	3	3	0.950	1	2	0	0	
-tolerance	baseline	tolerance	+0.10	17	50	3	1	0.950	1	2	0	2	1.000
-tolerance	baseline	tolerance	+0.10	18	50	2	2	0.967	1	0	1	0	
-tolerance	baseline	tolerance	+0.10	19	50	3	3	0.950	1	1	1	2	1.000
-tolerance	baseline	tolerance	+0.10	20	50	3	2	0.950	0	2	1	2	1.000
-tolerance	baseline	tolerance	+0.10	21	50	6	5	0.900	3	2	1	3	1.000
-tolerance	baseline	tolerance	+0.10	22	50	8	5	0.867	3	4	1	3	1.000
-tolerance	baseline	tolerance	+0.10	23	50	4	3	0.933	0	3	1	1	1.000
-tolerance	baseline	tolerance	+0.10	24	50	9	5	0.850	1	6	2	3	1.000
-tolerance	baseline	tolerance	+0.10	25	50	9	7	0.850	2	7	0	3	1.000
-tolerance	baseline	tolerance	+0.10	26	50	7	7	0.883	3	3	1	2	1.000
-tolerance	baseline	tolerance	+0.10	27	50	4	1	0.933	0	4	0	3	1.000
-tolerance	baseline	tolerance	+0.10	28	50	1	1	0.983	0	0	1	1	1.000
-tolerance	baseline	tolerance	+0.10	29	50	4	3	0.933	2	2	0	1	1.000
-tolerance	baseline	tolerance	+0.10	30	50	5	5	0.917	3	2	0	0	
-tolerance	baseline	tolerance	+0.20	1	50	6	5	0.900	3	3	0	3	1.000
-tolerance	baseline	tolerance	+0.20	2	50	4	3	0.933	2	1	1	0	
-tolerance	baseline	tolerance	+0.20	3	50	6	4	0.900	3	2	1	2	1.000
-tolerance	baseline	tolerance	+0.20	4	50	5	4	0.917	1	3	1	3	1.000
-tolerance	baseline	tolerance	+0.20	5	50	0	0	1.000	0	0	0	0	
-tolerance	baseline	tolerance	+0.20	6	50	1	1	0.983	1	0	0	0	
-tolerance	baseline	tolerance	+0.20	7	50	6	5	0.900	1	1	4	1	1.000
-tolerance	baseline	tolerance	+0.20	8	50	5	3	0.917	1	3	1	2	1.000
-tolerance	baseline	tolerance	+0.20	9	50	4	3	0.933	1	2	1	3	1.000
-tolerance	baseline	tolerance	+0.20	10	50	5	4	0.917	2	3	0	2	1.000
-tolerance	baseline	tolerance	+0.20	11	50	3	1	0.950	0	2	1	0	
-tolerance	baseline	tolerance	+0.20	12	50	5	5	0.917	2	3	0	2	1.000
-tolerance	baseline	tolerance	+0.20	13	50	4	3	0.933	2	2	0	2	1.000
-tolerance	baseline	tolerance	+0.20	14	50	2	2	0.967	0	1	1	1	1.000
-tolerance	baseline	tolerance	+0.20	15	50	6	4	0.900	3	3	0	3	1.000
-tolerance	baseline	tolerance	+0.20	16	50	3	3	0.950	1	2	0	0	
-tolerance	baseline	tolerance	+0.20	17	50	3	1	0.950	1	2	0	2	1.000
-tolerance	baseline	tolerance	+0.20	18	50	2	2	0.967	1	0	1	0	
-tolerance	baseline	tolerance	+0.20	19	50	3	3	0.950	1	1	1	2	1.000
-tolerance	baseline	tolerance	+0.20	20	50	3	2	0.950	0	2	1	2	1.000
-tolerance	baseline	tolerance	+0.20	21	50	7	6	0.883	3	3	1	3	1.000
-tolerance	baseline	tolerance	+0.20	22	50	8	7	0.867	3	4	1	3	1.000
-tolerance	baseline	tolerance	+0.20	23	50	4	3	0.933	0	3	1	1	1.000
-tolerance	baseline	tolerance	+0.20	24	50	9	6	0.850	1	7	1	4	1.000
-tolerance	baseline	tolerance	+0.20	25	50	9	7	0.850	2	7	0	3	1.000
-tolerance	baseline	tolerance	+0.20	26	50	7	7	0.883	3	3	1	2	1.000
-tolerance	baseline	tolerance	+0.20	27	50	4	1	0.933	0	4	0	4	1.000
-tolerance	baseline	tolerance	+0.20	28	50	1	1	0.983	0	0	1	1	1.000
-tolerance	baseline	tolerance	+0.20	29	50	4	3	0.933	2	2	0	1	1.000
-tolerance	baseline	tolerance	+0.20	30	50	5	5	0.917	3	2	0	0	
-tolerance	famine	tolerance	-0.20	1	50	26	0	0.567	10	16	0	16	1.000
-tolerance	famine	tolerance	-0.20	2	50	21	0	0.650	9	12	0	12	1.000
-tolerance	famine	tolerance	-0.20	3	50	19	0	0.683	10	9	0	7	1.000
-tolerance	famine	tolerance	-0.20	4	50	19	0	0.683	8	11	0	11	1.000
-tolerance	famine	tolerance	-0.20	5	50	12	0	0.800	5	7	0	7	1.000
-tolerance	famine	tolerance	-0.20	6	50	21	0	0.650	10	11	0	10	1.000
-tolerance	famine	tolerance	-0.20	7	50	21	0	0.667	13	7	1	7	1.000
-tolerance	famine	tolerance	-0.20	8	50	13	0	0.783	7	6	0	5	1.000
-tolerance	famine	tolerance	-0.20	9	50	31	0	0.483	10	21	0	20	1.000
-tolerance	famine	tolerance	-0.20	10	50	27	0	0.550	9	18	0	17	1.000
-tolerance	famine	tolerance	-0.20	11	50	18	0	0.717	8	10	0	8	0.875
-tolerance	famine	tolerance	-0.20	12	50	27	0	0.550	12	15	0	14	1.000
-tolerance	famine	tolerance	-0.20	13	50	23	0	0.617	10	13	0	13	1.000
-tolerance	famine	tolerance	-0.20	14	50	20	0	0.667	7	13	0	12	1.000
-tolerance	famine	tolerance	-0.20	15	50	29	0	0.533	13	16	0	15	0.933
-tolerance	famine	tolerance	-0.20	16	50	19	0	0.683	8	11	0	11	1.000
-tolerance	famine	tolerance	-0.20	17	50	21	0	0.650	9	12	0	10	1.000
-tolerance	famine	tolerance	-0.20	18	50	24	0	0.617	11	12	1	11	1.000
-tolerance	famine	tolerance	-0.20	19	50	19	0	0.683	7	12	0	12	1.000
-tolerance	famine	tolerance	-0.20	20	50	22	0	0.650	10	12	0	12	0.917
-tolerance	famine	tolerance	-0.20	21	50	32	0	0.467	11	21	0	20	1.000
-tolerance	famine	tolerance	-0.20	22	50	22	0	0.633	11	11	0	10	1.000
-tolerance	famine	tolerance	-0.20	23	50	19	0	0.683	6	13	0	12	1.000
-tolerance	famine	tolerance	-0.20	24	50	24	0	0.600	9	15	0	14	1.000
-tolerance	famine	tolerance	-0.20	25	50	25	0	0.600	6	19	0	19	0.947
-tolerance	famine	tolerance	-0.20	26	50	20	0	0.667	8	12	0	11	1.000
-tolerance	famine	tolerance	-0.20	27	50	20	0	0.683	9	11	0	10	1.000
-tolerance	famine	tolerance	-0.20	28	50	15	0	0.750	8	7	0	7	1.000
-tolerance	famine	tolerance	-0.20	29	50	27	0	0.550	10	17	0	16	1.000
-tolerance	famine	tolerance	-0.20	30	50	17	0	0.717	9	8	0	8	1.000
-tolerance	famine	tolerance	-0.10	1	50	26	0	0.567	10	16	0	16	1.000
-tolerance	famine	tolerance	-0.10	2	50	21	1	0.650	9	12	0	12	1.000
-tolerance	famine	tolerance	-0.10	3	50	19	0	0.683	10	9	0	7	1.000
-tolerance	famine	tolerance	-0.10	4	50	21	1	0.650	10	11	0	10	1.000
-tolerance	famine	tolerance	-0.10	5	50	14	2	0.800	7	7	0	7	0.714
-tolerance	famine	tolerance	-0.10	6	50	19	1	0.683	9	10	0	9	1.000
-tolerance	famine	tolerance	-0.10	7	50	22	1	0.667	13	7	2	7	1.000
-tolerance	famine	tolerance	-0.10	8	50	13	0	0.783	7	6	0	5	1.000
-tolerance	famine	tolerance	-0.10	9	50	31	1	0.483	10	21	0	20	1.000
-tolerance	famine	tolerance	-0.10	10	50	27	2	0.550	9	18	0	17	1.000
-tolerance	famine	tolerance	-0.10	11	50	18	0	0.717	8	10	0	8	0.875
-tolerance	famine	tolerance	-0.10	12	50	27	0	0.550	12	15	0	14	1.000
-tolerance	famine	tolerance	-0.10	13	50	23	2	0.617	10	13	0	13	1.000
-tolerance	famine	tolerance	-0.10	14	50	20	0	0.667	7	13	0	12	1.000
-tolerance	famine	tolerance	-0.10	15	50	27	1	0.567	13	14	0	13	0.923
-tolerance	famine	tolerance	-0.10	16	50	20	1	0.683	9	11	0	10	0.900
-tolerance	famine	tolerance	-0.10	17	50	21	1	0.650	9	12	0	10	1.000
-tolerance	famine	tolerance	-0.10	18	50	24	0	0.617	11	12	1	11	1.000
-tolerance	famine	tolerance	-0.10	19	50	20	1	0.683	7	13	0	12	1.000
-tolerance	famine	tolerance	-0.10	20	50	22	1	0.650	10	12	0	11	1.000
-tolerance	famine	tolerance	-0.10	21	50	32	1	0.467	11	21	0	20	1.000
-tolerance	famine	tolerance	-0.10	22	50	22	0	0.633	11	11	0	10	1.000
-tolerance	famine	tolerance	-0.10	23	50	19	0	0.683	6	13	0	12	1.000
-tolerance	famine	tolerance	-0.10	24	50	25	1	0.583	9	16	0	15	1.000
-tolerance	famine	tolerance	-0.10	25	50	25	0	0.600	6	19	0	19	0.947
-tolerance	famine	tolerance	-0.10	26	50	20	0	0.667	8	12	0	11	1.000
-tolerance	famine	tolerance	-0.10	27	50	21	1	0.667	10	11	0	10	1.000
-tolerance	famine	tolerance	-0.10	28	50	15	0	0.750	8	7	0	7	1.000
-tolerance	famine	tolerance	-0.10	29	50	28	2	0.533	11	17	0	16	1.000
-tolerance	famine	tolerance	-0.10	30	50	16	2	0.733	9	7	0	7	1.000
-tolerance	famine	tolerance	+0.00	1	50	26	1	0.567	10	16	0	16	1.000
-tolerance	famine	tolerance	+0.00	2	50	21	3	0.650	9	12	0	12	1.000
-tolerance	famine	tolerance	+0.00	3	50	20	2	0.683	10	9	1	8	1.000
-tolerance	famine	tolerance	+0.00	4	50	22	2	0.633	11	11	0	10	1.000
-tolerance	famine	tolerance	+0.00	5	50	16	5	0.750	6	10	0	8	0.875
-tolerance	famine	tolerance	+0.00	6	50	20	2	0.667	10	10	0	9	1.000
-tolerance	famine	tolerance	+0.00	7	50	22	2	0.667	13	7	2	7	1.000
-tolerance	famine	tolerance	+0.00	8	50	13	0	0.783	7	6	0	5	1.000
-tolerance	famine	tolerance	+0.00	9	50	37	5	0.433	13	24	0	20	1.000
-tolerance	famine	tolerance	+0.00	10	50	27	2	0.550	9	18	0	17	1.000
-tolerance	famine	tolerance	+0.00	11	50	18	0	0.717	8	10	0	8	0.875
-tolerance	famine	tolerance	+0.00	12	50	28	2	0.533	12	16	0	14	1.000
-tolerance	famine	tolerance	+0.00	13	50	23	3	0.617	10	13	0	13	1.000
-tolerance	famine	tolerance	+0.00	14	50	21	1	0.650	7	14	0	12	1.000
-tolerance	famine	tolerance	+0.00	15	50	28	3	0.550	14	14	0	13	0.923
-tolerance	famine	tolerance	+0.00	16	50	21	3	0.667	9	12	0	10	0.900
-tolerance	famine	tolerance	+0.00	17	50	21	1	0.650	9	12	0	10	1.000
-tolerance	famine	tolerance	+0.00	18	50	25	2	0.600	11	13	1	11	1.000
-tolerance	famine	tolerance	+0.00	19	50	22	3	0.683	8	14	0	12	1.000
-tolerance	famine	tolerance	+0.00	20	50	22	1	0.650	10	12	0	11	1.000
-tolerance	famine	tolerance	+0.00	21	50	29	3	0.533	11	18	0	17	1.000
-tolerance	famine	tolerance	+0.00	22	50	26	5	0.567	12	14	0	9	1.000
-tolerance	famine	tolerance	+0.00	23	50	19	0	0.683	6	13	0	12	1.000
-tolerance	famine	tolerance	+0.00	24	50	26	4	0.600	10	15	1	14	0.929
-tolerance	famine	tolerance	+0.00	25	50	26	2	0.583	6	20	0	19	0.947
-tolerance	famine	tolerance	+0.00	26	50	20	5	0.667	8	12	0	9	1.000
-tolerance	famine	tolerance	+0.00	27	50	21	2	0.650	9	12	0	10	1.000
-tolerance	famine	tolerance	+0.00	28	50	19	4	0.683	8	11	0	7	1.000
-tolerance	famine	tolerance	+0.00	29	50	29	3	0.533	11	18	0	16	1.000
-tolerance	famine	tolerance	+0.00	30	50	16	3	0.733	9	7	0	7	1.000
-tolerance	famine	tolerance	+0.10	1	50	28	6	0.533	10	18	0	14	1.000
-tolerance	famine	tolerance	+0.10	2	50	26	9	0.567	9	17	0	12	1.000
-tolerance	famine	tolerance	+0.10	3	50	21	6	0.650	10	11	0	7	1.000
-tolerance	famine	tolerance	+0.10	4	50	27	6	0.550	12	15	0	10	1.000
-tolerance	famine	tolerance	+0.10	5	50	17	8	0.717	5	12	0	8	1.000
-tolerance	famine	tolerance	+0.10	6	50	28	10	0.567	11	17	0	9	1.000
-tolerance	famine	tolerance	+0.10	7	50	25	5	0.617	14	9	2	7	1.000
-tolerance	famine	tolerance	+0.10	8	50	18	6	0.700	7	11	0	5	1.000
-tolerance	famine	tolerance	+0.10	9	50	38	7	0.417	12	26	0	20	1.000
-tolerance	famine	tolerance	+0.10	10	50	31	9	0.483	9	22	0	16	1.000
-tolerance	famine	tolerance	+0.10	11	50	21	4	0.667	8	13	0	8	0.875
-tolerance	famine	tolerance	+0.10	12	50	31	5	0.483	13	18	0	14	1.000
-tolerance	famine	tolerance	+0.10	13	50	31	9	0.500	11	20	0	13	1.000
-tolerance	famine	tolerance	+0.10	14	50	25	6	0.583	7	18	0	12	1.000
-tolerance	famine	tolerance	+0.10	15	50	31	6	0.500	13	18	0	13	0.923
-tolerance	famine	tolerance	+0.10	16	50	25	7	0.583	8	17	0	11	1.000
-tolerance	famine	tolerance	+0.10	17	50	24	4	0.600	10	14	0	10	1.000
-tolerance	famine	tolerance	+0.10	18	50	26	5	0.583	11	14	1	11	1.000
-tolerance	famine	tolerance	+0.10	19	50	27	9	0.583	8	19	0	14	1.000
-tolerance	famine	tolerance	+0.10	20	50	24	4	0.617	10	14	0	11	1.000
-tolerance	famine	tolerance	+0.10	21	50	32	7	0.483	11	21	0	17	1.000
-tolerance	famine	tolerance	+0.10	22	50	29	9	0.517	13	16	0	9	1.000
-tolerance	famine	tolerance	+0.10	23	50	23	4	0.617	7	16	0	12	1.000
-tolerance	famine	tolerance	+0.10	24	50	32	10	0.483	9	22	1	14	1.000
-tolerance	famine	tolerance	+0.10	25	50	32	8	0.483	6	26	0	19	1.000
-tolerance	famine	tolerance	+0.10	26	50	21	8	0.650	7	14	0	9	1.000
-tolerance	famine	tolerance	+0.10	27	50	26	6	0.567	10	16	0	10	1.000
-tolerance	famine	tolerance	+0.10	28	50	22	8	0.633	8	14	0	7	1.000
-tolerance	famine	tolerance	+0.10	29	50	30	6	0.500	10	20	0	16	1.000
-tolerance	famine	tolerance	+0.10	30	50	18	9	0.700	9	9	0	7	1.000
-tolerance	famine	tolerance	+0.20	1	50	31	9	0.483	10	21	0	14	1.000
-tolerance	famine	tolerance	+0.20	2	50	30	13	0.500	9	21	0	12	1.000
-tolerance	famine	tolerance	+0.20	3	50	28	12	0.533	10	18	0	9	1.000
-tolerance	famine	tolerance	+0.20	4	50	32	11	0.467	11	21	0	10	1.000
-tolerance	famine	tolerance	+0.20	5	50	25	14	0.583	5	20	0	8	1.000
-tolerance	famine	tolerance	+0.20	6	50	32	13	0.500	10	22	0	9	1.000
-tolerance	famine	tolerance	+0.20	7	50	26	6	0.600	14	10	2	7	1.000
-tolerance	famine	tolerance	+0.20	8	50	20	10	0.667	8	12	0	5	1.000
-tolerance	famine	tolerance	+0.20	9	50	41	11	0.367	13	28	0	20	1.000
-tolerance	famine	tolerance	+0.20	10	50	34	10	0.433	10	24	0	16	1.000
-tolerance	famine	tolerance	+0.20	11	50	22	4	0.650	8	14	0	8	0.875
-tolerance	famine	tolerance	+0.20	12	50	31	5	0.483	13	18	0	14	1.000
-tolerance	famine	tolerance	+0.20	13	50	35	13	0.433	10	25	0	13	1.000
-tolerance	famine	tolerance	+0.20	14	50	26	7	0.567	7	19	0	12	1.000
-tolerance	famine	tolerance	+0.20	15	50	37	12	0.400	13	24	0	13	0.923
-tolerance	famine	tolerance	+0.20	16	50	29	12	0.517	8	21	0	11	1.000
-tolerance	famine	tolerance	+0.20	17	50	28	9	0.533	10	18	0	10	1.000
-tolerance	famine	tolerance	+0.20	18	50	32	10	0.483	11	20	1	11	1.000
-tolerance	famine	tolerance	+0.20	19	50	32	14	0.500	8	24	0	15	1.000
-tolerance	famine	tolerance	+0.20	20	50	28	8	0.550	10	18	0	12	0.917
-tolerance	famine	tolerance	+0.20	21	50	37	13	0.400	11	26	0	17	1.000
-tolerance	famine	tolerance	+0.20	22	50	33	13	0.450	12	21	0	9	1.000
-tolerance	famine	tolerance	+0.20	23	50	27	8	0.550	7	20	0	12	1.000
-tolerance	famine	tolerance	+0.20	24	50	37	15	0.400	9	27	1	15	1.000
-tolerance	famine	tolerance	+0.20	25	50	32	9	0.483	6	26	0	19	1.000
-tolerance	famine	tolerance	+0.20	26	50	27	13	0.550	7	20	0	9	1.000
-tolerance	famine	tolerance	+0.20	27	50	28	9	0.533	10	18	0	10	1.000
-tolerance	famine	tolerance	+0.20	28	50	24	9	0.600	8	16	0	7	1.000
-tolerance	famine	tolerance	+0.20	29	50	34	9	0.450	10	24	0	16	1.000
-tolerance	famine	tolerance	+0.20	30	50	18	14	0.700	10	8	0	7	1.000
+tolerance	baseline	tolerance	-0.20	1	50	266	0	0.958	60	56	150	68	1.000
+tolerance	baseline	tolerance	-0.20	2	50	296	0	0.954	51	67	178	86	1.000
+tolerance	baseline	tolerance	-0.20	3	50	281	0	0.956	51	66	164	67	1.000
+tolerance	baseline	tolerance	-0.20	4	50	262	0	0.959	52	69	141	62	1.000
+tolerance	baseline	tolerance	-0.20	5	50	262	0	0.959	45	70	147	64	1.000
+tolerance	baseline	tolerance	-0.20	6	50	269	0	0.958	55	61	153	62	1.000
+tolerance	baseline	tolerance	-0.20	7	50	301	0	0.953	57	67	177	74	1.000
+tolerance	baseline	tolerance	-0.20	8	50	266	0	0.958	46	62	158	70	1.000
+tolerance	baseline	tolerance	-0.20	9	50	272	0	0.958	52	58	162	56	1.000
+tolerance	baseline	tolerance	-0.20	10	50	272	0	0.958	40	51	181	54	1.000
+tolerance	baseline	tolerance	-0.10	1	50	270	38	0.958	62	60	148	67	1.000
+tolerance	baseline	tolerance	-0.10	2	50	304	46	0.953	53	72	179	79	1.000
+tolerance	baseline	tolerance	-0.10	3	50	286	40	0.955	51	72	163	81	1.000
+tolerance	baseline	tolerance	-0.10	4	50	263	41	0.959	52	71	140	75	1.000
+tolerance	baseline	tolerance	-0.10	5	50	263	30	0.959	46	75	142	60	1.000
+tolerance	baseline	tolerance	-0.10	6	50	271	34	0.958	56	63	152	62	1.000
+tolerance	baseline	tolerance	-0.10	7	50	306	33	0.952	57	70	179	78	1.000
+tolerance	baseline	tolerance	-0.10	8	50	271	33	0.958	45	66	160	71	1.000
+tolerance	baseline	tolerance	-0.10	9	50	276	37	0.957	52	62	162	68	1.000
+tolerance	baseline	tolerance	-0.10	10	50	271	35	0.958	38	52	181	56	1.000
+tolerance	baseline	tolerance	+0.00	1	50	278	105	0.957	61	68	149	65	1.000
+tolerance	baseline	tolerance	+0.00	2	50	313	122	0.951	54	81	178	85	1.000
+tolerance	baseline	tolerance	+0.00	3	50	290	102	0.955	51	79	160	75	1.000
+tolerance	baseline	tolerance	+0.00	4	50	275	111	0.957	51	86	138	74	1.000
+tolerance	baseline	tolerance	+0.00	5	50	269	83	0.958	46	80	143	60	1.000
+tolerance	baseline	tolerance	+0.00	6	50	275	95	0.957	56	70	149	63	1.000
+tolerance	baseline	tolerance	+0.00	7	50	311	115	0.951	58	79	174	73	1.000
+tolerance	baseline	tolerance	+0.00	8	50	274	98	0.957	46	68	160	62	1.000
+tolerance	baseline	tolerance	+0.00	9	50	286	102	0.955	52	74	160	70	1.000
+tolerance	baseline	tolerance	+0.00	10	50	283	100	0.956	40	63	180	64	1.000
+tolerance	baseline	tolerance	+0.10	1	50	308	208	0.952	63	92	153	78	1.000
+tolerance	baseline	tolerance	+0.10	2	50	337	241	0.947	52	116	169	85	1.000
+tolerance	baseline	tolerance	+0.10	3	50	307	204	0.952	51	106	150	81	1.000
+tolerance	baseline	tolerance	+0.10	4	50	306	212	0.952	51	120	135	88	1.000
+tolerance	baseline	tolerance	+0.10	5	50	295	189	0.954	45	95	155	74	1.000
+tolerance	baseline	tolerance	+0.10	6	50	300	208	0.953	56	93	151	75	1.000
+tolerance	baseline	tolerance	+0.10	7	50	328	219	0.949	58	95	175	89	1.000
+tolerance	baseline	tolerance	+0.10	8	50	302	194	0.953	47	93	162	66	1.000
+tolerance	baseline	tolerance	+0.10	9	50	322	215	0.950	53	103	166	87	1.000
+tolerance	baseline	tolerance	+0.10	10	50	312	209	0.951	41	90	181	83	1.000
+tolerance	baseline	tolerance	+0.20	1	50	325	270	0.949	63	109	153	86	1.000
+tolerance	baseline	tolerance	+0.20	2	50	353	291	0.945	53	133	167	93	1.000
+tolerance	baseline	tolerance	+0.20	3	50	331	273	0.948	51	128	152	95	1.000
+tolerance	baseline	tolerance	+0.20	4	50	325	260	0.949	50	128	147	98	1.000
+tolerance	baseline	tolerance	+0.20	5	50	307	257	0.952	45	111	151	83	1.000
+tolerance	baseline	tolerance	+0.20	6	50	328	269	0.949	56	109	163	80	1.000
+tolerance	baseline	tolerance	+0.20	7	50	344	287	0.946	58	114	172	99	1.000
+tolerance	baseline	tolerance	+0.20	8	50	323	272	0.950	47	111	165	70	1.000
+tolerance	baseline	tolerance	+0.20	9	50	338	274	0.947	53	125	160	88	1.000
+tolerance	baseline	tolerance	+0.20	10	50	331	284	0.948	41	118	172	101	1.000
+tolerance	famine	tolerance	-0.20	1	50	962	0	0.851	356	585	21	562	0.993
+tolerance	famine	tolerance	-0.20	2	50	1001	0	0.845	361	620	20	599	0.997
+tolerance	famine	tolerance	-0.20	3	50	983	0	0.848	364	603	16	586	0.995
+tolerance	famine	tolerance	-0.20	4	50	953	0	0.854	363	573	17	547	0.995
+tolerance	famine	tolerance	-0.20	5	50	985	0	0.847	335	633	17	612	0.997
+tolerance	famine	tolerance	-0.20	6	50	975	0	0.850	332	621	22	588	0.993
+tolerance	famine	tolerance	-0.20	7	50	1047	0	0.838	348	686	13	662	0.998
+tolerance	famine	tolerance	-0.20	8	50	983	0	0.849	330	627	26	606	0.995
+tolerance	famine	tolerance	-0.20	9	50	1026	0	0.842	351	648	27	621	0.990
+tolerance	famine	tolerance	-0.20	10	50	971	0	0.850	343	602	26	572	0.995
+tolerance	famine	tolerance	-0.10	1	50	972	50	0.850	369	582	21	556	0.993
+tolerance	famine	tolerance	-0.10	2	50	1012	50	0.846	380	609	23	590	0.988
+tolerance	famine	tolerance	-0.10	3	50	1004	40	0.846	381	603	20	586	0.993
+tolerance	famine	tolerance	-0.10	4	50	967	47	0.852	372	570	25	547	0.995
+tolerance	famine	tolerance	-0.10	5	50	988	44	0.848	345	620	23	599	0.997
+tolerance	famine	tolerance	-0.10	6	50	963	36	0.852	333	603	27	581	0.993
+tolerance	famine	tolerance	-0.10	7	50	1060	50	0.837	362	678	20	655	0.995
+tolerance	famine	tolerance	-0.10	8	50	1002	47	0.847	347	629	26	613	0.993
+tolerance	famine	tolerance	-0.10	9	50	1041	48	0.841	367	645	29	619	0.989
+tolerance	famine	tolerance	-0.10	10	50	979	37	0.850	354	595	30	568	0.986
+tolerance	famine	tolerance	+0.00	1	50	1050	239	0.840	398	618	34	553	0.991
+tolerance	famine	tolerance	+0.00	2	50	1089	236	0.836	401	647	41	582	0.979
+tolerance	famine	tolerance	+0.00	3	50	1066	227	0.838	398	632	36	581	0.991
+tolerance	famine	tolerance	+0.00	4	50	1017	234	0.845	393	586	38	522	0.994
+tolerance	famine	tolerance	+0.00	5	50	1047	227	0.840	363	655	29	589	0.993
+tolerance	famine	tolerance	+0.00	6	50	1069	214	0.838	363	666	40	591	0.990
+tolerance	famine	tolerance	+0.00	7	50	1134	256	0.827	379	719	36	646	0.994
+tolerance	famine	tolerance	+0.00	8	50	1089	245	0.836	370	674	45	607	0.987
+tolerance	famine	tolerance	+0.00	9	50	1117	232	0.830	390	684	43	615	0.997
+tolerance	famine	tolerance	+0.00	10	50	1057	219	0.840	375	638	44	572	0.988
+tolerance	famine	tolerance	+0.10	1	50	1354	878	0.794	397	885	72	569	0.981
+tolerance	famine	tolerance	+0.10	2	50	1385	853	0.792	418	891	76	574	0.993
+tolerance	famine	tolerance	+0.10	3	50	1408	885	0.785	408	938	62	580	0.991
+tolerance	famine	tolerance	+0.10	4	50	1363	834	0.793	417	879	67	567	0.988
+tolerance	famine	tolerance	+0.10	5	50	1388	837	0.788	376	951	61	605	0.985
+tolerance	famine	tolerance	+0.10	6	50	1347	794	0.795	370	915	62	584	0.993
+tolerance	famine	tolerance	+0.10	7	50	1513	845	0.770	401	1052	60	673	0.990
+tolerance	famine	tolerance	+0.10	8	50	1402	851	0.789	377	943	82	599	0.993
+tolerance	famine	tolerance	+0.10	9	50	1439	804	0.782	413	957	69	626	0.978
+tolerance	famine	tolerance	+0.10	10	50	1372	810	0.793	388	909	75	579	0.979
+tolerance	famine	tolerance	+0.20	1	50	1753	1507	0.731	397	1231	125	581	0.985
+tolerance	famine	tolerance	+0.20	2	50	1760	1421	0.733	414	1249	97	584	0.991
+tolerance	famine	tolerance	+0.20	3	50	1923	1447	0.705	413	1442	68	611	0.989
+tolerance	famine	tolerance	+0.20	4	50	1678	1401	0.743	421	1167	90	554	0.993
+tolerance	famine	tolerance	+0.20	5	50	1790	1366	0.725	367	1343	80	616	0.992
+tolerance	famine	tolerance	+0.20	6	50	1801	1364	0.724	387	1325	89	597	0.993
+tolerance	famine	tolerance	+0.20	7	50	1974	1416	0.698	393	1518	63	679	0.990
+tolerance	famine	tolerance	+0.20	8	50	1905	1411	0.710	373	1431	101	623	0.994
+tolerance	famine	tolerance	+0.20	9	50	1873	1329	0.713	406	1397	70	642	0.988
+tolerance	famine	tolerance	+0.20	10	50	1805	1350	0.725	383	1332	90	590	0.988

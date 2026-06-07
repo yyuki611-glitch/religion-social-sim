@@ -1,6 +1,6 @@
 [project]
 name = "religion-social-sim"
-version = "1.0.0"
+version = "2.0.0"
 description = "Japanese religion spread and decline social simulation"
 requires-python = ">=3.10"
 dependencies = [

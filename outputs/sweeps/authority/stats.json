@@ -6,30 +6,30 @@
         "std": 0.0
       },
       "conv_to_other": {
-        "mean": 0.6667,
-        "std": 0.83
+        "mean": 158.0,
+        "std": 14.6219
       },
       "conv_to_practical": {
-        "mean": 2.1,
-        "std": 1.4224
+        "mean": 79.7,
+        "std": 9.2957
       },
       "conv_to_salvation": {
-        "mean": 1.4333,
-        "std": 1.0858
+        "mean": 51.7,
+        "std": 6.1652
       },
       "conversions": {
-        "mean": 4.2,
-        "std": 2.0396
+        "mean": 289.4,
+        "std": 14.5616
       },
       "delta": "-0.20",
       "early_conversions": {
-        "mean": 1.4333,
-        "std": 1.116
+        "mean": 71.5,
+        "std": 7.953
       },
       "early_convert_retention": {
         "mean": 1.0,
-        "n_na": 8,
-        "n_with_early_conversions": 22,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
         "std": 0.0
       },
       "effective_trait": {
@@ -38,36 +38,40 @@
           "std": 0.0
         },
         "run_max": {
-          "mean": 0.707,
-          "std": 0.0423
+          "mean": 0.7682,
+          "std": 0.0013
         },
         "run_mean": {
-          "mean": 0.2663,
-          "std": 0.0088
+          "mean": 0.2782,
+          "std": 0.0007
         },
         "run_min": {
-          "mean": 0.0287,
-          "std": 0.0132
+          "mean": 0.0115,
+          "std": 0.0017
         }
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 30,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.9299,
-        "std": 0.034
+        "mean": 0.9546,
+        "std": 0.0022
       },
       "scenario": "baseline",
       "syncretisms": {
-        "mean": 1.9667,
-        "std": 1.2243
+        "mean": 103.6,
+        "std": 11.6465
       },
       "trait": "authority_trust"
     },
@@ -77,30 +81,30 @@
         "std": 0.0
       },
       "conv_to_other": {
-        "mean": 0.6667,
-        "std": 0.83
+        "mean": 159.2,
+        "std": 13.5115
       },
       "conv_to_practical": {
-        "mean": 2.0667,
-        "std": 1.4126
+        "mean": 77.1,
+        "std": 7.7518
       },
       "conv_to_salvation": {
-        "mean": 1.4333,
-        "std": 1.0858
+        "mean": 51.7,
+        "std": 6.0341
       },
       "conversions": {
-        "mean": 4.1667,
-        "std": 2.0014
+        "mean": 288.0,
+        "std": 14.1067
       },
       "delta": "-0.10",
       "early_conversions": {
-        "mean": 1.4667,
-        "std": 1.1175
+        "mean": 69.4,
+        "std": 6.8
       },
       "early_convert_retention": {
         "mean": 1.0,
-        "n_na": 8,
-        "n_with_early_conversions": 22,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
         "std": 0.0
       },
       "effective_trait": {
@@ -109,36 +113,40 @@
           "std": 0.0
         },
         "run_max": {
-          "mean": 0.807,
-          "std": 0.0423
+          "mean": 0.8683,
+          "std": 0.0013
         },
         "run_mean": {
-          "mean": 0.3663,
-          "std": 0.0088
+          "mean": 0.3782,
+          "std": 0.0007
         },
         "run_min": {
-          "mean": 0.1287,
-          "std": 0.0132
+          "mean": 0.1115,
+          "std": 0.0017
         }
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 30,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.9305,
-        "std": 0.0333
+        "mean": 0.9549,
+        "std": 0.0022
       },
       "scenario": "baseline",
       "syncretisms": {
-        "mean": 1.9333,
-        "std": 1.2632
+        "mean": 103.3,
+        "std": 9.9604
       },
       "trait": "authority_trust"
     },
@@ -148,30 +156,30 @@
         "std": 0.0
       },
       "conv_to_other": {
-        "mean": 0.7333,
-        "std": 0.9286
+        "mean": 159.1,
+        "std": 13.8813
       },
       "conv_to_practical": {
-        "mean": 1.9667,
-        "std": 1.3287
+        "mean": 74.8,
+        "std": 6.9397
       },
       "conv_to_salvation": {
-        "mean": 1.4333,
-        "std": 1.0858
+        "mean": 51.5,
+        "std": 5.9372
       },
       "conversions": {
-        "mean": 4.1333,
-        "std": 1.9788
+        "mean": 285.4,
+        "std": 14.541
       },
       "delta": "+0.00",
       "early_conversions": {
-        "mean": 1.4333,
-        "std": 1.0858
+        "mean": 69.1,
+        "std": 7.3546
       },
       "early_convert_retention": {
         "mean": 1.0,
-        "n_na": 8,
-        "n_with_early_conversions": 22,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
         "std": 0.0
       },
       "effective_trait": {
@@ -180,36 +188,40 @@
           "std": 0.0
         },
         "run_max": {
-          "mean": 0.907,
-          "std": 0.0423
+          "mean": 0.9682,
+          "std": 0.0013
         },
         "run_mean": {
-          "mean": 0.4663,
-          "std": 0.0088
+          "mean": 0.4782,
+          "std": 0.0007
         },
         "run_min": {
-          "mean": 0.2287,
-          "std": 0.0132
+          "mean": 0.2115,
+          "std": 0.0017
         }
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 30,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.9311,
-        "std": 0.0329
+        "mean": 0.9554,
+        "std": 0.0024
       },
       "scenario": "baseline",
       "syncretisms": {
-        "mean": 2.0,
-        "std": 1.2383
+        "mean": 103.3,
+        "std": 10.3542
       },
       "trait": "authority_trust"
     },
@@ -219,498 +231,636 @@
         "std": 0.0
       },
       "conv_to_other": {
-        "mean": 0.7333,
-        "std": 0.9286
+        "mean": 159.4,
+        "std": 15.2656
       },
       "conv_to_practical": {
-        "mean": 1.9333,
-        "std": 1.3149
+        "mean": 73.4,
+        "std": 6.8147
       },
       "conv_to_salvation": {
-        "mean": 1.4333,
-        "std": 1.0858
+        "mean": 51.8,
+        "std": 6.0299
       },
       "conversions": {
-        "mean": 4.1,
-        "std": 1.9553
+        "mean": 284.6,
+        "std": 15.2722
       },
       "delta": "+0.10",
       "early_conversions": {
-        "mean": 1.4333,
-        "std": 1.0858
+        "mean": 69.8,
+        "std": 7.1526
       },
       "early_convert_retention": {
         "mean": 1.0,
-        "n_na": 8,
-        "n_with_early_conversions": 22,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
         "std": 0.0
       },
       "effective_trait": {
         "clamped_agents": {
-          "mean": 0.8667,
-          "std": 0.67
-        },
-        "run_max": {
-          "mean": 0.9855,
-          "std": 0.0272
-        },
-        "run_mean": {
-          "mean": 0.5659,
-          "std": 0.0088
-        },
-        "run_min": {
-          "mean": 0.3287,
-          "std": 0.0132
-        }
-      },
-      "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
-      },
-      "n_runs": 30,
-      "retention_rate": {
-        "mean": 0.9316,
-        "std": 0.0325
-      },
-      "scenario": "baseline",
-      "syncretisms": {
-        "mean": 2.0,
-        "std": 1.2383
-      },
-      "trait": "authority_trust"
-    },
-    {
-      "conv_to_classical_post_patronage": {
-        "mean": 0.0,
-        "std": 0.0
-      },
-      "conv_to_other": {
-        "mean": 0.7667,
-        "std": 0.9195
-      },
-      "conv_to_practical": {
-        "mean": 1.9,
-        "std": 1.2741
-      },
-      "conv_to_salvation": {
-        "mean": 1.4333,
-        "std": 1.0858
-      },
-      "conversions": {
-        "mean": 4.1,
-        "std": 1.9553
-      },
-      "delta": "+0.20",
-      "early_conversions": {
-        "mean": 1.4667,
-        "std": 1.1175
-      },
-      "early_convert_retention": {
-        "mean": 1.0,
-        "n_na": 8,
-        "n_with_early_conversions": 22,
-        "std": 0.0
-      },
-      "effective_trait": {
-        "clamped_agents": {
-          "mean": 1.9667,
-          "std": 0.6574
+          "mean": 17.8,
+          "std": 3.9446
         },
         "run_max": {
           "mean": 1.0,
           "std": 0.0
         },
         "run_mean": {
-          "mean": 0.6637,
-          "std": 0.0087
+          "mean": 0.5781,
+          "std": 0.0007
         },
         "run_min": {
-          "mean": 0.4287,
-          "std": 0.0132
+          "mean": 0.3115,
+          "std": 0.0017
         }
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 30,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.9316,
-        "std": 0.0325
+        "mean": 0.9555,
+        "std": 0.0025
       },
       "scenario": "baseline",
       "syncretisms": {
-        "mean": 2.0333,
-        "std": 1.2243
+        "mean": 102.1,
+        "std": 10.7838
       },
       "trait": "authority_trust"
     },
     {
       "conv_to_classical_post_patronage": {
-        "mean": 25.1333,
-        "std": 6.9317
+        "mean": 0.0,
+        "std": 0.0
       },
       "conv_to_other": {
-        "mean": 31.3333,
-        "std": 7.6783
+        "mean": 158.4,
+        "std": 14.2913
       },
       "conv_to_practical": {
-        "mean": 23.9333,
-        "std": 5.1764
+        "mean": 72.2,
+        "std": 6.9828
       },
       "conv_to_salvation": {
-        "mean": 0.1,
-        "std": 0.3
+        "mean": 51.6,
+        "std": 6.02
       },
       "conversions": {
-        "mean": 55.3667,
-        "std": 4.8613
-      },
-      "delta": "-0.20",
-      "early_conversions": {
-        "mean": 19.6667,
-        "std": 4.0111
-      },
-      "early_convert_retention": {
-        "mean": 0.7062,
-        "n_na": 0,
-        "n_with_early_conversions": 30,
-        "std": 0.1534
-      },
-      "effective_trait": {
-        "clamped_agents": {
-          "mean": 0.0,
-          "std": 0.0
-        },
-        "run_max": {
-          "mean": 0.707,
-          "std": 0.0423
-        },
-        "run_mean": {
-          "mean": 0.2663,
-          "std": 0.0088
-        },
-        "run_min": {
-          "mean": 0.0287,
-          "std": 0.0132
-        }
-      },
-      "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
-      },
-      "n_runs": 30,
-      "retention_rate": {
-        "mean": 0.2305,
-        "std": 0.0476
-      },
-      "scenario": "miracle_rumor",
-      "syncretisms": {
-        "mean": 5.8333,
-        "std": 2.5441
-      },
-      "trait": "authority_trust"
-    },
-    {
-      "conv_to_classical_post_patronage": {
-        "mean": 34.4667,
-        "std": 4.8904
-      },
-      "conv_to_other": {
-        "mean": 41.5667,
-        "std": 4.1528
-      },
-      "conv_to_practical": {
-        "mean": 23.9333,
-        "std": 5.1764
-      },
-      "conv_to_salvation": {
-        "mean": 0.1,
-        "std": 0.3
-      },
-      "conversions": {
-        "mean": 65.6,
-        "std": 4.4091
-      },
-      "delta": "-0.10",
-      "early_conversions": {
-        "mean": 19.6667,
-        "std": 4.0111
-      },
-      "early_convert_retention": {
-        "mean": 0.3483,
-        "n_na": 0,
-        "n_with_early_conversions": 30,
-        "std": 0.1453
-      },
-      "effective_trait": {
-        "clamped_agents": {
-          "mean": 0.0,
-          "std": 0.0
-        },
-        "run_max": {
-          "mean": 0.807,
-          "std": 0.0423
-        },
-        "run_mean": {
-          "mean": 0.3663,
-          "std": 0.0088
-        },
-        "run_min": {
-          "mean": 0.1287,
-          "std": 0.0132
-        }
-      },
-      "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
-      },
-      "n_runs": 30,
-      "retention_rate": {
-        "mean": 0.2099,
-        "std": 0.0436
-      },
-      "scenario": "miracle_rumor",
-      "syncretisms": {
-        "mean": 4.4,
-        "std": 2.3324
-      },
-      "trait": "authority_trust"
-    },
-    {
-      "conv_to_classical_post_patronage": {
-        "mean": 39.7,
-        "std": 3.0458
-      },
-      "conv_to_other": {
-        "mean": 44.9667,
-        "std": 1.8526
-      },
-      "conv_to_practical": {
-        "mean": 23.9333,
-        "std": 5.1764
-      },
-      "conv_to_salvation": {
-        "mean": 0.1,
-        "std": 0.3
-      },
-      "conversions": {
-        "mean": 69.0,
-        "std": 4.2505
-      },
-      "delta": "+0.00",
-      "early_conversions": {
-        "mean": 19.6667,
-        "std": 4.0111
-      },
-      "early_convert_retention": {
-        "mean": 0.2281,
-        "n_na": 0,
-        "n_with_early_conversions": 30,
-        "std": 0.1093
-      },
-      "effective_trait": {
-        "clamped_agents": {
-          "mean": 0.0,
-          "std": 0.0
-        },
-        "run_max": {
-          "mean": 0.907,
-          "std": 0.0423
-        },
-        "run_mean": {
-          "mean": 0.4663,
-          "std": 0.0088
-        },
-        "run_min": {
-          "mean": 0.2287,
-          "std": 0.0132
-        }
-      },
-      "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
-      },
-      "n_runs": 30,
-      "retention_rate": {
-        "mean": 0.1988,
-        "std": 0.0407
-      },
-      "scenario": "miracle_rumor",
-      "syncretisms": {
-        "mean": 4.1667,
-        "std": 2.3106
-      },
-      "trait": "authority_trust"
-    },
-    {
-      "conv_to_classical_post_patronage": {
-        "mean": 43.4667,
-        "std": 2.1715
-      },
-      "conv_to_other": {
-        "mean": 49.0333,
-        "std": 2.041
-      },
-      "conv_to_practical": {
-        "mean": 23.9333,
-        "std": 5.1764
-      },
-      "conv_to_salvation": {
-        "mean": 0.1,
-        "std": 0.3
-      },
-      "conversions": {
-        "mean": 73.0667,
-        "std": 4.5529
-      },
-      "delta": "+0.10",
-      "early_conversions": {
-        "mean": 19.6667,
-        "std": 4.0111
-      },
-      "early_convert_retention": {
-        "mean": 0.1339,
-        "n_na": 0,
-        "n_with_early_conversions": 30,
-        "std": 0.0929
-      },
-      "effective_trait": {
-        "clamped_agents": {
-          "mean": 0.8667,
-          "std": 0.67
-        },
-        "run_max": {
-          "mean": 0.9855,
-          "std": 0.0272
-        },
-        "run_mean": {
-          "mean": 0.5659,
-          "std": 0.0088
-        },
-        "run_min": {
-          "mean": 0.3287,
-          "std": 0.0132
-        }
-      },
-      "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
-      },
-      "n_runs": 30,
-      "retention_rate": {
-        "mean": 0.165,
-        "std": 0.0387
-      },
-      "scenario": "miracle_rumor",
-      "syncretisms": {
-        "mean": 3.4667,
-        "std": 1.9276
-      },
-      "trait": "authority_trust"
-    },
-    {
-      "conv_to_classical_post_patronage": {
-        "mean": 48.1667,
-        "std": 2.6342
-      },
-      "conv_to_other": {
-        "mean": 53.7667,
-        "std": 1.8918
-      },
-      "conv_to_practical": {
-        "mean": 23.9333,
-        "std": 5.1764
-      },
-      "conv_to_salvation": {
-        "mean": 0.1,
-        "std": 0.3
-      },
-      "conversions": {
-        "mean": 77.8,
-        "std": 4.6433
+        "mean": 282.2,
+        "std": 15.6512
       },
       "delta": "+0.20",
       "early_conversions": {
-        "mean": 19.6667,
-        "std": 4.0111
+        "mean": 69.1,
+        "std": 8.2759
       },
       "early_convert_retention": {
-        "mean": 0.0419,
+        "mean": 1.0,
         "n_na": 0,
-        "n_with_early_conversions": 30,
-        "std": 0.0627
+        "n_with_early_conversions": 10,
+        "std": 0.0
       },
       "effective_trait": {
         "clamped_agents": {
-          "mean": 1.9667,
-          "std": 0.6574
+          "mean": 45.5,
+          "std": 5.3339
         },
         "run_max": {
           "mean": 1.0,
           "std": 0.0
         },
         "run_mean": {
-          "mean": 0.6637,
-          "std": 0.0087
+          "mean": 0.6776,
+          "std": 0.0007
         },
         "run_min": {
-          "mean": 0.4287,
-          "std": 0.0132
+          "mean": 0.4115,
+          "std": 0.0017
         }
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0928,
-        "inari_belief": 0.2011,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0456,
-        "ryujin_belief": 0.1233,
-        "ujigami_shinto": 0.3339,
-        "zen_buddhism": 0.0433
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 30,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.1177,
-        "std": 0.0378
+        "mean": 0.9559,
+        "std": 0.0025
+      },
+      "scenario": "baseline",
+      "syncretisms": {
+        "mean": 101.8,
+        "std": 11.0707
+      },
+      "trait": "authority_trust"
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 8.075,
+        "n_na": 0,
+        "std": 0.6651
+      },
+      "conv_to_classical_post_patronage": {
+        "mean": 4626.7,
+        "std": 19.4013
+      },
+      "conv_to_other": {
+        "mean": 5629.8,
+        "std": 9.9579
+      },
+      "conv_to_practical": {
+        "mean": 99.9,
+        "std": 11.4495
+      },
+      "conv_to_salvation": {
+        "mean": 43.9,
+        "std": 4.6787
+      },
+      "conversions": {
+        "mean": 5773.6,
+        "std": 17.5852
+      },
+      "delta": "-0.20",
+      "early_conversions": {
+        "mean": 136.0,
+        "std": 13.1453
+      },
+      "early_conversions_origin": {
+        "mean": 73.0,
+        "std": 11.0363
+      },
+      "early_convert_retention": {
+        "mean": 0.1702,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
+        "std": 0.0233
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.1735,
+        "n_na": 0,
+        "std": 0.0285
+      },
+      "effective_trait": {
+        "clamped_agents": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "run_max": {
+          "mean": 0.7682,
+          "std": 0.0013
+        },
+        "run_mean": {
+          "mean": 0.2782,
+          "std": 0.0007
+        },
+        "run_min": {
+          "mean": 0.0115,
+          "std": 0.0017
+        }
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.1291,
+        "std": 0.0025
       },
       "scenario": "miracle_rumor",
       "syncretisms": {
-        "mean": 3.6667,
-        "std": 1.7575
+        "mean": 183.4,
+        "std": 11.2
       },
-      "trait": "authority_trust"
+      "trait": "authority_trust",
+      "villages_reached": {
+        "mean": 2.7,
+        "std": 1.1
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 7.7593,
+        "n_na": 1,
+        "std": 0.5937
+      },
+      "conv_to_classical_post_patronage": {
+        "mean": 5244.4,
+        "std": 22.8088
+      },
+      "conv_to_other": {
+        "mean": 5774.8,
+        "std": 13.97
+      },
+      "conv_to_practical": {
+        "mean": 97.4,
+        "std": 11.1194
+      },
+      "conv_to_salvation": {
+        "mean": 43.4,
+        "std": 4.7371
+      },
+      "conversions": {
+        "mean": 5915.6,
+        "std": 21.3223
+      },
+      "delta": "-0.10",
+      "early_conversions": {
+        "mean": 134.7,
+        "std": 13.6605
+      },
+      "early_conversions_origin": {
+        "mean": 71.9,
+        "std": 11.2645
+      },
+      "early_convert_retention": {
+        "mean": 0.1174,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
+        "std": 0.0255
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.1366,
+        "n_na": 0,
+        "std": 0.0271
+      },
+      "effective_trait": {
+        "clamped_agents": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "run_max": {
+          "mean": 0.8683,
+          "std": 0.0013
+        },
+        "run_mean": {
+          "mean": 0.3782,
+          "std": 0.0007
+        },
+        "run_min": {
+          "mean": 0.1115,
+          "std": 0.0017
+        }
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.1082,
+        "std": 0.0026
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 122.8,
+        "std": 8.7727
+      },
+      "trait": "authority_trust",
+      "villages_reached": {
+        "mean": 2.2,
+        "std": 0.9798
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 8.0833,
+        "n_na": 0,
+        "std": 1.1261
+      },
+      "conv_to_classical_post_patronage": {
+        "mean": 5393.9,
+        "std": 22.5053
+      },
+      "conv_to_other": {
+        "mean": 5842.6,
+        "std": 15.9135
+      },
+      "conv_to_practical": {
+        "mean": 96.5,
+        "std": 10.6231
+      },
+      "conv_to_salvation": {
+        "mean": 43.6,
+        "std": 5.2574
+      },
+      "conversions": {
+        "mean": 5982.7,
+        "std": 22.3877
+      },
+      "delta": "+0.00",
+      "early_conversions": {
+        "mean": 135.4,
+        "std": 12.5952
+      },
+      "early_conversions_origin": {
+        "mean": 72.3,
+        "std": 9.9
+      },
+      "early_convert_retention": {
+        "mean": 0.0573,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
+        "std": 0.0201
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.0827,
+        "n_na": 0,
+        "std": 0.0257
+      },
+      "effective_trait": {
+        "clamped_agents": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "run_max": {
+          "mean": 0.9682,
+          "std": 0.0013
+        },
+        "run_mean": {
+          "mean": 0.4782,
+          "std": 0.0007
+        },
+        "run_min": {
+          "mean": 0.2115,
+          "std": 0.0017
+        }
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.099,
+        "std": 0.0027
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 97.2,
+        "std": 10.5148
+      },
+      "trait": "authority_trust",
+      "villages_reached": {
+        "mean": 2.5,
+        "std": 0.8062
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 8.0667,
+        "n_na": 0,
+        "std": 1.0729
+      },
+      "conv_to_classical_post_patronage": {
+        "mean": 5437.0,
+        "std": 20.3224
+      },
+      "conv_to_other": {
+        "mean": 5868.8,
+        "std": 15.8543
+      },
+      "conv_to_practical": {
+        "mean": 95.9,
+        "std": 10.8945
+      },
+      "conv_to_salvation": {
+        "mean": 43.9,
+        "std": 4.6357
+      },
+      "conversions": {
+        "mean": 6008.6,
+        "std": 20.9914
+      },
+      "delta": "+0.10",
+      "early_conversions": {
+        "mean": 135.2,
+        "std": 12.2866
+      },
+      "early_conversions_origin": {
+        "mean": 72.4,
+        "std": 9.7591
+      },
+      "early_convert_retention": {
+        "mean": 0.0204,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
+        "std": 0.0115
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.0355,
+        "n_na": 0,
+        "std": 0.0225
+      },
+      "effective_trait": {
+        "clamped_agents": {
+          "mean": 17.8,
+          "std": 3.9446
+        },
+        "run_max": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "run_mean": {
+          "mean": 0.5781,
+          "std": 0.0007
+        },
+        "run_min": {
+          "mean": 0.3115,
+          "std": 0.0017
+        }
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.0956,
+        "std": 0.0029
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 86.6,
+        "std": 8.8
+      },
+      "trait": "authority_trust",
+      "villages_reached": {
+        "mean": 2.5,
+        "std": 0.8062
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 8.1,
+        "n_na": 0,
+        "std": 1.0225
+      },
+      "conv_to_classical_post_patronage": {
+        "mean": 5453.7,
+        "std": 25.7257
+      },
+      "conv_to_other": {
+        "mean": 5876.1,
+        "std": 13.7946
+      },
+      "conv_to_practical": {
+        "mean": 96.2,
+        "std": 11.7201
+      },
+      "conv_to_salvation": {
+        "mean": 44.0,
+        "std": 4.8374
+      },
+      "conversions": {
+        "mean": 6016.3,
+        "std": 19.7284
+      },
+      "delta": "+0.20",
+      "early_conversions": {
+        "mean": 135.5,
+        "std": 12.6827
+      },
+      "early_conversions_origin": {
+        "mean": 73.1,
+        "std": 10.3194
+      },
+      "early_convert_retention": {
+        "mean": 0.0028,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
+        "std": 0.0035
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.0054,
+        "n_na": 0,
+        "std": 0.0066
+      },
+      "effective_trait": {
+        "clamped_agents": {
+          "mean": 45.5,
+          "std": 5.3339
+        },
+        "run_max": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "run_mean": {
+          "mean": 0.6776,
+          "std": 0.0007
+        },
+        "run_min": {
+          "mean": 0.4115,
+          "std": 0.0017
+        }
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.0948,
+        "std": 0.0026
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 83.6,
+        "std": 9.8306
+      },
+      "trait": "authority_trust",
+      "villages_reached": {
+        "mean": 2.5,
+        "std": 0.8062
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
     }
   ],
-  "population": "sampled60",
+  "population": "district",
   "sweep": "authority"
 }

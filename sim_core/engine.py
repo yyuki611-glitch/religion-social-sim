@@ -37,6 +37,15 @@ W_SYNC_OPEN_TOLERANCE = 0.25
 W_SYNC_OPEN_NOVELTY = 0.15
 W_SYNC_OPEN_ANXIETY = 0.10
 
+# --- 郡モデル（v2.0、設計: tasks/todo.md rev3）---
+# 橋渡し役（御師・講・旅僧・行商の史実に基づく。隣接村を知覚できる唯一の存在）
+BRIDGE_ROLES = {"religious_specialist", "merchant"}
+# 橋渡しの隣接村知覚の重み。0=村内のみ（非橋渡しと同一挙動）/ 0.5=半分よそ者 /
+# 1.0=隣接村を自村と同格に知覚。較正データは存在しない設計上の仮定（README で開示）
+BRIDGE_WEIGHT = 0.5
+# local イベントが隣接村の橋渡しに届くときの減衰。発生村は 1.0、非隣接・非橋渡しは 0
+BRIDGE_EVENT_WEIGHT = 0.5
+
 # 信念の訴求タグ → エージェント特性のマッピング
 APPEAL_TRAITS: dict[str, list[str]] = {
     "kinship": ["tradition_orientation"],
@@ -115,6 +124,7 @@ class AgentState:
     secondary_belief: str | None = None
     pressure: dict[str, int] = field(default_factory=dict)
     syncretism_pressure: dict[str, int] = field(default_factory=dict)
+    village: str = ""  # 郡モードのみ使用（legacy では空のまま。挙動に影響しない）
 
 
 @dataclass
@@ -221,6 +231,7 @@ def run_scenario(
     trait_adjustments: dict[str, float] | None = None,
     agents_rows: list[dict[str, str]] | None = None,
     syncretism_mode: str = "threshold",
+    district_adjacency: dict[str, list[str]] | None = None,
 ) -> dict[str, Any]:
     """シナリオを1回実行する。
 
@@ -243,6 +254,25 @@ def run_scenario(
     event_rows = read_tsv(pack.data_path("events.tsv"))
 
     rng = random.Random(seed)
+
+    # 郡モード（v2.0）: agents_rows に village 列がある場合のみ。legacy パスは以降1行も変えない
+    if agent_rows and "village" in agent_rows[0]:
+        if district_adjacency is None:
+            raise ValueError("district mode requires district_adjacency")
+        return _run_district(
+            pack,
+            scenario,
+            agent_rows,
+            belief_rows,
+            event_rows,
+            rng,
+            Path(output_dir),
+            seed,
+            trait_adjustments,
+            syncretism_mode,
+            district_adjacency,
+        )
+
     agents = _load_agents(agent_rows)
     if trait_adjustments:
         unknown = set(trait_adjustments) - set(TRAIT_KEYS)
@@ -510,4 +540,470 @@ def run_scenario(
         encoding="utf-8",
     )
 
+    return summary
+
+
+# =====================================================================
+# 郡モード（v2.0）。legacy ループの複製 + 村内シェア + 橋渡し知覚 + local イベント。
+# 設計判断（tasks/todo.md rev3）: legacy 分岐との helper 共通化は禁止——
+# コード重複を許容して byte 互換を守る。
+# =====================================================================
+
+
+@dataclass
+class _DistrictEvent:
+    row: dict[str, str]
+    start_step: int
+    origin: str | None  # None = regional（全村フル）/ "V06" 等 = local
+
+    def weight(self, step: int) -> float:
+        return EVENT_DECAY ** (step - self.start_step)
+
+    def signal(self, key: str) -> float:
+        return float(self.row.get(key) or 0.0)
+
+
+def _event_factor(ev: _DistrictEvent, agent: AgentState, adjacency: dict[str, list[str]]) -> float:
+    """local イベントの到達係数。発生村=1.0 / 隣接村の橋渡し=BRIDGE_EVENT_WEIGHT / 他=0。"""
+    if ev.origin is None:
+        return 1.0
+    if agent.village == ev.origin:
+        return 1.0
+    if agent.role in BRIDGE_ROLES and ev.origin in adjacency.get(agent.village, []):
+        return BRIDGE_EVENT_WEIGHT
+    return 0.0
+
+
+def _belief_score_district(
+    agent: AgentState,
+    belief_id: str,
+    appeal: str,
+    perceived_counts: dict[str, float],
+    perceived_n: float,
+    active_events: list[_DistrictEvent],
+    step: int,
+    ev_factors: list[float],
+) -> tuple[float, str]:
+    """legacy _belief_score の郡版。シェアは知覚プロファイル、イベントは到達係数つき。"""
+    parts: dict[str, float] = {}
+    parts["appeal"] = _appeal_score(agent, appeal) * W_APPEAL
+
+    others = perceived_counts.get(belief_id, 0.0) - (1.0 if agent.belief == belief_id else 0.0)
+    parts["community"] = (
+        (others / max(1.0, perceived_n - 1.0)) * agent.traits["community_dependence"] * W_COMMUNITY
+    )
+
+    if agent.belief == belief_id:
+        parts["inertia"] = (
+            agent.strength * W_INERTIA_STRENGTH
+            + agent.traits["tradition_orientation"] * W_INERTIA_TRADITION
+        )
+    if agent.secondary_belief == belief_id:
+        parts["syncretism"] = W_SECONDARY
+
+    event_total = 0.0
+    event_names = []
+    for ev, factor in zip(active_events, ev_factors):
+        if factor == 0.0 or ev.row.get("target_belief") != belief_id:
+            continue
+        w = ev.weight(step) * factor
+        rumor_sign = -1.0 if ev.row.get("type") == "scandal" else 1.0
+        contrib = EVENT_GAIN * w * (
+            ev.signal("authority_signal") * agent.traits["authority_trust"]
+            + rumor_sign * ev.signal("rumor_signal") * agent.traits["novelty_openness"]
+            + ev.signal("community_signal") * agent.traits["community_dependence"]
+            + max(ev.signal("anxiety_delta"), 0.0) * 0.3
+        )
+        event_total += contrib
+        if abs(contrib) > 0.01:
+            event_names.append(ev.row["id"])
+    if event_total:
+        parts[f"event:{'+'.join(event_names)}"] = event_total
+
+    score = sum(parts.values())
+    top = max(parts, key=lambda k: parts[k]) if parts else "none"
+    return score, top
+
+
+def district_perception(
+    counts_by_v: dict[str, dict[str, float]],
+    n_by_v: dict[str, float],
+    adjacency: dict[str, list[str]],
+    belief_ids: list[str],
+) -> dict[str, dict[str, tuple[dict[str, float], float]]]:
+    """村×{local, bridge} の知覚プロファイル (weighted_counts, weighted_denominator)。
+
+    非橋渡し = (自村counts, 自村n)。橋渡し = (自村 + Σ隣接村×BRIDGE_WEIGHT, n も同様)。
+    counts <= denominator が成分ごとに成立するため知覚シェアは常に <= 1.0。
+    BRIDGE_WEIGHT=0 なら bridge プロファイルは local と一致する（非橋渡しと同一挙動）。
+    """
+    perceived: dict[str, dict[str, tuple[dict[str, float], float]]] = {}
+    for v in counts_by_v:
+        own_counts, own_n = counts_by_v[v], n_by_v[v]
+        adj = adjacency.get(v, [])
+        bridge_counts = {
+            b: own_counts[b] + BRIDGE_WEIGHT * sum(counts_by_v[a][b] for a in adj)
+            for b in belief_ids
+        }
+        bridge_n = own_n + BRIDGE_WEIGHT * sum(n_by_v[a] for a in adj)
+        perceived[v] = {"local": (own_counts, own_n), "bridge": (bridge_counts, bridge_n)}
+    return perceived
+
+
+def _run_district(
+    pack,
+    scenario: dict[str, Any],
+    agent_rows: list[dict[str, str]],
+    belief_rows: list[dict[str, str]],
+    event_rows: list[dict[str, str]],
+    rng: random.Random,
+    out: Path,
+    seed: int,
+    trait_adjustments: dict[str, float] | None,
+    syncretism_mode: str,
+    adjacency: dict[str, list[str]],
+) -> dict[str, Any]:
+    agents = _load_agents(agent_rows)
+    for agent, row in zip(agents, agent_rows):
+        agent.village = row["village"]
+    if trait_adjustments:
+        unknown = set(trait_adjustments) - set(TRAIT_KEYS)
+        if unknown:
+            raise ValueError(f"unknown trait keys: {sorted(unknown)}")
+        for agent in agents:
+            for trait, delta in trait_adjustments.items():
+                agent.traits[trait] = _clamp(agent.traits[trait] + delta)
+
+    beliefs = {row["id"]: row for row in belief_rows}
+    events_by_id = {row["id"]: row for row in event_rows}
+    schedule: dict[int, list[dict]] = {}
+    for item in scenario.get("events", []):
+        schedule.setdefault(int(item["step"]), []).append(item)
+
+    steps = int(scenario.get("steps", pack.domain.get("initial_steps", 50)))
+    villages = sorted({a.village for a in agents})
+    members: dict[str, list[AgentState]] = {v: [] for v in villages}
+    for a in agents:
+        members[a.village].append(a)
+    n_by_v = {v: float(len(members[v])) for v in villages}
+
+    active_events: list[_DistrictEvent] = []
+    agent_turns: list[dict[str, Any]] = []
+    share_turns: list[dict[str, Any]] = []
+    conversions: list[dict[str, Any]] = []
+    event_log: list[dict[str, Any]] = []
+    event_origins: dict[str, str] = {}
+
+    for step in range(1, steps + 1):
+        # 1. 予定イベントの発火（origin 付きは local イベント）
+        for item in schedule.get(step, []):
+            event_id = item["id"]
+            row = events_by_id[event_id]
+            origin = item.get("origin")
+            event_log.append(
+                {"step": step, "event_id": event_id, "type": row["type"], "origin": origin or ""}
+            )
+            if origin:
+                event_origins[event_id] = origin
+            if row["type"] == "generation":
+                _apply_generation_shift(agents)  # 世代交代は郡全域
+            else:
+                active_events.append(_DistrictEvent(row=row, start_step=step, origin=origin))
+        active_events = [ev for ev in active_events if ev.weight(step) >= EVENT_MIN_WEIGHT]
+
+        # 2. 村別信者数（このステップ開始時点で固定）と知覚プロファイル
+        counts_by_v: dict[str, dict[str, float]] = {
+            v: {b: 0.0 for b in beliefs} for v in villages
+        }
+        for agent in agents:
+            counts_by_v[agent.village][agent.belief] += 1.0
+        perceived = district_perception(counts_by_v, n_by_v, adjacency, list(beliefs))
+
+        # 3. 各エージェントの更新（legacy ループの複製 + 知覚/到達係数の差し替え）
+        for agent in agents:
+            p_counts, p_n = perceived[agent.village][
+                "bridge" if agent.role in BRIDGE_ROLES else "local"
+            ]
+            ev_factors = [_event_factor(ev, agent, adjacency) for ev in active_events]
+            anxiety = _clamp(
+                agent.traits["anxiety"]
+                + sum(
+                    ev.signal("anxiety_delta") * ev.weight(step) * f
+                    for ev, f in zip(active_events, ev_factors)
+                )
+            )
+            scores: dict[str, tuple[float, str]] = {}
+            for belief_id, row in beliefs.items():
+                scores[belief_id] = _belief_score_district(
+                    agent, belief_id, row["appeal"], p_counts, p_n, active_events, step, ev_factors
+                )
+
+            current_score = scores[agent.belief][0]
+            challengers = {b: s for b, (s, _) in scores.items() if b != agent.belief}
+            best_other = max(challengers, key=lambda b: challengers[b])
+            gap = challengers[best_other] - current_score
+
+            openness = conversion_pressure(
+                anxiety=anxiety,
+                salvation_need=agent.traits["salvation_need"],
+                practical_benefit_need=agent.traits["practical_benefit_need"],
+                community_pressure=agent.traits["community_dependence"]
+                * (1 - p_counts.get(agent.belief, 0.0) / p_n),
+                authority_signal=max(
+                    (
+                        ev.signal("authority_signal") * ev.weight(step) * f
+                        for ev, f in zip(active_events, ev_factors)
+                    ),
+                    default=0.0,
+                ),
+                rumor_signal=max(
+                    (
+                        ev.signal("rumor_signal") * ev.weight(step) * f
+                        for ev, f in zip(active_events, ev_factors)
+                    ),
+                    default=0.0,
+                ),
+            )
+
+            threshold = max(
+                0.04,
+                0.06
+                + 0.12 * agent.traits["tradition_orientation"]
+                - 0.06 * agent.traits["novelty_openness"],
+            )
+
+            if gap <= 0:
+                agent.strength = _clamp(agent.strength + 0.01, 0.05, STRENGTH_CAP)
+            else:
+                agent.strength = _clamp(agent.strength - (0.02 + 0.04 * gap), 0.05)
+
+            if gap > threshold:
+                agent.pressure[best_other] = agent.pressure.get(best_other, 0) + 1
+            else:
+                agent.pressure = {b: c - 1 for b, c in agent.pressure.items() if c > 1}
+
+            converted = False
+            if (
+                agent.pressure.get(best_other, 0) >= PRESSURE_STEPS_TO_CONVERT
+                and rng.random() < openness
+            ):
+                reason = (
+                    f"gap={gap:.2f} threshold={threshold:.2f} openness={openness:.2f} "
+                    f"pull={scores[best_other][1]} anxiety={anxiety:.2f}"
+                )
+                old = agent.belief
+                if syncretism_mode == "graded":
+                    keep_old_as_secondary, keep_s, drop_s = keep_decision(
+                        agent.traits["tolerance"],
+                        agent.strength,
+                        agent.traits["tradition_orientation"],
+                        agent.traits["novelty_openness"],
+                        gap,
+                    )
+                    reason += f" keep={keep_s:.2f} drop={drop_s:.2f}"
+                else:
+                    keep_old_as_secondary = agent.traits["tolerance"] >= SYNCRETISM_TOLERANCE
+                agent.secondary_belief = old if keep_old_as_secondary else None
+                agent.belief = best_other
+                agent.strength = _clamp(0.35 + 0.3 * challengers[best_other], 0.05)
+                agent.pressure = {}
+                agent.syncretism_pressure = {}
+                conversions.append(
+                    {
+                        "step": step,
+                        "agent_id": agent.id,
+                        "village": agent.village,
+                        "kind": "conversion",
+                        "from_belief": old,
+                        "to_belief": best_other,
+                        "reason": reason,
+                    }
+                )
+                converted = True
+
+            if syncretism_mode == "graded":
+                if (
+                    not converted
+                    and agent.secondary_belief != best_other
+                    and threshold * 0.5 < gap <= threshold
+                ):
+                    agent.syncretism_pressure[best_other] = (
+                        agent.syncretism_pressure.get(best_other, 0) + 1
+                    )
+                    if agent.syncretism_pressure[best_other] >= PRESSURE_STEPS_TO_CONVERT:
+                        sync_p = syncretism_openness(
+                            agent.traits["tolerance"], agent.traits["novelty_openness"], anxiety
+                        )
+                        if rng.random() < sync_p:
+                            agent.secondary_belief = best_other
+                            agent.syncretism_pressure = {}
+                            conversions.append(
+                                {
+                                    "step": step,
+                                    "agent_id": agent.id,
+                                    "village": agent.village,
+                                    "kind": "syncretism",
+                                    "from_belief": agent.belief,
+                                    "to_belief": best_other,
+                                    "reason": (
+                                        f"sync_p={sync_p:.2f} "
+                                        f"tolerance={agent.traits['tolerance']:.2f} "
+                                        f"gap={gap:.2f} pull={scores[best_other][1]}"
+                                    ),
+                                }
+                            )
+                        else:
+                            agent.syncretism_pressure[best_other] = 0
+            elif (
+                not converted
+                and agent.traits["tolerance"] >= SYNCRETISM_TOLERANCE
+                and agent.secondary_belief != best_other
+                and threshold * 0.5 < gap <= threshold
+            ):
+                agent.syncretism_pressure[best_other] = (
+                    agent.syncretism_pressure.get(best_other, 0) + 1
+                )
+                if agent.syncretism_pressure[best_other] >= PRESSURE_STEPS_TO_CONVERT:
+                    agent.secondary_belief = best_other
+                    agent.syncretism_pressure = {}
+                    conversions.append(
+                        {
+                            "step": step,
+                            "agent_id": agent.id,
+                            "village": agent.village,
+                            "kind": "syncretism",
+                            "from_belief": agent.belief,
+                            "to_belief": best_other,
+                            "reason": (
+                                f"tolerance={agent.traits['tolerance']:.2f} "
+                                f"gap={gap:.2f} pull={scores[best_other][1]}"
+                            ),
+                        }
+                    )
+
+            agent_turns.append(
+                {
+                    "step": step,
+                    "agent_id": agent.id,
+                    "village": agent.village,
+                    "label": agent.label,
+                    "belief": agent.belief,
+                    "secondary_belief": agent.secondary_belief or "",
+                    "strength": round(agent.strength, 3),
+                    "anxiety": round(anxiety, 3),
+                    "openness": round(openness, 3),
+                    "top_pull": best_other,
+                    "gap": round(gap, 3),
+                }
+            )
+
+        # 4. ステップ末の村別信念分布
+        for v in villages:
+            end_shares: dict[str, list[float]] = {}
+            for agent in members[v]:
+                end_shares.setdefault(agent.belief, []).append(agent.strength)
+            for belief_id in beliefs:
+                strengths = end_shares.get(belief_id, [])
+                share_turns.append(
+                    {
+                        "step": step,
+                        "village": v,
+                        "belief_id": belief_id,
+                        "adherents": len(strengths),
+                        "avg_strength": round(sum(strengths) / len(strengths), 3)
+                        if strengths
+                        else 0.0,
+                    }
+                )
+
+    out.mkdir(parents=True, exist_ok=True)
+
+    def write_tsv(name: str, rows: list[dict[str, Any]], fields: list[str]) -> None:
+        with (out / name).open("w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fields, delimiter="\t")
+            writer.writeheader()
+            writer.writerows(rows)
+
+    write_tsv(
+        "agent_turns.tsv",
+        agent_turns,
+        [
+            "step",
+            "agent_id",
+            "village",
+            "label",
+            "belief",
+            "secondary_belief",
+            "strength",
+            "anxiety",
+            "openness",
+            "top_pull",
+            "gap",
+        ],
+    )
+    write_tsv(
+        "belief_shares.tsv",
+        share_turns,
+        ["step", "village", "belief_id", "adherents", "avg_strength"],
+    )
+    write_tsv(
+        "conversions.tsv",
+        conversions,
+        ["step", "agent_id", "village", "kind", "from_belief", "to_belief", "reason"],
+    )
+    write_tsv("events_log.tsv", event_log, ["step", "event_id", "type", "origin"])
+
+    retention = sum(1 for a in agents if a.belief == a.initial_belief) / len(agents)
+    final_shares = {b: 0 for b in beliefs}
+    for agent in agents:
+        final_shares[agent.belief] += 1
+
+    summary = {
+        "domain": pack.name,
+        "scenario": scenario["id"],
+        "seed": seed,
+        "trait_adjustments": dict(trait_adjustments) if trait_adjustments else {},
+        "district": {"villages": len(villages), "event_origins": event_origins},
+        "steps": steps,
+        "agents": len(agents),
+        "beliefs": len(beliefs),
+        "events": len(event_rows),
+        "conversions": sum(1 for c in conversions if c["kind"] == "conversion"),
+        "syncretisms": sum(1 for c in conversions if c["kind"] == "syncretism"),
+        "retention_rate": round(retention, 3),
+        "final_shares": final_shares,
+        "final_agents": [
+            {
+                "id": a.id,
+                "village": a.village,
+                "label": a.label,
+                "belief": a.belief,
+                "secondary_belief": a.secondary_belief,
+                "strength": round(a.strength, 3),
+            }
+            for a in agents
+        ],
+    }
+    (out / "summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    manifest = out / "manifest.txt"
+    manifest.write_text(
+        "\n".join(
+            [
+                f"domain={pack.name}",
+                f"scenario={scenario['id']}",
+                f"agents={len(agents)}",
+                f"villages={len(villages)}",
+                f"beliefs={len(beliefs)}",
+                f"events={len(event_rows)}",
+                f"steps={steps}",
+                f"conversions={summary['conversions']}",
+                f"syncretisms={summary['syncretisms']}",
+                f"retention_rate={summary['retention_rate']}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     return summary

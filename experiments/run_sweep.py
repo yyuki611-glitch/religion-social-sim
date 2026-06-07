@@ -30,7 +30,7 @@ sys.path.insert(0, str(ROOT))
 
 from sim_core.domain_pack import read_tsv, read_yaml  # noqa: E402
 from sim_core.engine import SYNCRETISM_TOLERANCE, run_scenario  # noqa: E402
-from sim_core.population import generate_agents  # noqa: E402
+from sim_core.population import generate_agents, generate_district  # noqa: E402
 
 DOMAIN = ROOT / "domain_packs" / "japan_religion"
 
@@ -42,7 +42,11 @@ POPULATION_SEED_OFFSET = 10**6
 # 仮説判定の絶対下限（実装前に設計で宣言済み。事後変更禁止）
 # fixed8 (v0.4.0): H1=2, H5=2（8人村の per-capita 25%）
 # sampled60 (v0.5.0): H1=15, H5=15（60 × 0.25。per-capita 完全パリティ）
-ABS_FLOORS = {"fixed8": {"h1": 2, "h5": 2}, "sampled60": {"h1": 15, "h5": 15}}
+ABS_FLOORS = {
+    "fixed8": {"h1": 2, "h5": 2},
+    "sampled60": {"h1": 15, "h5": 15},
+    "district": {"h1": 1600, "h5": 100},  # v2.0（DISTRICT_FLOORS 参照）
+}
 
 SALVATION_BELIEFS = {"jodo_buddhism"}
 PRACTICAL_BELIEFS = {"inari_belief", "ryujin_belief"}
@@ -120,6 +124,29 @@ H4_EFFECT_FLOOR = 3  # 庇護後窓の古典神道改宗 最大条件平均（= 
 # H6 の効果量下限（設計 rev3 で宣言。3 = 60 × 0.05、村の5%を最小の集合現象とする。
 # H1/H5 の per-capita 25% パリティとは別基準＝H6 には引き継ぐ過去の宣言値が存在しない）
 H6_SYNC_FLOOR = 3
+
+# --- v2.0 郡モデル（設計 tasks/todo.md v2.0 rev3 で宣言・実験前凍結） ---
+DISTRICT_SEEDS = list(range(1, 11))  # N≈6,400 で分散が縮む実測に基づき 30→10 に削減
+DISTRICT_N = 6400
+DISTRICT_FLOORS = {
+    "h1": 1600,  # 6,400 × 25%（per-capita パリティ）
+    "h5": 100,  # 発生村 400 × 25%（イベントがフルに作用する範囲が分母）
+    "h4": 320,  # 6,400 × 5%（庇護後窓。v0.7.0 の「村の5%」系列）
+    "h6": 320,  # 6,400 × 5%（習合数下限）
+}
+RUMOR_TARGET = "inari_belief"  # miracle_rumor の対象信念（Q4 指標の追跡対象）
+RUMOR_BASELINE_STEP = 4  # 噂発火（step 5）直前を到達判定の基準時点とする
+# スイープ H: 村あたり橋渡し人数のバリアント（(merchant, religious_specialist)。
+# 減らした/増やした分は farmer で吸収して村サイズ400を維持）
+BRIDGE_DENSITY_VARIANTS = {5: (3, 2), 10: (6, 4), 20: (12, 8), 40: (24, 16)}
+# スイープ S: 初期信仰分布の摂動バリアント（(ロール, 移動元, 移動先, 確率量) のリスト）
+SHARE_VARIANTS: dict[str, list] = {
+    "base": [],
+    "uji_to_inari": [("farmer", "ujigami_shinto", "inari_belief", 0.10)],
+    "jodo_to_zen": [("household", "jodo_buddhism", "zen_buddhism", 0.10), ("religious_specialist", "jodo_buddhism", "zen_buddhism", 0.10)],
+    "ryujin_to_uji": [("farmer", "ryujin_belief", "ujigami_shinto", 0.10)],
+    "mountain_x2": [("religious_specialist", "jodo_buddhism", "mountain_belief", 0.20)],
+}
 
 RESULT_FIELDS = [
     "sweep",
@@ -229,10 +256,15 @@ def run_sweep(
     - "fixed8": 従来の agents.tsv（v0.4.0 の再現用。results.tsv / stats.json とも
       v0.4.0 と byte 一致することを完了基準2で要求）。
     """
-    if population not in ("sampled60", "fixed8"):
+    if population not in ("sampled60", "fixed8", "district"):
         raise ValueError(f"unknown population mode: {population}")
     spec = SWEEPS[name]
-    seeds = seeds if seeds is not None else spec["seeds"]
+    if seeds is not None:
+        seeds = seeds
+    elif population == "district":
+        seeds = DISTRICT_SEEDS  # v2.0: N≈6,400 の分散縮小実測に基づき削減（設計宣言）
+    else:
+        seeds = spec["seeds"]
     trait = spec["trait"]
     # CLI/引数で明示されなければスイープ定義の既定値（A–D: threshold / E: graded）
     syncretism_mode = syncretism or spec.get("syncretism", "threshold")
@@ -245,6 +277,9 @@ def run_sweep(
     pop_spec = (
         read_yaml(DOMAIN / "data" / "population.yaml") if population == "sampled60" else None
     )
+    district_spec = (
+        read_yaml(DOMAIN / "data" / "district.yaml") if population == "district" else None
+    )
 
     for scenario in spec["scenarios"]:
         for delta in spec["deltas"]:
@@ -256,12 +291,20 @@ def run_sweep(
                     run_id = f"{scenario}_{trait}_d{delta:+.2f}_s{seed:03d}"
                     adjustments = {trait: delta}
                 agents_rows = None
+                adjacency = None
                 if population == "sampled60":
                     if seed not in village_cache:
                         village_cache[seed] = generate_agents(
                             pop_spec, random.Random(POPULATION_SEED_OFFSET + seed), belief_rows
                         )
                     agents_rows = village_cache[seed]
+                elif population == "district":
+                    if seed not in village_cache:
+                        village_cache[seed] = generate_district(
+                            district_spec, random.Random(POPULATION_SEED_OFFSET + seed), belief_rows
+                        )
+                    agents_rows = village_cache[seed]
+                    adjacency = district_spec["adjacency"]
                 run_dir = out_root / name / "runs" / run_id
                 summary = run_scenario(
                     DOMAIN,
@@ -271,9 +314,33 @@ def run_sweep(
                     trait_adjustments=adjustments,
                     agents_rows=agents_rows,
                     syncretism_mode=syncretism_mode,
+                    district_adjacency=adjacency,
                 )
                 conversions = read_tsv(run_dir / "conversions.tsv")
                 metrics = compute_metrics(conversions, summary["final_agents"], scenario)
+                if population == "district":
+                    _annotate_summary(run_dir, POPULATION_SEED_OFFSET + seed, mode="district")
+                    aux = _population_aux(agents_rows, trait, delta, belief_rows)
+                    aux.update(
+                        compute_district_metrics(
+                            run_dir, summary, conversions, agents_rows, district_spec["adjacency"]
+                        )
+                    )
+                    if syncretism_mode == "graded":
+                        total_changes = summary["conversions"] + summary["syncretisms"]
+                        aux["syncretism_share"] = (
+                            summary["syncretisms"] / total_changes if total_changes else None
+                        )
+                        aux["final_secondary_holders"] = sum(
+                            1 for a in summary["final_agents"] if a["secondary_belief"]
+                        )
+                    if name == "community":
+                        aux.update(local_retention_metrics(agents_rows, summary["final_agents"]))
+                    if name == "authority":
+                        aux["conv_to_classical_post_patronage"] = post_patronage_conversions(
+                            conversions
+                        )
+                    pop_acc.setdefault((scenario, delta), []).append(aux)
                 if population == "sampled60":
                     _annotate_summary(run_dir, POPULATION_SEED_OFFSET + seed)
                     aux = _population_aux(agents_rows, trait, delta, belief_rows)
@@ -339,7 +406,7 @@ def run_sweep(
         # v0.4.0 実装をそのまま通す（stats.json の byte 一致を保つ）
         stats = _build_stats(name, spec, rows, saturation_acc)
     else:
-        stats = _build_stats_sampled(name, spec, rows, saturation_acc, pop_acc)
+        stats = _build_stats_sampled(name, spec, rows, saturation_acc, pop_acc, population)
     (sweep_dir / "stats.json").write_text(
         json.dumps(stats, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
@@ -347,11 +414,11 @@ def run_sweep(
     return rows
 
 
-def _annotate_summary(run_dir: Path, population_seed: int) -> None:
+def _annotate_summary(run_dir: Path, population_seed: int, mode: str = "sampled60") -> None:
     """summary.json に母集団情報を自己記述する（再現に必要な情報。codex MEDIUM-1）。"""
     path = run_dir / "summary.json"
     summary = json.loads(path.read_text(encoding="utf-8"))
-    summary["population_mode"] = "sampled60"
+    summary["population_mode"] = mode
     summary["population_seed"] = population_seed
     path.write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -426,8 +493,98 @@ def post_patronage_conversions(conversions: list[dict[str, str]]) -> int:
     )
 
 
+def compute_district_metrics(
+    run_dir: Path,
+    summary: dict,
+    conversions: list[dict[str, str]],
+    agents_rows: list[dict[str, str]],
+    adjacency: dict[str, list[str]],
+) -> dict:
+    """v2.0 郡モードの per-run 指標（設計 rev3 で定義を宣言済み）。
+
+    - 噂指標（miracle_rumor の origin がある run のみ）:
+      arrival_step = 村ごとに「対象信念の村内信者数が step 4（噂発火直前）の値を
+      初めて上回った step」。villages_reached = 発生村を除く到達村数。
+      d2plus = うち隣接村以外（社会連鎖のみで到達）。
+      early_conversions_origin / early_convert_retention_origin = H5 判定用
+      （発生村内・噂後5ステップ窓）
+    - minority_pockets（全シナリオ）: 郡全体の初期シェア5%未満の信念が、最終時点で
+      村内シェア >= 5%（>= 20人）を保つ村の数
+    """
+    out: dict = {}
+    shares = read_tsv(run_dir / "belief_shares.tsv")
+    last_step = max(int(r["step"]) for r in shares)
+    village_size = {}
+    final_by_vb: dict[tuple, int] = {}
+    for r in shares:
+        if int(r["step"]) == last_step:
+            final_by_vb[(r["village"], r["belief_id"])] = int(r["adherents"])
+            village_size[r["village"]] = village_size.get(r["village"], 0) + int(r["adherents"])
+
+    # minority_pockets
+    n_total = len(agents_rows)
+    init_counts: dict[str, int] = {}
+    for row in agents_rows:
+        init_counts[row["current_belief"]] = init_counts.get(row["current_belief"], 0) + 1
+    minority_beliefs = {
+        b for b in {r["belief_id"] for r in shares} if init_counts.get(b, 0) / n_total < 0.05
+    }
+    pockets = 0
+    for (v, b), cnt in final_by_vb.items():
+        if b in minority_beliefs and cnt >= 0.05 * village_size[v]:
+            pockets += 1
+    out["minority_pockets"] = pockets
+
+    origin = summary.get("district", {}).get("event_origins", {}).get("miracle_rumor")
+    if origin:
+        base = {
+            r["village"]: int(r["adherents"])
+            for r in shares
+            if int(r["step"]) == RUMOR_BASELINE_STEP and r["belief_id"] == RUMOR_TARGET
+        }
+        arrival: dict[str, int] = {}
+        for r in shares:  # belief_shares は step 昇順で書かれる
+            step = int(r["step"])
+            if r["belief_id"] != RUMOR_TARGET or step <= RUMOR_BASELINE_STEP:
+                continue
+            v = r["village"]
+            if v not in arrival and int(r["adherents"]) > base.get(v, 0):
+                arrival[v] = step
+        reached = [v for v in arrival if v != origin]
+        adj = set(adjacency.get(origin, []))
+        out["villages_reached"] = len(reached)
+        out["villages_reached_d2plus"] = len([v for v in reached if v not in adj])
+        out["arrival_step_mean"] = (
+            sum(arrival[v] for v in reached) / len(reached) if reached else None
+        )
+        lo, hi = EARLY_WINDOW["miracle_rumor"]
+        early_origin = [
+            c
+            for c in conversions
+            if c["kind"] == "conversion"
+            and c.get("village") == origin
+            and lo <= int(c["step"]) <= hi
+        ]
+        out["early_conversions_origin"] = len(early_origin)
+        final_belief = {a["id"]: a["belief"] for a in summary["final_agents"]}
+        target: dict[str, str] = {}
+        for c in sorted(early_origin, key=lambda c: int(c["step"])):
+            target[c["agent_id"]] = c["to_belief"]
+        out["early_convert_retention_origin"] = (
+            sum(1 for aid, b in target.items() if final_belief.get(aid) == b) / len(target)
+            if target
+            else None
+        )
+    return out
+
+
 def _build_stats_sampled(
-    name: str, spec: dict, rows: list[dict], saturation_acc: dict, pop_acc: dict
+    name: str,
+    spec: dict,
+    rows: list[dict],
+    saturation_acc: dict,
+    pop_acc: dict,
+    population: str = "sampled60",
 ) -> dict:
     """sampled60 用の stats。母集団が run ごとに変わるため、
     実効 trait 分布・クランプ数・閾値跨ぎ人数は全て run 間の mean±std で記録する
@@ -471,6 +628,19 @@ def _build_stats_sampled(
                 "n_na": len(cond_rows) - len(retentions),
             }
             aux_list = pop_acc.get((scenario, delta), [])
+            if aux_list and "minority_pockets" in aux_list[0]:
+                cond["minority_pockets"] = _mean_std(
+                    [float(a["minority_pockets"]) for a in aux_list]
+                )
+            if aux_list and "villages_reached" in aux_list[0]:
+                for key in ["villages_reached", "villages_reached_d2plus", "early_conversions_origin"]:
+                    cond[key] = _mean_std([float(a[key]) for a in aux_list])
+                for key in ["arrival_step_mean", "early_convert_retention_origin"]:
+                    vals = [a[key] for a in aux_list if a[key] is not None]
+                    cond[key] = {
+                        **(_mean_std(vals) if vals else {"mean": None, "std": None}),
+                        "n_na": len(aux_list) - len(vals),
+                    }
             if aux_list and "local_retention" in aux_list[0]:
                 # スイープ F（H3）のみ。分母ゼロ run は N/A として除外し n_na を記録
                 for key in [
@@ -524,7 +694,7 @@ def _build_stats_sampled(
                     round(statistics.fmean(sat), 4) if sat else None
                 )
             conditions.append(cond)
-    return {"sweep": name, "population": "sampled60", "conditions": conditions}
+    return {"sweep": name, "population": population, "conditions": conditions}
 
 
 def _mean_std(values: list[float]) -> dict:
@@ -584,7 +754,246 @@ def _build_stats(name: str, spec: dict, rows: list[dict], saturation_acc: dict) 
     return {"sweep": name, "conditions": conditions}
 
 
-def judge(out_root: Path, floors: dict[str, int]) -> dict:
+def _district_variant_spec(
+    bridges: int | None = None, share_moves: list | None = None
+) -> dict:
+    """district.yaml からバリアントスペックを決定的に生成する。
+
+    bridges: 村あたり橋渡し人数（BRIDGE_DENSITY_VARIANTS のキー）。増減は farmer で吸収。
+    share_moves: SHARE_VARIANTS の値（(role, 移動元, 移動先, 量) のリスト）。
+    """
+    import copy as _copy
+
+    spec = _copy.deepcopy(read_yaml(DOMAIN / "data" / "district.yaml"))
+    if bridges is not None:
+        m, r = BRIDGE_DENSITY_VARIANTS[bridges]
+        base_bridges = 20  # merchant 12 + religious_specialist 8
+        for role in spec["roles"]:
+            if role["id"] == "merchant":
+                role["count"] = m
+            elif role["id"] == "religious_specialist":
+                role["count"] = r
+            elif role["id"] == "farmer":
+                role["count"] = 300 + (base_bridges - (m + r))
+    if share_moves:
+        for role_id, src, dst, amount in share_moves:
+            for role in spec["roles"]:
+                if role["id"] != role_id:
+                    continue
+                role["beliefs"][src] = round(role["beliefs"][src] - amount, 4)
+                role["beliefs"][dst] = round(role["beliefs"].get(dst, 0.0) + amount, 4)
+                if role["beliefs"][src] <= 0:
+                    raise ValueError(f"share move drains {src} in {role_id}")
+    return spec
+
+
+def _write_sweep_outputs(name: str, out_root: Path, rows: list[dict], stats: dict) -> None:
+    sweep_dir = out_root / name
+    sweep_dir.mkdir(parents=True, exist_ok=True)
+    rows.sort(key=lambda r: (r["scenario"], r["trait"], float(r["delta"]), r["seed"]))
+    with (sweep_dir / "results.tsv").open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=RESULT_FIELDS, delimiter="\t")
+        writer.writeheader()
+        writer.writerows(rows)
+    (sweep_dir / "stats.json").write_text(
+        json.dumps(stats, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def _run_district_variant(
+    name: str,
+    out_root: Path,
+    scenario: str,
+    trait_label: str,
+    delta_label: float,
+    seed: int,
+    spec: dict,
+    belief_rows: list[dict],
+) -> tuple[dict, dict]:
+    """バリアントスペックで1 run 実行し (results行, aux) を返す。"""
+    agents_rows = generate_district(
+        spec, random.Random(POPULATION_SEED_OFFSET + seed), belief_rows
+    )
+    run_id = f"{scenario}_{trait_label}_d{delta_label:+.2f}_s{seed:03d}"
+    run_dir = out_root / name / "runs" / run_id
+    summary = run_scenario(
+        DOMAIN,
+        f"{scenario}.yaml",
+        run_dir,
+        seed=seed,
+        agents_rows=agents_rows,
+        district_adjacency=spec["adjacency"],
+    )
+    _annotate_summary(run_dir, POPULATION_SEED_OFFSET + seed, mode="district")
+    conversions = read_tsv(run_dir / "conversions.tsv")
+    metrics = compute_metrics(conversions, summary["final_agents"], scenario)
+    aux = _population_aux(agents_rows, None, 0.0, belief_rows)
+    aux.update(
+        compute_district_metrics(run_dir, summary, conversions, agents_rows, spec["adjacency"])
+    )
+    row = {
+        "sweep": name,
+        "scenario": scenario,
+        "trait": trait_label,
+        "delta": f"{delta_label:+.2f}",
+        "seed": seed,
+        "steps": summary["steps"],
+        "retention_rate": f"{summary['retention_rate']:.3f}",
+        **{
+            k: metrics[k]
+            for k in [
+                "conversions",
+                "syncretisms",
+                "conv_to_salvation",
+                "conv_to_practical",
+                "conv_to_other",
+                "early_conversions",
+            ]
+        },
+        "early_convert_retention": (
+            ""
+            if metrics["early_convert_retention"] is None
+            else f"{metrics['early_convert_retention']:.3f}"
+        ),
+    }
+    return row, aux
+
+
+def _aggregate_variant_stats(
+    name: str,
+    rows: list[dict],
+    pop_acc: dict,
+    extra: dict | None = None,
+) -> dict:
+    """バリアント系スイープ（H/S）の stats.json。条件キーは (scenario, delta)。"""
+    conditions = []
+    seen = sorted({(r["scenario"], r["delta"]) for r in rows}, key=lambda t: (t[0], float(t[1])))
+    for scenario, delta in seen:
+        cond_rows = [r for r in rows if r["scenario"] == scenario and r["delta"] == delta]
+        cond: dict = {
+            "scenario": scenario,
+            "trait": cond_rows[0]["trait"],
+            "delta": delta,
+            "n_runs": len(cond_rows),
+        }
+        for metric in [
+            "conversions",
+            "syncretisms",
+            "conv_to_salvation",
+            "conv_to_practical",
+            "conv_to_other",
+            "early_conversions",
+        ]:
+            cond[metric] = _mean_std([float(r[metric]) for r in cond_rows])
+        cond["retention_rate"] = _mean_std([float(r["retention_rate"]) for r in cond_rows])
+        aux_list = pop_acc.get((scenario, delta), [])
+        if aux_list:
+            if "minority_pockets" in aux_list[0]:
+                cond["minority_pockets"] = _mean_std(
+                    [float(a["minority_pockets"]) for a in aux_list]
+                )
+            if "villages_reached" in aux_list[0]:
+                for key in [
+                    "villages_reached",
+                    "villages_reached_d2plus",
+                    "early_conversions_origin",
+                ]:
+                    cond[key] = _mean_std([float(a[key]) for a in aux_list])
+                for key in ["arrival_step_mean", "early_convert_retention_origin"]:
+                    vals = [a[key] for a in aux_list if a[key] is not None]
+                    cond[key] = {
+                        **(_mean_std(vals) if vals else {"mean": None, "std": None}),
+                        "n_na": len(aux_list) - len(vals),
+                    }
+            belief_ids = sorted(aux_list[0]["initial_shares"])
+            cond["initial_shares_mean"] = {
+                b: round(statistics.fmean(a["initial_shares"][b] for a in aux_list), 4)
+                for b in belief_ids
+            }
+        conditions.append(cond)
+    stats = {"sweep": name, "population": "district", "conditions": conditions}
+    if extra:
+        stats.update(extra)
+    return stats
+
+
+def run_sweep_bridge_density(out_root: Path, seeds: list[int] | None = None) -> list[dict]:
+    """スイープ H（v2.0・Q4）: 橋渡し人数 × 噂の伝播地理。判定なし（記述的報告）。"""
+    belief_rows = read_tsv(DOMAIN / "data" / "beliefs.tsv")
+    rows, pop_acc = [], {}
+    for count in sorted(BRIDGE_DENSITY_VARIANTS):
+        spec = _district_variant_spec(bridges=count)
+        for seed in seeds if seeds is not None else DISTRICT_SEEDS:
+            row, aux = _run_district_variant(
+                "bridge_density", out_root, "miracle_rumor", "bridge_density", float(count),
+                seed, spec, belief_rows,
+            )
+            rows.append(row)
+            pop_acc.setdefault(("miracle_rumor", f"{float(count):+.2f}"), []).append(aux)
+    stats = _aggregate_variant_stats(
+        "bridge_density", rows, pop_acc,
+        extra={"note": "delta列 = 村あたり橋渡し人数（merchant+religious_specialist）。Q4の記述的報告用・判定なし"},
+    )
+    _write_sweep_outputs("bridge_density", out_root, rows, stats)
+    return rows
+
+
+def run_sweep_share_robustness(out_root: Path, seeds: list[int] | None = None) -> list[dict]:
+    """スイープ S（v2.0）: 初期信仰分布の摂動に対する H1 判定のロバスト性。"""
+    belief_rows = read_tsv(DOMAIN / "data" / "beliefs.tsv")
+    variant_names = list(SHARE_VARIANTS.keys())
+    rows, pop_acc = [], {}
+    for idx, vname in enumerate(variant_names):
+        spec = _district_variant_spec(share_moves=SHARE_VARIANTS[vname])
+        for scenario in ["baseline", "famine"]:
+            for seed in seeds if seeds is not None else DISTRICT_SEEDS:
+                row, aux = _run_district_variant(
+                    "initial_share_robustness", out_root, scenario, "init_shares", float(idx),
+                    seed, spec, belief_rows,
+                )
+                rows.append(row)
+                pop_acc.setdefault((scenario, f"{float(idx):+.2f}"), []).append(aux)
+    stats = _aggregate_variant_stats(
+        "initial_share_robustness", rows, pop_acc,
+        extra={
+            "variant_names": {f"{float(i):+.2f}": n for i, n in enumerate(variant_names)},
+            "note": "初期分布の仮定のロバスト性（H1のみ判定可能。メカニズム重みの感度はカバー外＝次フェーズ）",
+        },
+    )
+    _write_sweep_outputs("initial_share_robustness", out_root, rows, stats)
+    return rows
+
+
+def judge_share_robustness(out_root: Path) -> dict:
+    """スイープ S の各バリアントに H1 基準（district floors）を適用し margin を併記。"""
+    stats = json.loads(
+        (out_root / "initial_share_robustness" / "stats.json").read_text(encoding="utf-8")
+    )
+    variant_names = stats["variant_names"]
+    out: dict = {}
+    for delta, vname in variant_names.items():
+        base = next(
+            c for c in stats["conditions"] if c["scenario"] == "baseline" and c["delta"] == delta
+        )
+        fam = next(
+            c for c in stats["conditions"] if c["scenario"] == "famine" and c["delta"] == delta
+        )
+        fam_mean = fam["conversions"]["mean"]
+        rel = base["conversions"]["mean"] + base["conversions"]["std"]
+        coping = fam["conv_to_salvation"]["mean"] + fam["conv_to_practical"]["mean"]
+        share = coping / fam_mean if fam_mean else 0.0
+        ok = fam_mean >= DISTRICT_FLOORS["h1"] and fam_mean > rel and share >= 0.60
+        out[vname] = {
+            "h1_verdict": "consistent" if ok else "inconsistent",
+            "famine_mean": fam_mean,
+            "verdict_margin": round(fam_mean - DISTRICT_FLOORS["h1"], 4),
+            "coping_share": round(share, 4),
+        }
+    return out
+
+
+def judge(out_root: Path, floors: dict[str, int], district: bool = False) -> dict:
     """設計で宣言した判定基準を機械的に適用する。
 
     判定語: consistent（整合）/ inconsistent（不整合）/ inconclusive（判定不能）。
@@ -610,6 +1019,7 @@ def judge(out_root: Path, floors: dict[str, int]) -> dict:
         "evidence": {
             "famine_mean_conversions": fam_mean,
             "absolute_floor": floors["h1"],
+            "verdict_margin": round(fam_mean - floors["h1"], 4),
             "baseline_mean_plus_1std": round(threshold_rel, 4),
             "coping_share_of_famine_conversions": round(coping_share, 4),
             "required_coping_share": 0.60,
@@ -668,8 +1078,13 @@ def judge(out_root: Path, floors: dict[str, int]) -> dict:
     verdicts["H2"] = h2
 
     # --- H5（スイープA、miracle_rumor のみ）---
-    early_mean = rumor["early_conversions"]["mean"]
-    retention = rumor["early_convert_retention"]["mean"]
+    if district:
+        # v2.0: 噂は local イベント。分母・分子とも「イベントがフルに作用する発生村」
+        early_mean = rumor["early_conversions_origin"]["mean"]
+        retention = rumor["early_convert_retention_origin"]["mean"]
+    else:
+        early_mean = rumor["early_conversions"]["mean"]
+        retention = rumor["early_convert_retention"]["mean"]
     if retention is None:
         verdicts["H5"] = {
             "verdict": "inconclusive",
@@ -682,6 +1097,8 @@ def judge(out_root: Path, floors: dict[str, int]) -> dict:
             "evidence": {
                 "miracle_rumor_early_conversions_mean": early_mean,
                 "required_min": floors["h5"],
+                "verdict_margin": round(early_mean - floors["h5"], 4),
+                "scope": "origin_village" if district else "whole_population",
                 "early_convert_retention_mean": retention,
                 "required_max": 0.5,
                 "confound_note": "miracle_rumor シナリオには step20 shrine_patronage / "
@@ -699,14 +1116,20 @@ def judge(out_root: Path, floors: dict[str, int]) -> dict:
     # --- H4（v0.7.0、スイープ G = authority）---
     g_stats_path = out_root / "authority" / "stats.json"
     if g_stats_path.exists():
-        verdicts["H4"] = _judge_h4(json.loads(g_stats_path.read_text(encoding="utf-8")))
+        verdicts["H4"] = _judge_h4(
+            json.loads(g_stats_path.read_text(encoding="utf-8")),
+            floor=DISTRICT_FLOORS["h4"] if district else H4_EFFECT_FLOOR,
+        )
     else:
         verdicts["H4"] = {"verdict": "inconclusive", "evidence": {"note": "専用スイープなし（未検証）"}}
 
     # --- H6（v0.6.0、スイープ E = graded 習合メカニズム）---
     e_stats_path = out_root / "tolerance_graded" / "stats.json"
     if e_stats_path.exists():
-        verdicts["H6"] = _judge_h6(json.loads(e_stats_path.read_text(encoding="utf-8")))
+        verdicts["H6"] = _judge_h6(
+            json.loads(e_stats_path.read_text(encoding="utf-8")),
+            floor=DISTRICT_FLOORS["h6"] if district else H6_SYNC_FLOOR,
+        )
     else:
         verdicts["H6"] = {
             "verdict": "inconclusive",
@@ -751,6 +1174,7 @@ def _judge_h3(stats: dict) -> dict:
     increases = sum(1 for i in range(len(series) - 1) if series[i + 1] > series[i])
     effect = max(series) - min(series)
     evidence["effect_size"] = round(effect, 4)
+    evidence["verdict_margin"] = round(effect - H3_EFFECT_FLOOR, 4)
     if effect < H3_EFFECT_FLOOR:
         evidence["note"] = "実質フラット（効果量下限未達）"
         return {"verdict": "inconclusive", "evidence": evidence}
@@ -766,7 +1190,7 @@ def _judge_h3(stats: dict) -> dict:
     return {"verdict": "inconclusive", "evidence": evidence}
 
 
-def _judge_h4(stats: dict) -> dict:
+def _judge_h4(stats: dict, floor: int = H4_EFFECT_FLOOR) -> dict:
     """H4 判定（設計 rev3 宣言基準。miracle_rumor 側が主判定、baseline は対照）。
 
     妥当性チェック(c): baseline 同窓改宗 mean が rumor 側の 1/2 以下（失敗 → 判定不能）。
@@ -780,7 +1204,7 @@ def _judge_h4(stats: dict) -> dict:
     evidence: dict = {
         "miracle_rumor_post_patronage_conversions_by_delta": r_series,
         "baseline_same_window_by_delta_control": b_series,
-        "effect_floor": H4_EFFECT_FLOOR,
+        "effect_floor": floor,
         "validity_note": "(c)はイベント構造分離の確認でありデルタには感応しない。権威感度の判定は(a)(b)が担う",
     }
     if max(r_series) < 1:
@@ -793,8 +1217,9 @@ def _judge_h4(stats: dict) -> dict:
         return {"verdict": "inconclusive", "evidence": evidence}
     decreases = sum(1 for i in range(len(r_series) - 1) if r_series[i + 1] < r_series[i])
     a = decreases <= 1
-    b = max(r_series) >= H4_EFFECT_FLOOR
+    b = max(r_series) >= floor
     evidence["criteria"] = {"a_monotonic": a, "b_effect_floor": b}
+    evidence["verdict_margin"] = round(max(r_series) - floor, 4)
     if a and b:
         return {"verdict": "consistent", "evidence": evidence}
     if a or b:
@@ -802,7 +1227,7 @@ def _judge_h4(stats: dict) -> dict:
     return {"verdict": "inconsistent", "evidence": evidence}
 
 
-def _judge_h6(stats: dict) -> dict:
+def _judge_h6(stats: dict, floor: int = H6_SYNC_FLOOR) -> dict:
     """H6 判定（設計 rev3 で宣言した (a)(b)(c) 基準。famine 側が判定対象）。
 
     (a) syncretisms の条件平均が tolerance デルタに対し単調増加（隣接減少1箇所以下）
@@ -827,7 +1252,7 @@ def _judge_h6(stats: dict) -> dict:
 
     a = monotonic(sync_series)
     b = monotonic(share_series)
-    c = max(sync_series) >= H6_SYNC_FLOOR
+    c = max(sync_series) >= floor
     passed = sum([a, b, c])
     verdict = "consistent" if passed == 3 else ("inconsistent" if passed == 0 else "conditionally_consistent")
     return {
@@ -837,7 +1262,8 @@ def _judge_h6(stats: dict) -> dict:
             "famine_syncretisms_by_delta": sync_series,
             "famine_conversions_by_delta": conv_series,
             "famine_syncretism_share_by_delta": share_series,
-            "effect_floor": H6_SYNC_FLOOR,
+            "effect_floor": floor,
+            "verdict_margin": round(max(sync_series) - floor, 4),
             "note": "判定対象はマクロな置換パターン。ミクロルールに tolerance が入っている事実は判定根拠にしない",
         },
     }
@@ -848,13 +1274,13 @@ def main() -> None:
     parser.add_argument(
         "--sweep",
         default="all",
-        choices=["all", *SWEEPS.keys()],
+        choices=["all", *SWEEPS.keys(), "bridge_density", "initial_share_robustness"],
     )
     parser.add_argument(
         "--population",
         default="sampled60",
-        choices=["sampled60", "fixed8"],
-        help="sampled60: seedごとに60人の村を生成（v0.5.0）/ fixed8: 従来のagents.tsv（v0.4.0再現）",
+        choices=["sampled60", "fixed8", "district"],
+        help="sampled60: 60人村（v0.5.0）/ fixed8: agents.tsv（v0.4.0再現）/ district: 16村×400人の郡（v2.0）",
     )
     parser.add_argument(
         "--output-dir",
@@ -877,16 +1303,35 @@ def main() -> None:
     if args.output_dir:
         out_root = Path(args.output_dir)
     else:
-        subdir = "sweeps" if args.population == "sampled60" else "sweeps_fixed8"
+        subdir = "sweeps_fixed8" if args.population == "fixed8" else "sweeps"
         out_root = ROOT / "outputs" / subdir
-    names = list(SWEEPS.keys()) if args.sweep == "all" else [args.sweep]
+
+    variant_sweeps = {"bridge_density", "initial_share_robustness"}
+    if args.sweep == "all":
+        names = list(SWEEPS.keys())
+        if args.population == "district":
+            names += ["bridge_density", "initial_share_robustness"]
+    else:
+        names = [args.sweep]
     for name in names:
-        rows = run_sweep(name, out_root, population=args.population, syncretism=args.syncretism)
+        if name in variant_sweeps:
+            if args.population != "district":
+                raise SystemExit(f"{name} は --population district 専用です")
+            if name == "bridge_density":
+                rows = run_sweep_bridge_density(out_root)
+            else:
+                rows = run_sweep_share_robustness(out_root)
+        else:
+            rows = run_sweep(name, out_root, population=args.population, syncretism=args.syncretism)
         print(f"sweep {name}: {len(rows)} runs ({args.population}) -> {out_root / name / 'results.tsv'}")
 
     if args.judge:
-        verdicts = judge(out_root, ABS_FLOORS[args.population])
+        verdicts = judge(
+            out_root, ABS_FLOORS[args.population], district=(args.population == "district")
+        )
         print(json.dumps(verdicts, ensure_ascii=False, indent=2))
+        if args.population == "district" and (out_root / "initial_share_robustness" / "stats.json").exists():
+            print(json.dumps({"H1_share_robustness": judge_share_robustness(out_root)}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

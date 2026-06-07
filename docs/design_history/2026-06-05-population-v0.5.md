@@ -2,7 +2,7 @@
 
 2026-06-05 設計 rev3。
 - rev2: evaluator モード1指摘（HIGH5・MEDIUM4）反映
-- rev3: codex-reviewer 指摘（HIGH3・MEDIUM7・LOW2）反映 ※codex は （非公開設定ファイル） 流出問題の再発により本タスクではこれ以降使用しない（メモリ記録済み）
+- rev3: codex-reviewer 指摘（HIGH3・MEDIUM7・LOW2）反映
 
 v0.4.0 の限界1「エージェント8体の固定集団。seed は同じ村の並行世界にすぎない」への正面対応。
 

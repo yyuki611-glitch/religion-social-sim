@@ -60,6 +60,85 @@ def validate_spec(spec: dict[str, Any], belief_rows: list[dict[str, str]]) -> No
             raise ValueError(f"role {rid}: belief probabilities sum to {prob_sum}, expected 1.0")
 
 
+def validate_district_spec(spec: dict[str, Any], belief_rows: list[dict[str, str]]) -> None:
+    """district spec（v2.0 郡モデル）のバリデーション。違反は ValueError。
+
+    村ごとのロール定義は validate_spec と同じ規則（特性網羅・center範囲・確率合計・
+    信仰ID存在）に従い、さらに (1) ロール人数合計 = village_size、
+    (2) 隣接リストが対称かつ全村を網羅、(3) bridge_roles が roles に存在、を要求する。
+    """
+    role_total = sum(int(r["count"]) for r in spec["roles"])
+    if role_total != int(spec["village_size"]):
+        raise ValueError(f"role counts sum to {role_total}, expected village_size {spec['village_size']}")
+    # ロール定義の検証は既存 validate_spec を村サイズで再利用
+    validate_spec(
+        {"total": spec["village_size"], "spread": spec["spread"], "roles": spec["roles"]},
+        belief_rows,
+    )
+    villages = [f"V{i:02d}" for i in range(1, int(spec["villages"]) + 1)]
+    adj = spec["adjacency"]
+    if set(adj.keys()) != set(villages):
+        raise ValueError("adjacency must cover exactly all villages")
+    for v, neighbors in adj.items():
+        for n in neighbors:
+            if n not in adj:
+                raise ValueError(f"adjacency: unknown village {n}")
+            if v not in adj[n]:
+                raise ValueError(f"adjacency not symmetric: {v} -> {n}")
+            if n == v:
+                raise ValueError(f"adjacency: self-loop at {v}")
+    role_ids = {r["id"] for r in spec["roles"]}
+    unknown_bridges = set(spec["bridge_roles"]) - role_ids
+    if unknown_bridges:
+        raise ValueError(f"unknown bridge_roles: {sorted(unknown_bridges)}")
+
+
+def generate_district(
+    spec: dict[str, Any], rng: random.Random, belief_rows: list[dict[str, str]]
+) -> list[dict[str, str]]:
+    """district spec から agents.tsv 互換 + `village` 列の行リストを決定的に生成する。
+
+    rng 消費順序（決定性規約・テストで固定）: 村順（V01..V16）→ 村内ロール順（spec 記載順）
+    → エージェント順。各エージェントの内部順序は generate_agents と同一
+    （(1) TRAIT_KEYS 順の8特性 → (2) 信仰強度 → (3) 初期信仰）。
+    ID は `V{村:02d}-P{村内連番:03d}`。
+    """
+    validate_district_spec(spec, belief_rows)
+    spread = float(spec["spread"])
+    s_lo, s_hi = (float(x) for x in spec["strength_range"])
+
+    rows: list[dict[str, str]] = []
+    for vi in range(1, int(spec["villages"]) + 1):
+        village = f"V{vi:02d}"
+        idx = 0
+        for role in spec["roles"]:
+            belief_ids = list(role["beliefs"].keys())
+            weights = [float(role["beliefs"][b]) for b in belief_ids]
+            for n in range(int(role["count"])):
+                idx += 1
+                traits = {
+                    key: rng.uniform(
+                        float(role["traits"][key]) - spread, float(role["traits"][key]) + spread
+                    )
+                    for key in TRAIT_KEYS
+                }
+                strength = rng.uniform(s_lo, s_hi)
+                belief = rng.choices(belief_ids, weights=weights)[0]
+                rows.append(
+                    {
+                        "id": f"{village}-P{idx:03d}",
+                        "label": f"{role['label']} {n + 1:02d}",
+                        "role": role["id"],
+                        "village": village,
+                        **{key: f"{traits[key]:.4f}" for key in TRAIT_KEYS},
+                        "current_belief": belief,
+                        "belief_strength": f"{strength:.3f}",
+                        "label_ja": f"{role['label_ja']}{n + 1:02d}",
+                    }
+                )
+    return rows
+
+
 def generate_agents(
     spec: dict[str, Any], rng: random.Random, belief_rows: list[dict[str, str]]
 ) -> list[dict[str, str]]:

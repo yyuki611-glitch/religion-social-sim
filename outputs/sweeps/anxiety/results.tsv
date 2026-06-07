@@ -1,301 +1,101 @@
 sweep	scenario	trait	delta	seed	steps	conversions	syncretisms	retention_rate	conv_to_salvation	conv_to_practical	conv_to_other	early_conversions	early_convert_retention
-anxiety	baseline	anxiety	-0.20	1	50	6	3	0.900	3	3	0	1	1.000
-anxiety	baseline	anxiety	-0.20	2	50	4	3	0.933	2	1	1	0	
-anxiety	baseline	anxiety	-0.20	3	50	6	2	0.900	3	2	1	2	1.000
-anxiety	baseline	anxiety	-0.20	4	50	5	4	0.917	1	3	1	3	1.000
-anxiety	baseline	anxiety	-0.20	5	50	0	0	1.000	0	0	0	0	
-anxiety	baseline	anxiety	-0.20	6	50	1	1	0.983	1	0	0	0	
-anxiety	baseline	anxiety	-0.20	7	50	6	3	0.900	1	1	4	1	1.000
-anxiety	baseline	anxiety	-0.20	8	50	5	0	0.917	1	2	2	1	1.000
-anxiety	baseline	anxiety	-0.20	9	50	4	2	0.933	1	2	1	3	1.000
-anxiety	baseline	anxiety	-0.20	10	50	4	1	0.933	2	2	0	1	1.000
-anxiety	baseline	anxiety	-0.20	11	50	2	0	0.967	0	1	1	0	
-anxiety	baseline	anxiety	-0.20	12	50	5	3	0.917	2	3	0	2	1.000
-anxiety	baseline	anxiety	-0.20	13	50	4	3	0.933	2	2	0	2	1.000
-anxiety	baseline	anxiety	-0.20	14	50	1	0	0.983	0	0	1	0	
-anxiety	baseline	anxiety	-0.20	15	50	6	4	0.900	3	3	0	3	1.000
-anxiety	baseline	anxiety	-0.20	16	50	3	2	0.950	1	2	0	0	
-anxiety	baseline	anxiety	-0.20	17	50	3	1	0.950	1	2	0	2	1.000
-anxiety	baseline	anxiety	-0.20	18	50	2	2	0.967	1	0	1	0	
-anxiety	baseline	anxiety	-0.20	19	50	3	3	0.950	1	1	1	2	1.000
-anxiety	baseline	anxiety	-0.20	20	50	3	2	0.950	0	2	1	2	1.000
-anxiety	baseline	anxiety	-0.20	21	50	6	4	0.900	3	2	1	1	1.000
-anxiety	baseline	anxiety	-0.20	22	50	5	2	0.917	3	1	1	3	1.000
-anxiety	baseline	anxiety	-0.20	23	50	4	1	0.933	0	3	1	1	1.000
-anxiety	baseline	anxiety	-0.20	24	50	9	4	0.850	1	5	3	3	1.000
-anxiety	baseline	anxiety	-0.20	25	50	7	2	0.883	2	5	0	1	1.000
-anxiety	baseline	anxiety	-0.20	26	50	6	2	0.900	3	3	0	2	1.000
-anxiety	baseline	anxiety	-0.20	27	50	4	1	0.933	0	4	0	2	1.000
-anxiety	baseline	anxiety	-0.20	28	50	1	1	0.983	0	0	1	1	1.000
-anxiety	baseline	anxiety	-0.20	29	50	4	1	0.933	2	2	0	0	
-anxiety	baseline	anxiety	-0.20	30	50	5	3	0.917	3	2	0	2	1.000
-anxiety	baseline	anxiety	-0.10	1	50	6	3	0.900	3	3	0	1	1.000
-anxiety	baseline	anxiety	-0.10	2	50	4	3	0.933	2	1	1	0	
-anxiety	baseline	anxiety	-0.10	3	50	6	2	0.900	3	2	1	2	1.000
-anxiety	baseline	anxiety	-0.10	4	50	5	4	0.917	1	3	1	3	1.000
-anxiety	baseline	anxiety	-0.10	5	50	0	0	1.000	0	0	0	0	
-anxiety	baseline	anxiety	-0.10	6	50	1	1	0.983	1	0	0	0	
-anxiety	baseline	anxiety	-0.10	7	50	6	3	0.900	1	1	4	1	1.000
-anxiety	baseline	anxiety	-0.10	8	50	5	0	0.917	1	2	2	1	1.000
-anxiety	baseline	anxiety	-0.10	9	50	4	2	0.933	1	2	1	3	1.000
-anxiety	baseline	anxiety	-0.10	10	50	4	1	0.933	2	2	0	1	1.000
-anxiety	baseline	anxiety	-0.10	11	50	2	0	0.967	0	1	1	0	
-anxiety	baseline	anxiety	-0.10	12	50	5	3	0.917	2	3	0	2	1.000
-anxiety	baseline	anxiety	-0.10	13	50	4	3	0.933	2	2	0	2	1.000
-anxiety	baseline	anxiety	-0.10	14	50	1	0	0.983	0	0	1	0	
-anxiety	baseline	anxiety	-0.10	15	50	6	4	0.900	3	3	0	3	1.000
-anxiety	baseline	anxiety	-0.10	16	50	3	2	0.950	1	2	0	0	
-anxiety	baseline	anxiety	-0.10	17	50	3	1	0.950	1	2	0	2	1.000
-anxiety	baseline	anxiety	-0.10	18	50	2	2	0.967	1	0	1	0	
-anxiety	baseline	anxiety	-0.10	19	50	3	3	0.950	1	1	1	2	1.000
-anxiety	baseline	anxiety	-0.10	20	50	3	2	0.950	0	2	1	2	1.000
-anxiety	baseline	anxiety	-0.10	21	50	6	4	0.900	3	2	1	1	1.000
-anxiety	baseline	anxiety	-0.10	22	50	5	2	0.917	3	1	1	3	1.000
-anxiety	baseline	anxiety	-0.10	23	50	4	1	0.933	0	3	1	1	1.000
-anxiety	baseline	anxiety	-0.10	24	50	9	4	0.850	1	5	3	3	1.000
-anxiety	baseline	anxiety	-0.10	25	50	6	2	0.900	1	5	0	2	1.000
-anxiety	baseline	anxiety	-0.10	26	50	6	2	0.900	3	3	0	2	1.000
-anxiety	baseline	anxiety	-0.10	27	50	4	1	0.933	0	4	0	2	1.000
-anxiety	baseline	anxiety	-0.10	28	50	1	1	0.983	0	0	1	1	1.000
-anxiety	baseline	anxiety	-0.10	29	50	4	1	0.933	2	2	0	0	
-anxiety	baseline	anxiety	-0.10	30	50	5	3	0.917	3	2	0	2	1.000
-anxiety	baseline	anxiety	+0.00	1	50	6	3	0.900	3	3	0	1	1.000
-anxiety	baseline	anxiety	+0.00	2	50	4	3	0.933	2	1	1	0	
-anxiety	baseline	anxiety	+0.00	3	50	6	2	0.900	3	2	1	2	1.000
-anxiety	baseline	anxiety	+0.00	4	50	5	4	0.917	1	3	1	3	1.000
-anxiety	baseline	anxiety	+0.00	5	50	0	0	1.000	0	0	0	0	
-anxiety	baseline	anxiety	+0.00	6	50	1	1	0.983	1	0	0	0	
-anxiety	baseline	anxiety	+0.00	7	50	6	3	0.900	1	1	4	1	1.000
-anxiety	baseline	anxiety	+0.00	8	50	5	0	0.917	1	2	2	1	1.000
-anxiety	baseline	anxiety	+0.00	9	50	4	2	0.933	1	2	1	3	1.000
-anxiety	baseline	anxiety	+0.00	10	50	4	1	0.933	2	2	0	1	1.000
-anxiety	baseline	anxiety	+0.00	11	50	2	0	0.967	0	1	1	0	
-anxiety	baseline	anxiety	+0.00	12	50	5	3	0.917	2	3	0	2	1.000
-anxiety	baseline	anxiety	+0.00	13	50	4	3	0.933	2	2	0	2	1.000
-anxiety	baseline	anxiety	+0.00	14	50	1	0	0.983	0	0	1	0	
-anxiety	baseline	anxiety	+0.00	15	50	6	4	0.900	3	3	0	3	1.000
-anxiety	baseline	anxiety	+0.00	16	50	3	2	0.950	1	2	0	0	
-anxiety	baseline	anxiety	+0.00	17	50	3	1	0.950	1	2	0	2	1.000
-anxiety	baseline	anxiety	+0.00	18	50	2	2	0.967	1	0	1	0	
-anxiety	baseline	anxiety	+0.00	19	50	3	3	0.950	1	1	1	2	1.000
-anxiety	baseline	anxiety	+0.00	20	50	3	2	0.950	0	2	1	2	1.000
-anxiety	baseline	anxiety	+0.00	21	50	6	4	0.900	3	2	1	1	1.000
-anxiety	baseline	anxiety	+0.00	22	50	5	2	0.917	3	1	1	3	1.000
-anxiety	baseline	anxiety	+0.00	23	50	4	1	0.933	0	3	1	1	1.000
-anxiety	baseline	anxiety	+0.00	24	50	9	4	0.850	1	5	3	3	1.000
-anxiety	baseline	anxiety	+0.00	25	50	7	2	0.883	2	5	0	2	1.000
-anxiety	baseline	anxiety	+0.00	26	50	6	2	0.900	3	3	0	2	1.000
-anxiety	baseline	anxiety	+0.00	27	50	4	1	0.933	0	4	0	3	1.000
-anxiety	baseline	anxiety	+0.00	28	50	1	1	0.983	0	0	1	1	1.000
-anxiety	baseline	anxiety	+0.00	29	50	4	1	0.933	2	2	0	0	
-anxiety	baseline	anxiety	+0.00	30	50	5	3	0.917	3	2	0	2	1.000
-anxiety	baseline	anxiety	+0.10	1	50	6	3	0.900	3	3	0	1	1.000
-anxiety	baseline	anxiety	+0.10	2	50	4	3	0.933	2	1	1	0	
-anxiety	baseline	anxiety	+0.10	3	50	6	2	0.900	3	2	1	2	1.000
-anxiety	baseline	anxiety	+0.10	4	50	5	4	0.917	1	3	1	3	1.000
-anxiety	baseline	anxiety	+0.10	5	50	0	0	1.000	0	0	0	0	
-anxiety	baseline	anxiety	+0.10	6	50	1	1	0.983	1	0	0	0	
-anxiety	baseline	anxiety	+0.10	7	50	6	3	0.900	1	1	4	1	1.000
-anxiety	baseline	anxiety	+0.10	8	50	5	0	0.917	1	2	2	1	1.000
-anxiety	baseline	anxiety	+0.10	9	50	4	2	0.933	1	2	1	3	1.000
-anxiety	baseline	anxiety	+0.10	10	50	4	1	0.933	2	2	0	1	1.000
-anxiety	baseline	anxiety	+0.10	11	50	2	0	0.967	0	1	1	0	
-anxiety	baseline	anxiety	+0.10	12	50	5	3	0.917	2	3	0	1	1.000
-anxiety	baseline	anxiety	+0.10	13	50	4	3	0.933	2	2	0	2	1.000
-anxiety	baseline	anxiety	+0.10	14	50	1	0	0.983	0	0	1	0	
-anxiety	baseline	anxiety	+0.10	15	50	6	4	0.900	3	3	0	3	1.000
-anxiety	baseline	anxiety	+0.10	16	50	3	2	0.950	1	2	0	0	
-anxiety	baseline	anxiety	+0.10	17	50	3	1	0.950	1	2	0	2	1.000
-anxiety	baseline	anxiety	+0.10	18	50	2	2	0.967	1	0	1	0	
-anxiety	baseline	anxiety	+0.10	19	50	3	3	0.950	1	1	1	2	1.000
-anxiety	baseline	anxiety	+0.10	20	50	3	2	0.950	0	2	1	2	1.000
-anxiety	baseline	anxiety	+0.10	21	50	6	4	0.900	3	2	1	1	1.000
-anxiety	baseline	anxiety	+0.10	22	50	5	2	0.917	3	1	1	3	1.000
-anxiety	baseline	anxiety	+0.10	23	50	4	1	0.933	0	3	1	1	1.000
-anxiety	baseline	anxiety	+0.10	24	50	9	4	0.850	1	5	3	3	1.000
-anxiety	baseline	anxiety	+0.10	25	50	7	2	0.883	2	5	0	2	1.000
-anxiety	baseline	anxiety	+0.10	26	50	6	2	0.900	3	3	0	2	1.000
-anxiety	baseline	anxiety	+0.10	27	50	4	1	0.933	0	4	0	3	1.000
-anxiety	baseline	anxiety	+0.10	28	50	1	1	0.983	0	0	1	1	1.000
-anxiety	baseline	anxiety	+0.10	29	50	4	1	0.933	2	2	0	0	
-anxiety	baseline	anxiety	+0.10	30	50	5	2	0.917	3	2	0	3	1.000
-anxiety	baseline	anxiety	+0.20	1	50	6	3	0.900	3	3	0	2	1.000
-anxiety	baseline	anxiety	+0.20	2	50	4	3	0.933	2	1	1	0	
-anxiety	baseline	anxiety	+0.20	3	50	6	2	0.900	3	2	1	2	1.000
-anxiety	baseline	anxiety	+0.20	4	50	5	4	0.917	1	3	1	3	1.000
-anxiety	baseline	anxiety	+0.20	5	50	0	0	1.000	0	0	0	0	
-anxiety	baseline	anxiety	+0.20	6	50	1	1	0.983	1	0	0	0	
-anxiety	baseline	anxiety	+0.20	7	50	6	3	0.900	1	1	4	1	1.000
-anxiety	baseline	anxiety	+0.20	8	50	5	0	0.917	1	2	2	1	1.000
-anxiety	baseline	anxiety	+0.20	9	50	4	2	0.933	1	2	1	3	1.000
-anxiety	baseline	anxiety	+0.20	10	50	4	1	0.933	2	2	0	2	1.000
-anxiety	baseline	anxiety	+0.20	11	50	2	0	0.967	0	1	1	0	
-anxiety	baseline	anxiety	+0.20	12	50	5	3	0.917	2	3	0	1	1.000
-anxiety	baseline	anxiety	+0.20	13	50	4	3	0.933	2	2	0	2	1.000
-anxiety	baseline	anxiety	+0.20	14	50	1	0	0.983	0	0	1	0	
-anxiety	baseline	anxiety	+0.20	15	50	6	4	0.900	3	3	0	3	1.000
-anxiety	baseline	anxiety	+0.20	16	50	3	2	0.950	1	2	0	0	
-anxiety	baseline	anxiety	+0.20	17	50	3	1	0.950	1	2	0	1	1.000
-anxiety	baseline	anxiety	+0.20	18	50	2	2	0.967	1	0	1	0	
-anxiety	baseline	anxiety	+0.20	19	50	3	3	0.950	1	1	1	2	1.000
-anxiety	baseline	anxiety	+0.20	20	50	3	2	0.950	0	2	1	2	1.000
-anxiety	baseline	anxiety	+0.20	21	50	6	4	0.900	3	2	1	1	1.000
-anxiety	baseline	anxiety	+0.20	22	50	5	2	0.917	3	1	1	3	1.000
-anxiety	baseline	anxiety	+0.20	23	50	4	1	0.933	0	3	1	1	1.000
-anxiety	baseline	anxiety	+0.20	24	50	9	4	0.850	1	5	3	4	1.000
-anxiety	baseline	anxiety	+0.20	25	50	7	2	0.883	2	5	0	2	1.000
-anxiety	baseline	anxiety	+0.20	26	50	6	2	0.900	3	3	0	2	1.000
-anxiety	baseline	anxiety	+0.20	27	50	4	1	0.933	0	4	0	3	1.000
-anxiety	baseline	anxiety	+0.20	28	50	1	1	0.983	0	0	1	1	1.000
-anxiety	baseline	anxiety	+0.20	29	50	4	1	0.933	2	2	0	1	1.000
-anxiety	baseline	anxiety	+0.20	30	50	5	2	0.917	3	2	0	2	1.000
-anxiety	famine	anxiety	-0.20	1	50	26	1	0.567	10	16	0	16	1.000
-anxiety	famine	anxiety	-0.20	2	50	20	4	0.667	9	11	0	11	1.000
-anxiety	famine	anxiety	-0.20	3	50	20	2	0.683	11	8	1	8	1.000
-anxiety	famine	anxiety	-0.20	4	50	22	2	0.633	11	11	0	10	1.000
-anxiety	famine	anxiety	-0.20	5	50	16	5	0.750	6	10	0	8	0.875
-anxiety	famine	anxiety	-0.20	6	50	20	1	0.667	10	10	0	9	1.000
-anxiety	famine	anxiety	-0.20	7	50	22	2	0.667	13	7	2	7	1.000
-anxiety	famine	anxiety	-0.20	8	50	14	0	0.767	8	6	0	5	1.000
-anxiety	famine	anxiety	-0.20	9	50	35	4	0.433	12	23	0	19	1.000
-anxiety	famine	anxiety	-0.20	10	50	27	4	0.550	9	18	0	17	1.000
-anxiety	famine	anxiety	-0.20	11	50	17	0	0.733	8	9	0	7	0.857
-anxiety	famine	anxiety	-0.20	12	50	28	2	0.533	12	16	0	14	1.000
-anxiety	famine	anxiety	-0.20	13	50	23	3	0.633	10	13	0	11	1.000
-anxiety	famine	anxiety	-0.20	14	50	21	1	0.650	7	14	0	12	1.000
-anxiety	famine	anxiety	-0.20	15	50	28	3	0.550	14	14	0	13	0.923
-anxiety	famine	anxiety	-0.20	16	50	21	3	0.667	9	12	0	10	0.900
-anxiety	famine	anxiety	-0.20	17	50	21	1	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	-0.20	18	50	25	2	0.600	11	13	1	11	1.000
-anxiety	famine	anxiety	-0.20	19	50	21	3	0.683	8	13	0	12	1.000
-anxiety	famine	anxiety	-0.20	20	50	22	1	0.650	10	12	0	11	0.909
-anxiety	famine	anxiety	-0.20	21	50	29	3	0.533	11	18	0	15	1.000
-anxiety	famine	anxiety	-0.20	22	50	26	6	0.567	12	14	0	9	1.000
-anxiety	famine	anxiety	-0.20	23	50	18	0	0.700	6	12	0	11	1.000
-anxiety	famine	anxiety	-0.20	24	50	26	4	0.600	10	15	1	14	0.929
-anxiety	famine	anxiety	-0.20	25	50	22	2	0.650	6	16	0	15	0.933
-anxiety	famine	anxiety	-0.20	26	50	19	5	0.683	7	12	0	8	1.000
-anxiety	famine	anxiety	-0.20	27	50	21	2	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	-0.20	28	50	19	4	0.683	8	11	0	7	1.000
-anxiety	famine	anxiety	-0.20	29	50	27	3	0.550	11	16	0	15	1.000
-anxiety	famine	anxiety	-0.20	30	50	17	3	0.717	10	7	0	5	1.000
-anxiety	famine	anxiety	-0.10	1	50	26	1	0.567	10	16	0	16	1.000
-anxiety	famine	anxiety	-0.10	2	50	20	4	0.667	9	11	0	12	1.000
-anxiety	famine	anxiety	-0.10	3	50	20	2	0.683	11	8	1	8	1.000
-anxiety	famine	anxiety	-0.10	4	50	22	2	0.633	11	11	0	10	1.000
-anxiety	famine	anxiety	-0.10	5	50	16	5	0.750	6	10	0	8	0.875
-anxiety	famine	anxiety	-0.10	6	50	20	2	0.667	10	10	0	9	1.000
-anxiety	famine	anxiety	-0.10	7	50	22	2	0.667	13	7	2	7	1.000
-anxiety	famine	anxiety	-0.10	8	50	14	0	0.767	8	6	0	5	1.000
-anxiety	famine	anxiety	-0.10	9	50	37	5	0.433	13	24	0	20	1.000
-anxiety	famine	anxiety	-0.10	10	50	27	2	0.550	9	18	0	17	1.000
-anxiety	famine	anxiety	-0.10	11	50	18	0	0.717	8	10	0	8	0.875
-anxiety	famine	anxiety	-0.10	12	50	28	2	0.533	12	16	0	14	1.000
-anxiety	famine	anxiety	-0.10	13	50	22	3	0.633	10	12	0	12	1.000
-anxiety	famine	anxiety	-0.10	14	50	21	1	0.650	7	14	0	12	1.000
-anxiety	famine	anxiety	-0.10	15	50	28	3	0.550	14	14	0	13	0.923
-anxiety	famine	anxiety	-0.10	16	50	21	3	0.667	9	12	0	10	0.900
-anxiety	famine	anxiety	-0.10	17	50	21	1	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	-0.10	18	50	25	2	0.600	11	13	1	11	1.000
-anxiety	famine	anxiety	-0.10	19	50	21	3	0.683	8	13	0	12	1.000
-anxiety	famine	anxiety	-0.10	20	50	22	1	0.650	10	12	0	11	1.000
-anxiety	famine	anxiety	-0.10	21	50	28	3	0.533	11	17	0	16	1.000
-anxiety	famine	anxiety	-0.10	22	50	26	5	0.567	12	14	0	9	1.000
-anxiety	famine	anxiety	-0.10	23	50	18	0	0.700	6	12	0	11	1.000
-anxiety	famine	anxiety	-0.10	24	50	26	4	0.600	10	15	1	14	0.929
-anxiety	famine	anxiety	-0.10	25	50	26	2	0.583	6	20	0	19	0.947
-anxiety	famine	anxiety	-0.10	26	50	19	5	0.683	7	12	0	8	1.000
-anxiety	famine	anxiety	-0.10	27	50	21	2	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	-0.10	28	50	19	4	0.683	8	11	0	7	1.000
-anxiety	famine	anxiety	-0.10	29	50	27	3	0.550	11	16	0	15	1.000
-anxiety	famine	anxiety	-0.10	30	50	16	3	0.733	9	7	0	7	1.000
-anxiety	famine	anxiety	+0.00	1	50	26	1	0.567	10	16	0	16	1.000
-anxiety	famine	anxiety	+0.00	2	50	21	3	0.650	9	12	0	12	1.000
-anxiety	famine	anxiety	+0.00	3	50	20	2	0.683	10	9	1	8	1.000
-anxiety	famine	anxiety	+0.00	4	50	22	2	0.633	11	11	0	10	1.000
-anxiety	famine	anxiety	+0.00	5	50	16	5	0.750	6	10	0	8	0.875
-anxiety	famine	anxiety	+0.00	6	50	20	2	0.667	10	10	0	9	1.000
-anxiety	famine	anxiety	+0.00	7	50	22	2	0.667	13	7	2	7	1.000
-anxiety	famine	anxiety	+0.00	8	50	13	0	0.783	7	6	0	5	1.000
-anxiety	famine	anxiety	+0.00	9	50	37	5	0.433	13	24	0	20	1.000
-anxiety	famine	anxiety	+0.00	10	50	27	2	0.550	9	18	0	17	1.000
-anxiety	famine	anxiety	+0.00	11	50	18	0	0.717	8	10	0	8	0.875
-anxiety	famine	anxiety	+0.00	12	50	28	2	0.533	12	16	0	14	1.000
-anxiety	famine	anxiety	+0.00	13	50	23	3	0.617	10	13	0	13	1.000
-anxiety	famine	anxiety	+0.00	14	50	21	1	0.650	7	14	0	12	1.000
-anxiety	famine	anxiety	+0.00	15	50	28	3	0.550	14	14	0	13	0.923
-anxiety	famine	anxiety	+0.00	16	50	21	3	0.667	9	12	0	10	0.900
-anxiety	famine	anxiety	+0.00	17	50	21	1	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	+0.00	18	50	25	2	0.600	11	13	1	11	1.000
-anxiety	famine	anxiety	+0.00	19	50	22	3	0.683	8	14	0	12	1.000
-anxiety	famine	anxiety	+0.00	20	50	22	1	0.650	10	12	0	11	1.000
-anxiety	famine	anxiety	+0.00	21	50	29	3	0.533	11	18	0	17	1.000
-anxiety	famine	anxiety	+0.00	22	50	26	5	0.567	12	14	0	9	1.000
-anxiety	famine	anxiety	+0.00	23	50	19	0	0.683	6	13	0	12	1.000
-anxiety	famine	anxiety	+0.00	24	50	26	4	0.600	10	15	1	14	0.929
-anxiety	famine	anxiety	+0.00	25	50	26	2	0.583	6	20	0	19	0.947
-anxiety	famine	anxiety	+0.00	26	50	20	5	0.667	8	12	0	9	1.000
-anxiety	famine	anxiety	+0.00	27	50	21	2	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	+0.00	28	50	19	4	0.683	8	11	0	7	1.000
-anxiety	famine	anxiety	+0.00	29	50	29	3	0.533	11	18	0	16	1.000
-anxiety	famine	anxiety	+0.00	30	50	16	3	0.733	9	7	0	7	1.000
-anxiety	famine	anxiety	+0.10	1	50	26	1	0.567	10	16	0	16	1.000
-anxiety	famine	anxiety	+0.10	2	50	22	4	0.633	9	13	0	13	1.000
-anxiety	famine	anxiety	+0.10	3	50	19	2	0.700	10	8	1	6	1.000
-anxiety	famine	anxiety	+0.10	4	50	22	2	0.633	11	11	0	10	1.000
-anxiety	famine	anxiety	+0.10	5	50	17	5	0.733	6	11	0	8	0.875
-anxiety	famine	anxiety	+0.10	6	50	21	2	0.650	10	11	0	10	1.000
-anxiety	famine	anxiety	+0.10	7	50	22	2	0.667	13	7	2	7	1.000
-anxiety	famine	anxiety	+0.10	8	50	13	0	0.783	7	6	0	5	1.000
-anxiety	famine	anxiety	+0.10	9	50	38	5	0.417	13	25	0	21	1.000
-anxiety	famine	anxiety	+0.10	10	50	27	2	0.550	9	18	0	17	1.000
-anxiety	famine	anxiety	+0.10	11	50	19	1	0.717	9	10	0	9	0.889
-anxiety	famine	anxiety	+0.10	12	50	28	2	0.533	12	16	0	14	1.000
-anxiety	famine	anxiety	+0.10	13	50	23	3	0.617	10	13	0	13	1.000
-anxiety	famine	anxiety	+0.10	14	50	21	1	0.650	7	14	0	12	1.000
-anxiety	famine	anxiety	+0.10	15	50	28	3	0.550	14	14	0	13	0.923
-anxiety	famine	anxiety	+0.10	16	50	21	3	0.667	9	12	0	10	0.900
-anxiety	famine	anxiety	+0.10	17	50	21	1	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	+0.10	18	50	24	2	0.617	11	12	1	11	1.000
-anxiety	famine	anxiety	+0.10	19	50	22	3	0.683	8	14	0	12	1.000
-anxiety	famine	anxiety	+0.10	20	50	22	1	0.650	10	12	0	11	1.000
-anxiety	famine	anxiety	+0.10	21	50	29	3	0.533	11	18	0	17	1.000
-anxiety	famine	anxiety	+0.10	22	50	26	5	0.567	12	14	0	9	1.000
-anxiety	famine	anxiety	+0.10	23	50	18	0	0.700	6	12	0	12	1.000
-anxiety	famine	anxiety	+0.10	24	50	26	3	0.583	9	16	1	15	1.000
-anxiety	famine	anxiety	+0.10	25	50	26	2	0.583	6	20	0	19	0.947
-anxiety	famine	anxiety	+0.10	26	50	20	5	0.667	8	12	0	9	1.000
-anxiety	famine	anxiety	+0.10	27	50	21	2	0.650	9	12	0	9	1.000
-anxiety	famine	anxiety	+0.10	28	50	19	4	0.683	8	11	0	7	1.000
-anxiety	famine	anxiety	+0.10	29	50	29	3	0.533	11	18	0	16	1.000
-anxiety	famine	anxiety	+0.10	30	50	16	3	0.733	9	7	0	7	1.000
-anxiety	famine	anxiety	+0.20	1	50	26	1	0.567	10	16	0	16	1.000
-anxiety	famine	anxiety	+0.20	2	50	22	3	0.633	9	13	0	13	1.000
-anxiety	famine	anxiety	+0.20	3	50	19	2	0.700	10	8	1	7	1.000
-anxiety	famine	anxiety	+0.20	4	50	22	2	0.633	11	11	0	10	1.000
-anxiety	famine	anxiety	+0.20	5	50	17	5	0.733	6	11	0	8	0.875
-anxiety	famine	anxiety	+0.20	6	50	21	1	0.650	10	11	0	10	1.000
-anxiety	famine	anxiety	+0.20	7	50	22	2	0.667	13	7	2	7	1.000
-anxiety	famine	anxiety	+0.20	8	50	14	0	0.767	8	6	0	6	1.000
-anxiety	famine	anxiety	+0.20	9	50	38	5	0.417	13	25	0	21	1.000
-anxiety	famine	anxiety	+0.20	10	50	27	2	0.550	9	18	0	17	1.000
-anxiety	famine	anxiety	+0.20	11	50	18	0	0.717	8	10	0	10	0.900
-anxiety	famine	anxiety	+0.20	12	50	28	2	0.533	12	16	0	14	1.000
-anxiety	famine	anxiety	+0.20	13	50	23	3	0.617	10	13	0	13	1.000
-anxiety	famine	anxiety	+0.20	14	50	21	1	0.650	7	14	0	12	1.000
-anxiety	famine	anxiety	+0.20	15	50	28	3	0.550	14	14	0	13	0.923
-anxiety	famine	anxiety	+0.20	16	50	21	3	0.667	9	12	0	10	0.900
-anxiety	famine	anxiety	+0.20	17	50	21	1	0.650	9	12	0	10	1.000
-anxiety	famine	anxiety	+0.20	18	50	24	2	0.617	11	12	1	11	1.000
-anxiety	famine	anxiety	+0.20	19	50	23	3	0.667	8	15	0	13	1.000
-anxiety	famine	anxiety	+0.20	20	50	22	1	0.650	10	12	0	12	0.917
-anxiety	famine	anxiety	+0.20	21	50	29	3	0.533	11	18	0	17	1.000
-anxiety	famine	anxiety	+0.20	22	50	26	5	0.567	12	14	0	9	1.000
-anxiety	famine	anxiety	+0.20	23	50	18	0	0.700	5	13	0	13	1.000
-anxiety	famine	anxiety	+0.20	24	50	26	3	0.583	9	16	1	15	1.000
-anxiety	famine	anxiety	+0.20	25	50	27	2	0.567	6	21	0	18	1.000
-anxiety	famine	anxiety	+0.20	26	50	20	5	0.667	8	12	0	9	1.000
-anxiety	famine	anxiety	+0.20	27	50	22	2	0.633	9	13	0	10	1.000
-anxiety	famine	anxiety	+0.20	28	50	19	4	0.683	8	11	0	7	1.000
-anxiety	famine	anxiety	+0.20	29	50	29	2	0.533	10	19	0	18	1.000
-anxiety	famine	anxiety	+0.20	30	50	17	3	0.717	9	8	0	7	1.000
+anxiety	baseline	anxiety	-0.20	1	50	276	104	0.957	62	67	147	69	1.000
+anxiety	baseline	anxiety	-0.20	2	50	314	125	0.951	54	81	179	81	1.000
+anxiety	baseline	anxiety	-0.20	3	50	289	102	0.955	51	83	155	74	1.000
+anxiety	baseline	anxiety	-0.20	4	50	276	112	0.957	51	87	138	66	1.000
+anxiety	baseline	anxiety	-0.20	5	50	265	82	0.959	47	78	140	57	1.000
+anxiety	baseline	anxiety	-0.20	6	50	275	94	0.957	56	66	153	53	1.000
+anxiety	baseline	anxiety	-0.20	7	50	308	114	0.952	59	79	170	73	1.000
+anxiety	baseline	anxiety	-0.20	8	50	273	96	0.957	47	69	157	61	1.000
+anxiety	baseline	anxiety	-0.20	9	50	284	103	0.956	53	72	159	71	1.000
+anxiety	baseline	anxiety	-0.20	10	50	284	98	0.956	40	62	182	71	1.000
+anxiety	baseline	anxiety	-0.10	1	50	279	105	0.956	62	69	148	66	1.000
+anxiety	baseline	anxiety	-0.10	2	50	315	124	0.951	54	82	179	77	1.000
+anxiety	baseline	anxiety	-0.10	3	50	288	104	0.955	51	83	154	74	1.000
+anxiety	baseline	anxiety	-0.10	4	50	273	109	0.957	50	86	137	72	1.000
+anxiety	baseline	anxiety	-0.10	5	50	270	82	0.958	46	78	146	57	1.000
+anxiety	baseline	anxiety	-0.10	6	50	276	95	0.957	56	69	151	60	1.000
+anxiety	baseline	anxiety	-0.10	7	50	307	114	0.952	58	80	169	73	1.000
+anxiety	baseline	anxiety	-0.10	8	50	272	99	0.958	47	68	157	59	1.000
+anxiety	baseline	anxiety	-0.10	9	50	287	105	0.955	53	73	161	71	1.000
+anxiety	baseline	anxiety	-0.10	10	50	285	99	0.955	41	62	182	66	1.000
+anxiety	baseline	anxiety	+0.00	1	50	278	105	0.957	61	68	149	65	1.000
+anxiety	baseline	anxiety	+0.00	2	50	313	122	0.951	54	81	178	85	1.000
+anxiety	baseline	anxiety	+0.00	3	50	290	102	0.955	51	79	160	75	1.000
+anxiety	baseline	anxiety	+0.00	4	50	275	111	0.957	51	86	138	74	1.000
+anxiety	baseline	anxiety	+0.00	5	50	269	83	0.958	46	80	143	60	1.000
+anxiety	baseline	anxiety	+0.00	6	50	275	95	0.957	56	70	149	63	1.000
+anxiety	baseline	anxiety	+0.00	7	50	311	115	0.951	58	79	174	73	1.000
+anxiety	baseline	anxiety	+0.00	8	50	274	98	0.957	46	68	160	62	1.000
+anxiety	baseline	anxiety	+0.00	9	50	286	102	0.955	52	74	160	70	1.000
+anxiety	baseline	anxiety	+0.00	10	50	283	100	0.956	40	63	180	64	1.000
+anxiety	baseline	anxiety	+0.10	1	50	277	105	0.957	62	69	146	63	1.000
+anxiety	baseline	anxiety	+0.10	2	50	314	124	0.951	54	81	179	81	1.000
+anxiety	baseline	anxiety	+0.10	3	50	291	100	0.955	51	79	161	80	1.000
+anxiety	baseline	anxiety	+0.10	4	50	274	113	0.957	51	90	133	79	1.000
+anxiety	baseline	anxiety	+0.10	5	50	270	82	0.958	46	81	143	61	1.000
+anxiety	baseline	anxiety	+0.10	6	50	279	96	0.956	56	71	152	63	1.000
+anxiety	baseline	anxiety	+0.10	7	50	313	116	0.951	59	79	175	80	1.000
+anxiety	baseline	anxiety	+0.10	8	50	275	99	0.957	46	69	160	65	1.000
+anxiety	baseline	anxiety	+0.10	9	50	289	103	0.955	53	75	161	75	1.000
+anxiety	baseline	anxiety	+0.10	10	50	285	98	0.955	40	64	181	66	1.000
+anxiety	baseline	anxiety	+0.20	1	50	277	104	0.957	62	70	145	67	1.000
+anxiety	baseline	anxiety	+0.20	2	50	318	123	0.950	54	84	180	87	1.000
+anxiety	baseline	anxiety	+0.20	3	50	290	100	0.955	51	81	158	82	1.000
+anxiety	baseline	anxiety	+0.20	4	50	279	110	0.956	51	88	140	82	1.000
+anxiety	baseline	anxiety	+0.20	5	50	271	82	0.958	46	81	144	65	1.000
+anxiety	baseline	anxiety	+0.20	6	50	282	95	0.956	56	68	158	61	1.000
+anxiety	baseline	anxiety	+0.20	7	50	312	114	0.951	59	78	175	80	1.000
+anxiety	baseline	anxiety	+0.20	8	50	277	98	0.957	47	67	163	66	1.000
+anxiety	baseline	anxiety	+0.20	9	50	287	104	0.955	53	74	160	73	1.000
+anxiety	baseline	anxiety	+0.20	10	50	289	101	0.955	41	65	183	67	1.000
+anxiety	famine	anxiety	-0.20	1	50	1025	241	0.844	390	601	34	524	0.987
+anxiety	famine	anxiety	-0.20	2	50	1080	239	0.837	408	634	38	573	0.981
+anxiety	famine	anxiety	-0.20	3	50	1053	229	0.840	401	618	34	546	0.993
+anxiety	famine	anxiety	-0.20	4	50	993	236	0.849	389	566	38	507	0.996
+anxiety	famine	anxiety	-0.20	5	50	1006	228	0.845	354	624	28	549	0.995
+anxiety	famine	anxiety	-0.20	6	50	1024	221	0.844	356	623	45	555	0.984
+anxiety	famine	anxiety	-0.20	7	50	1119	264	0.829	385	697	37	631	0.995
+anxiety	famine	anxiety	-0.20	8	50	1057	240	0.840	367	646	44	572	0.990
+anxiety	famine	anxiety	-0.20	9	50	1099	242	0.833	394	661	44	588	0.991
+anxiety	famine	anxiety	-0.20	10	50	1036	218	0.844	378	615	43	546	0.985
+anxiety	famine	anxiety	-0.10	1	50	1040	237	0.842	384	616	40	551	0.985
+anxiety	famine	anxiety	-0.10	2	50	1090	243	0.836	408	646	36	575	0.981
+anxiety	famine	anxiety	-0.10	3	50	1052	226	0.840	399	616	37	565	0.993
+anxiety	famine	anxiety	-0.10	4	50	1012	237	0.846	394	577	41	526	0.987
+anxiety	famine	anxiety	-0.10	5	50	1024	227	0.843	351	639	34	569	0.991
+anxiety	famine	anxiety	-0.10	6	50	1032	215	0.843	357	630	45	570	0.988
+anxiety	famine	anxiety	-0.10	7	50	1136	263	0.827	386	717	33	639	0.994
+anxiety	famine	anxiety	-0.10	8	50	1064	235	0.840	370	651	43	584	0.991
+anxiety	famine	anxiety	-0.10	9	50	1106	238	0.832	390	676	40	594	0.987
+anxiety	famine	anxiety	-0.10	10	50	1037	223	0.843	374	624	39	555	0.986
+anxiety	famine	anxiety	+0.00	1	50	1050	239	0.840	398	618	34	553	0.991
+anxiety	famine	anxiety	+0.00	2	50	1089	236	0.836	401	647	41	582	0.979
+anxiety	famine	anxiety	+0.00	3	50	1066	227	0.838	398	632	36	581	0.991
+anxiety	famine	anxiety	+0.00	4	50	1017	234	0.845	393	586	38	522	0.994
+anxiety	famine	anxiety	+0.00	5	50	1047	227	0.840	363	655	29	589	0.993
+anxiety	famine	anxiety	+0.00	6	50	1069	214	0.838	363	666	40	591	0.990
+anxiety	famine	anxiety	+0.00	7	50	1134	256	0.827	379	719	36	646	0.994
+anxiety	famine	anxiety	+0.00	8	50	1089	245	0.836	370	674	45	607	0.987
+anxiety	famine	anxiety	+0.00	9	50	1117	232	0.830	390	684	43	615	0.997
+anxiety	famine	anxiety	+0.00	10	50	1057	219	0.840	375	638	44	572	0.988
+anxiety	famine	anxiety	+0.10	1	50	1047	237	0.841	388	622	37	574	0.988
+anxiety	famine	anxiety	+0.10	2	50	1103	240	0.834	395	667	41	596	0.982
+anxiety	famine	anxiety	+0.10	3	50	1070	232	0.837	397	637	36	578	0.991
+anxiety	famine	anxiety	+0.10	4	50	1038	238	0.843	401	600	37	546	0.985
+anxiety	famine	anxiety	+0.10	5	50	1054	231	0.838	358	661	35	600	0.993
+anxiety	famine	anxiety	+0.10	6	50	1074	216	0.837	365	667	42	604	0.993
+anxiety	famine	anxiety	+0.10	7	50	1163	265	0.822	385	744	34	667	0.996
+anxiety	famine	anxiety	+0.10	8	50	1091	240	0.835	373	674	44	613	0.987
+anxiety	famine	anxiety	+0.10	9	50	1131	243	0.828	394	693	44	620	0.990
+anxiety	famine	anxiety	+0.10	10	50	1080	217	0.837	376	658	46	578	0.991
+anxiety	famine	anxiety	+0.20	1	50	1065	241	0.839	390	638	37	580	0.986
+anxiety	famine	anxiety	+0.20	2	50	1105	238	0.834	401	667	37	601	0.980
+anxiety	famine	anxiety	+0.20	3	50	1083	233	0.835	396	649	38	595	0.993
+anxiety	famine	anxiety	+0.20	4	50	1040	237	0.842	400	604	36	551	0.991
+anxiety	famine	anxiety	+0.20	5	50	1080	232	0.834	362	687	31	620	0.994
+anxiety	famine	anxiety	+0.20	6	50	1081	217	0.836	364	674	43	609	0.990
+anxiety	famine	anxiety	+0.20	7	50	1170	259	0.821	379	755	36	674	0.997
+anxiety	famine	anxiety	+0.20	8	50	1098	235	0.834	363	692	43	625	0.992
+anxiety	famine	anxiety	+0.20	9	50	1127	235	0.829	394	691	42	613	0.989
+anxiety	famine	anxiety	+0.20	10	50	1097	222	0.834	378	672	47	595	0.992

@@ -1,0 +1,283 @@
+{
+  "conditions": [
+    {
+      "arrival_step_mean": {
+        "mean": 7.0,
+        "n_na": 8,
+        "std": 0.0
+      },
+      "conv_to_other": {
+        "mean": 5848.6,
+        "std": 21.523
+      },
+      "conv_to_practical": {
+        "mean": 71.5,
+        "std": 9.6773
+      },
+      "conv_to_salvation": {
+        "mean": 43.1,
+        "std": 3.3
+      },
+      "conversions": {
+        "mean": 5963.2,
+        "std": 18.1097
+      },
+      "delta": "+5.00",
+      "early_conversions": {
+        "mean": 116.5,
+        "std": 11.3071
+      },
+      "early_conversions_origin": {
+        "mean": 60.2,
+        "std": 8.7841
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.0555,
+        "n_na": 0,
+        "std": 0.0313
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0985,
+        "inari_belief": 0.1271,
+        "jodo_buddhism": 0.0709,
+        "mountain_belief": 0.0019,
+        "ryujin_belief": 0.2321,
+        "ujigami_shinto": 0.4598,
+        "zen_buddhism": 0.0096
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.0997,
+        "std": 0.0028
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 85.7,
+        "std": 8.6493
+      },
+      "trait": "bridge_density",
+      "villages_reached": {
+        "mean": 0.2,
+        "std": 0.4
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 7.3,
+        "n_na": 5,
+        "std": 0.4
+      },
+      "conv_to_other": {
+        "mean": 5846.3,
+        "std": 17.9223
+      },
+      "conv_to_practical": {
+        "mean": 81.3,
+        "std": 10.8079
+      },
+      "conv_to_salvation": {
+        "mean": 42.9,
+        "std": 3.1448
+      },
+      "conversions": {
+        "mean": 5970.5,
+        "std": 17.0074
+      },
+      "delta": "+10.00",
+      "early_conversions": {
+        "mean": 125.8,
+        "std": 12.7812
+      },
+      "early_conversions_origin": {
+        "mean": 65.1,
+        "std": 9.5231
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.0676,
+        "n_na": 0,
+        "std": 0.0342
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0971,
+        "inari_belief": 0.1317,
+        "jodo_buddhism": 0.0724,
+        "mountain_belief": 0.004,
+        "ryujin_belief": 0.2283,
+        "ujigami_shinto": 0.4554,
+        "zen_buddhism": 0.0112
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.0995,
+        "std": 0.0028
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 87.2,
+        "std": 7.6131
+      },
+      "trait": "bridge_density",
+      "villages_reached": {
+        "mean": 0.7,
+        "std": 0.781
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 8.0833,
+        "n_na": 0,
+        "std": 1.1261
+      },
+      "conv_to_other": {
+        "mean": 5842.6,
+        "std": 15.9135
+      },
+      "conv_to_practical": {
+        "mean": 96.5,
+        "std": 10.6231
+      },
+      "conv_to_salvation": {
+        "mean": 43.6,
+        "std": 5.2574
+      },
+      "conversions": {
+        "mean": 5982.7,
+        "std": 22.3877
+      },
+      "delta": "+20.00",
+      "early_conversions": {
+        "mean": 135.4,
+        "std": 12.5952
+      },
+      "early_conversions_origin": {
+        "mean": 72.3,
+        "std": 9.9
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.0827,
+        "n_na": 0,
+        "std": 0.0257
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.099,
+        "std": 0.0027
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 97.2,
+        "std": 10.5148
+      },
+      "trait": "bridge_density",
+      "villages_reached": {
+        "mean": 2.5,
+        "std": 0.8062
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "arrival_step_mean": {
+        "mean": 7.5167,
+        "n_na": 0,
+        "std": 0.4062
+      },
+      "conv_to_other": {
+        "mean": 5830.2,
+        "std": 13.891
+      },
+      "conv_to_practical": {
+        "mean": 140.2,
+        "std": 12.6
+      },
+      "conv_to_salvation": {
+        "mean": 48.4,
+        "std": 6.1351
+      },
+      "conversions": {
+        "mean": 6018.8,
+        "std": 16.4912
+      },
+      "delta": "+40.00",
+      "early_conversions": {
+        "mean": 163.7,
+        "std": 10.4599
+      },
+      "early_conversions_origin": {
+        "mean": 92.1,
+        "std": 10.4924
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.1097,
+        "n_na": 0,
+        "std": 0.0241
+      },
+      "initial_shares_mean": {
+        "classical_shinto": 0.0894,
+        "inari_belief": 0.1562,
+        "jodo_buddhism": 0.0834,
+        "mountain_belief": 0.0163,
+        "ryujin_belief": 0.2054,
+        "ujigami_shinto": 0.4271,
+        "zen_buddhism": 0.0222
+      },
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
+      "retention_rate": {
+        "mean": 0.0975,
+        "std": 0.0026
+      },
+      "scenario": "miracle_rumor",
+      "syncretisms": {
+        "mean": 114.4,
+        "std": 11.421
+      },
+      "trait": "bridge_density",
+      "villages_reached": {
+        "mean": 3.8,
+        "std": 0.4
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    }
+  ],
+  "note": "delta列 = 村あたり橋渡し人数（merchant+religious_specialist）。Q4の記述的報告用・判定なし",
+  "population": "district",
+  "sweep": "bridge_density"
+}

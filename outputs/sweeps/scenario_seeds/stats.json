@@ -2,152 +2,186 @@
   "conditions": [
     {
       "conv_to_other": {
-        "mean": 0.58,
-        "std": 0.8268
+        "mean": 159.1,
+        "std": 13.8813
       },
       "conv_to_practical": {
-        "mean": 1.74,
-        "std": 1.3086
+        "mean": 74.8,
+        "std": 6.9397
       },
       "conv_to_salvation": {
-        "mean": 1.5,
-        "std": 1.118
+        "mean": 51.5,
+        "std": 5.9372
       },
       "conversions": {
-        "mean": 3.82,
-        "std": 1.8621
+        "mean": 285.4,
+        "std": 14.541
       },
       "delta": "+0.00",
       "early_conversions": {
-        "mean": 1.32,
-        "std": 1.0666
+        "mean": 69.1,
+        "std": 7.3546
       },
       "early_convert_retention": {
         "mean": 1.0,
-        "n_na": 14,
-        "n_with_early_conversions": 36,
+        "n_na": 0,
+        "n_with_early_conversions": 10,
         "std": 0.0
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0937,
-        "inari_belief": 0.2043,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0427,
-        "ryujin_belief": 0.1193,
-        "ujigami_shinto": 0.3323,
-        "zen_buddhism": 0.0477
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 50,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.9363,
-        "std": 0.031
+        "mean": 0.9554,
+        "std": 0.0024
       },
       "scenario": "baseline",
       "syncretisms": {
-        "mean": 1.96,
-        "std": 1.2484
+        "mean": 103.3,
+        "std": 10.3542
       },
       "trait": "none"
     },
     {
       "conv_to_other": {
-        "mean": 0.12,
-        "std": 0.3816
+        "mean": 38.6,
+        "std": 4.7371
       },
       "conv_to_practical": {
-        "mean": 13.06,
-        "std": 4.022
+        "mean": 651.9,
+        "std": 35.1211
       },
       "conv_to_salvation": {
-        "mean": 9.52,
-        "std": 1.8787
+        "mean": 383.0,
+        "std": 14.0428
       },
       "conversions": {
-        "mean": 22.7,
-        "std": 4.5706
+        "mean": 1073.5,
+        "std": 32.9067
       },
       "delta": "+0.00",
       "early_conversions": {
-        "mean": 11.48,
-        "std": 3.6345
+        "mean": 585.8,
+        "std": 32.1521
       },
       "early_convert_retention": {
-        "mean": 0.9831,
+        "mean": 0.9904,
         "n_na": 0,
-        "n_with_early_conversions": 50,
-        "std": 0.0373
+        "n_with_early_conversions": 10,
+        "std": 0.0047
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0937,
-        "inari_belief": 0.2043,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0427,
-        "ryujin_belief": 0.1193,
-        "ujigami_shinto": 0.3323,
-        "zen_buddhism": 0.0477
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 50,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.631,
-        "std": 0.0735
+        "mean": 0.837,
+        "std": 0.0049
       },
       "scenario": "famine",
       "syncretisms": {
-        "mean": 2.48,
-        "std": 1.4865
+        "mean": 232.9,
+        "std": 11.6142
       },
       "trait": "none"
     },
     {
+      "arrival_step_mean": {
+        "mean": 8.0833,
+        "n_na": 0,
+        "std": 1.1261
+      },
       "conv_to_other": {
-        "mean": 44.96,
-        "std": 1.6966
+        "mean": 5842.6,
+        "std": 15.9135
       },
       "conv_to_practical": {
-        "mean": 23.38,
-        "std": 4.7324
+        "mean": 96.5,
+        "std": 10.6231
       },
       "conv_to_salvation": {
-        "mean": 0.12,
-        "std": 0.325
+        "mean": 43.6,
+        "std": 5.2574
       },
       "conversions": {
-        "mean": 68.46,
-        "std": 4.3736
+        "mean": 5982.7,
+        "std": 22.3877
       },
       "delta": "+0.00",
       "early_conversions": {
-        "mean": 19.4,
-        "std": 3.6056
+        "mean": 135.4,
+        "std": 12.5952
+      },
+      "early_conversions_origin": {
+        "mean": 72.3,
+        "std": 9.9
       },
       "early_convert_retention": {
-        "mean": 0.2219,
+        "mean": 0.0573,
         "n_na": 0,
-        "n_with_early_conversions": 50,
-        "std": 0.0973
+        "n_with_early_conversions": 10,
+        "std": 0.0201
+      },
+      "early_convert_retention_origin": {
+        "mean": 0.0827,
+        "n_na": 0,
+        "std": 0.0257
       },
       "initial_shares_mean": {
-        "classical_shinto": 0.0937,
-        "inari_belief": 0.2043,
-        "jodo_buddhism": 0.16,
-        "mountain_belief": 0.0427,
-        "ryujin_belief": 0.1193,
-        "ujigami_shinto": 0.3323,
-        "zen_buddhism": 0.0477
+        "classical_shinto": 0.0946,
+        "inari_belief": 0.1402,
+        "jodo_buddhism": 0.076,
+        "mountain_belief": 0.0082,
+        "ryujin_belief": 0.2208,
+        "ujigami_shinto": 0.4454,
+        "zen_buddhism": 0.0148
       },
-      "n_runs": 50,
+      "minority_pockets": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "n_runs": 10,
       "retention_rate": {
-        "mean": 0.2017,
-        "std": 0.038
+        "mean": 0.099,
+        "std": 0.0027
       },
       "scenario": "miracle_rumor",
       "syncretisms": {
-        "mean": 3.72,
-        "std": 2.0884
+        "mean": 97.2,
+        "std": 10.5148
       },
-      "trait": "none"
+      "trait": "none",
+      "villages_reached": {
+        "mean": 2.5,
+        "std": 0.8062
+      },
+      "villages_reached_d2plus": {
+        "mean": 0.0,
+        "std": 0.0
+      }
     }
   ],
-  "population": "sampled60",
+  "population": "district",
   "sweep": "scenario_seeds"
 }
