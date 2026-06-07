@@ -117,7 +117,7 @@ v0.5.0 の mean/std は「**村の構成のばらつき + 確率的ばらつき�
 4. sampled60 を2回実行して results.tsv が byte 一致
 5. H1/H2/H5 の判定が**上記5の宣言基準（per-capita パリティ）**で行われ、v0.4.0 判定との対比付きで experiment_log.md に記録される
 6. 静的チェック: README の図パス・数値が stats.json と一致。`git status --porcelain` に runs/ や sweeps_fixed8/ が現れない
-7. GitHub 上の図表示の目視確認は push 後に 作者へ依頼
+7. GitHub 上の図表示の目視確認は push 後に 作者 へ依頼
 
 ## 検証方法
 

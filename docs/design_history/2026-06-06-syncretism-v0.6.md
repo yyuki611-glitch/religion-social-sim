@@ -150,7 +150,7 @@ drop_score = min(1.0, gap / GAP_REF)             # 新信仰の引力（観測�
    「置き換え/共増加」の区別を含む数値根拠付きで experiment_log に記録される
 4. 新規テスト全パス（graded 決定性・スコア単体（宣言済み境界例）・E縮小版・副次取り込み確率分岐の決定性）
 5. 静的チェック: README 図パス整合、`git status --porcelain` に runs/ が現れない
-6. GitHub 目視確認は push 後に 作者確認
+6. GitHub 目視確認は push 後に 作者 依頼
 
 ## やらないこと
 
