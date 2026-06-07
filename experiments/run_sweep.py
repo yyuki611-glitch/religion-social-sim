@@ -91,7 +91,31 @@ SWEEPS: dict[str, dict] = {
         "seeds": list(range(1, 31)),
         "syncretism": "graded",
     },
+    # スイープ F（v0.7.0）: H3「共同体依存→地域信仰の保存」。threshold（A–D と同一系）
+    "community": {
+        "scenarios": ["baseline", "famine"],
+        "trait": "community_dependence",
+        "deltas": DELTAS,
+        "seeds": list(range(1, 31)),
+    },
+    # スイープ G（v0.7.0）: H4「権威庇護→制度信仰の加速」。
+    # miracle_rumor は step 20 に shrine_patronage（唯一の権威庇護イベント）を含む
+    "authority": {
+        "scenarios": ["baseline", "miracle_rumor"],
+        "trait": "authority_trust",
+        "deltas": DELTAS,
+        "seeds": list(range(1, 31)),
+    },
 }
+
+# H3/H4 用の定義（設計 tasks/todo.md rev3 で宣言）
+# 地域信仰 = 氏神信仰（appeal: community,ancestor,local_protection = 地域の神社）
+#          + 古典神道（appeal: kinship,land,ritual_continuity = 家・土地の信仰）
+LOCAL_BELIEFS = {"ujigami_shinto", "classical_shinto"}
+PATRONAGE_WINDOW = (20, 25)  # shrine_patronage（step 20）発火後5ステップ
+H3_EFFECT_FLOOR = 0.05  # local_retention の条件平均 max−min（5pp = 約27人中1.4人分）
+H3_NA_LIMIT = 5  # 分母ゼロ run がこれを超える条件があれば H3 判定不能
+H4_EFFECT_FLOOR = 3  # 庇護後窓の古典神道改宗 最大条件平均（= 60 × 0.05）
 
 # H6 の効果量下限（設計 rev3 で宣言。3 = 60 × 0.05、村の5%を最小の集合現象とする。
 # H1/H5 の per-capita 25% パリティとは別基準＝H6 には引き継ぐ過去の宣言値が存在しない）
@@ -248,6 +272,8 @@ def run_sweep(
                     agents_rows=agents_rows,
                     syncretism_mode=syncretism_mode,
                 )
+                conversions = read_tsv(run_dir / "conversions.tsv")
+                metrics = compute_metrics(conversions, summary["final_agents"], scenario)
                 if population == "sampled60":
                     _annotate_summary(run_dir, POPULATION_SEED_OFFSET + seed)
                     aux = _population_aux(agents_rows, trait, delta, belief_rows)
@@ -260,9 +286,15 @@ def run_sweep(
                         aux["final_secondary_holders"] = sum(
                             1 for a in summary["final_agents"] if a["secondary_belief"]
                         )
+                    if name == "community":
+                        # H3 用補助値（スイープ F のみ）
+                        aux.update(local_retention_metrics(agents_rows, summary["final_agents"]))
+                    if name == "authority":
+                        # H4 用補助値（スイープ G のみ）
+                        aux["conv_to_classical_post_patronage"] = post_patronage_conversions(
+                            conversions
+                        )
                     pop_acc.setdefault((scenario, delta), []).append(aux)
-                conversions = read_tsv(run_dir / "conversions.tsv")
-                metrics = compute_metrics(conversions, summary["final_agents"], scenario)
                 rows.append(
                     {
                         "sweep": name,
@@ -356,6 +388,44 @@ def _population_aux(
     return aux
 
 
+def local_retention_metrics(
+    agents_rows: list[dict[str, str]], final_agents: list[dict]
+) -> dict:
+    """H3 指標: 初期信仰が地域信仰だったエージェントの最終保持率。
+
+    分母は run 開始時の地域信仰保持者数で固定（途中で改宗しても分母は変わらない）。
+    summary["final_agents"] には初期信仰が含まれないため、agents_rows の
+    current_belief（初期信仰）と final_agents の belief を id で突き合わせて計算する。
+    分母ゼロは None（N/A）。氏神/古典神道の分解値は診断用（判定には使わない）。
+    """
+    final = {a["id"]: a["belief"] for a in final_agents}
+    out: dict = {}
+    for key, beliefs in [
+        ("local_retention", LOCAL_BELIEFS),
+        ("local_retention_ujigami", {"ujigami_shinto"}),
+        ("local_retention_classical", {"classical_shinto"}),
+    ]:
+        holders = [r for r in agents_rows if r["current_belief"] in beliefs]
+        if holders:
+            kept = sum(1 for r in holders if final.get(r["id"]) == r["current_belief"])
+            out[key] = kept / len(holders)
+        else:
+            out[key] = None
+    return out
+
+
+def post_patronage_conversions(conversions: list[dict[str, str]]) -> int:
+    """H4 指標: step 20–25（shrine_patronage 発火後5ステップ）の古典神道への改宗数。"""
+    lo, hi = PATRONAGE_WINDOW
+    return sum(
+        1
+        for c in conversions
+        if c["kind"] == "conversion"
+        and c["to_belief"] == "classical_shinto"
+        and lo <= int(c["step"]) <= hi
+    )
+
+
 def _build_stats_sampled(
     name: str, spec: dict, rows: list[dict], saturation_acc: dict, pop_acc: dict
 ) -> dict:
@@ -401,6 +471,23 @@ def _build_stats_sampled(
                 "n_na": len(cond_rows) - len(retentions),
             }
             aux_list = pop_acc.get((scenario, delta), [])
+            if aux_list and "local_retention" in aux_list[0]:
+                # スイープ F（H3）のみ。分母ゼロ run は N/A として除外し n_na を記録
+                for key in [
+                    "local_retention",
+                    "local_retention_ujigami",
+                    "local_retention_classical",
+                ]:
+                    vals = [a[key] for a in aux_list if a[key] is not None]
+                    cond[key] = {
+                        **(_mean_std(vals) if vals else {"mean": None, "std": None}),
+                        "n_na": len(aux_list) - len(vals),
+                    }
+            if aux_list and "conv_to_classical_post_patronage" in aux_list[0]:
+                # スイープ G（H4）のみ
+                cond["conv_to_classical_post_patronage"] = _mean_std(
+                    [float(a["conv_to_classical_post_patronage"]) for a in aux_list]
+                )
             if aux_list and "syncretism_share" in aux_list[0]:
                 shares = [a["syncretism_share"] for a in aux_list if a["syncretism_share"] is not None]
                 cond["syncretism_share"] = {
@@ -602,9 +689,19 @@ def judge(out_root: Path, floors: dict[str, int]) -> dict:
             },
         }
 
-    # --- H3 / H4: 設計上スイープなし ---
-    verdicts["H3"] = {"verdict": "inconclusive", "evidence": {"note": "専用スイープなし（未検証）"}}
-    verdicts["H4"] = {"verdict": "inconclusive", "evidence": {"note": "専用スイープなし（未検証）"}}
+    # --- H3（v0.7.0、スイープ F = community）---
+    f_stats_path = out_root / "community" / "stats.json"
+    if f_stats_path.exists():
+        verdicts["H3"] = _judge_h3(json.loads(f_stats_path.read_text(encoding="utf-8")))
+    else:
+        verdicts["H3"] = {"verdict": "inconclusive", "evidence": {"note": "専用スイープなし（未検証）"}}
+
+    # --- H4（v0.7.0、スイープ G = authority）---
+    g_stats_path = out_root / "authority" / "stats.json"
+    if g_stats_path.exists():
+        verdicts["H4"] = _judge_h4(json.loads(g_stats_path.read_text(encoding="utf-8")))
+    else:
+        verdicts["H4"] = {"verdict": "inconclusive", "evidence": {"note": "専用スイープなし（未検証）"}}
 
     # --- H6（v0.6.0、スイープ E = graded 習合メカニズム）---
     e_stats_path = out_root / "tolerance_graded" / "stats.json"
@@ -620,6 +717,89 @@ def judge(out_root: Path, floors: dict[str, int]) -> dict:
             },
         }
     return verdicts
+
+
+def _series(stats: dict, scenario: str, key: str) -> list:
+    conds = [c for c in stats["conditions"] if c["scenario"] == scenario]
+    conds.sort(key=lambda c: float(c["delta"]))
+    return [c[key]["mean"] for c in conds]
+
+
+def _judge_h3(stats: dict) -> dict:
+    """H3 判定（設計 rev3 宣言基準。famine 側が主判定）。
+
+    (a) community デルタと local_retention の条件平均が単調増加（隣接減少1以下）
+    (b) 効果量下限: max − min >= H3_EFFECT_FLOOR(0.05)
+    事前宣言の解釈ルール: 単調減少+効果量成立 → 不整合（正当な棄却）/ 谷型 → 判定不能 /
+    フラット（効果量未達）→ 判定不能 / 分母ゼロ run が条件あたり H3_NA_LIMIT(5) 超 → 判定不能
+    """
+    fam = [c for c in stats["conditions"] if c["scenario"] == "famine"]
+    fam.sort(key=lambda c: float(c["delta"]))
+    series = [c["local_retention"]["mean"] for c in fam]
+    n_na_max = max(c["local_retention"]["n_na"] for c in fam)
+    base_series = _series(stats, "baseline", "local_retention")
+    evidence: dict = {
+        "famine_local_retention_by_delta": series,
+        "baseline_local_retention_by_delta_reference": base_series,
+        "effect_floor": H3_EFFECT_FLOOR,
+        "max_n_na": n_na_max,
+    }
+    if n_na_max > H3_NA_LIMIT or any(v is None for v in series):
+        evidence["note"] = "分母ゼロ run が閾値超過（N/A 無効化ルール）"
+        return {"verdict": "inconclusive", "evidence": evidence}
+    decreases = sum(1 for i in range(len(series) - 1) if series[i + 1] < series[i])
+    increases = sum(1 for i in range(len(series) - 1) if series[i + 1] > series[i])
+    effect = max(series) - min(series)
+    evidence["effect_size"] = round(effect, 4)
+    if effect < H3_EFFECT_FLOOR:
+        evidence["note"] = "実質フラット（効果量下限未達）"
+        return {"verdict": "inconclusive", "evidence": evidence}
+    if decreases <= 1:
+        return {"verdict": "consistent", "evidence": evidence}
+    if increases <= 1:
+        evidence["note"] = (
+            "単調減少: このモデルでは共同体依存は危機下で地域信仰の保存ではなく"
+            "雪崩を加速する（事前宣言ルールに基づく正当な棄却）"
+        )
+        return {"verdict": "inconsistent", "evidence": evidence}
+    evidence["note"] = "谷型（非単調）。チャネル帰属の診断が必要"
+    return {"verdict": "inconclusive", "evidence": evidence}
+
+
+def _judge_h4(stats: dict) -> dict:
+    """H4 判定（設計 rev3 宣言基準。miracle_rumor 側が主判定、baseline は対照）。
+
+    妥当性チェック(c): baseline 同窓改宗 mean が rumor 側の 1/2 以下（失敗 → 判定不能）。
+    (a) authority デルタと庇護後窓改宗の条件平均が単調増加 (b) 最大条件平均 >= 3。
+    反応ほぼゼロ（rumor 側 max < 1）→ 判定不能。
+    """
+    import statistics as _st
+
+    r_series = _series(stats, "miracle_rumor", "conv_to_classical_post_patronage")
+    b_series = _series(stats, "baseline", "conv_to_classical_post_patronage")
+    evidence: dict = {
+        "miracle_rumor_post_patronage_conversions_by_delta": r_series,
+        "baseline_same_window_by_delta_control": b_series,
+        "effect_floor": H4_EFFECT_FLOOR,
+        "validity_note": "(c)はイベント構造分離の確認でありデルタには感応しない。権威感度の判定は(a)(b)が担う",
+    }
+    if max(r_series) < 1:
+        evidence["note"] = "庇護イベントへの反応がほぼゼロ"
+        return {"verdict": "inconclusive", "evidence": evidence}
+    r_mean, b_mean = _st.fmean(r_series), _st.fmean(b_series)
+    evidence["validity_check_baseline_le_half"] = b_mean <= 0.5 * r_mean
+    if not evidence["validity_check_baseline_le_half"]:
+        evidence["note"] = "妥当性チェック(c)不成立: 窓内改宗が庇護イベント由来と言えない（交絡）"
+        return {"verdict": "inconclusive", "evidence": evidence}
+    decreases = sum(1 for i in range(len(r_series) - 1) if r_series[i + 1] < r_series[i])
+    a = decreases <= 1
+    b = max(r_series) >= H4_EFFECT_FLOOR
+    evidence["criteria"] = {"a_monotonic": a, "b_effect_floor": b}
+    if a and b:
+        return {"verdict": "consistent", "evidence": evidence}
+    if a or b:
+        return {"verdict": "conditionally_consistent", "evidence": evidence}
+    return {"verdict": "inconsistent", "evidence": evidence}
 
 
 def _judge_h6(stats: dict) -> dict:

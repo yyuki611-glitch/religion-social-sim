@@ -243,6 +243,63 @@ def fig5_tolerance_graded(out_root: Path, fig_dir: Path) -> None:
     plt.close(fig)
 
 
+def fig6_community(out_root: Path, fig_dir: Path) -> None:
+    """スイープ F（H3）: 共同体依存デルタ × 地域信仰の保持率。"""
+    stats = _read_stats(out_root / "community")
+    fig, ax = plt.subplots(figsize=(7, 4.5))
+    for scenario, color in [("baseline", "#2980b9"), ("famine", "#c0392b")]:
+        conds = _conditions(stats, scenario)
+        xs = [float(c["delta"]) for c in conds]
+        ax.errorbar(
+            xs,
+            [c["local_retention"]["mean"] for c in conds],
+            yerr=[c["local_retention"]["std"] for c in conds],
+            marker="o",
+            capsize=3,
+            label=f"{scenario}" + (" (primary)" if scenario == "famine" else " (reference)"),
+            color=color,
+        )
+    ax.set_xlabel("community_dependence delta (additive, clamped to [0,1])")
+    ax.set_ylabel("local-belief retention (mean)")
+    ax.set_ylim(0, 1.05)
+    ax.set_title("Community sweep (H3): does dependence preserve local beliefs?")
+    ax.legend()
+    ax.grid(alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(fig_dir / "fig6_community.png", dpi=150)
+    plt.close(fig)
+
+
+def fig7_authority(out_root: Path, fig_dir: Path) -> None:
+    """スイープ G（H4）: 権威信頼デルタ × 庇護後窓（step 20–25）の古典神道改宗数。"""
+    stats = _read_stats(out_root / "authority")
+    fig, ax = plt.subplots(figsize=(7, 4.5))
+    for scenario, color in [
+        ("baseline", "#2980b9"),
+        ("miracle_rumor", "#8e44ad"),
+    ]:
+        conds = _conditions(stats, scenario)
+        xs = [float(c["delta"]) for c in conds]
+        ax.errorbar(
+            xs,
+            [c["conv_to_classical_post_patronage"]["mean"] for c in conds],
+            yerr=[c["conv_to_classical_post_patronage"]["std"] for c in conds],
+            marker="o",
+            capsize=3,
+            label=f"{scenario}"
+            + (" (patronage @20)" if scenario == "miracle_rumor" else " (no-event control)"),
+            color=color,
+        )
+    ax.set_xlabel("authority_trust delta (additive, clamped to [0,1])")
+    ax.set_ylabel("conversions to classical shinto in steps 20-25 (mean)")
+    ax.set_title("Authority sweep (H4): does patronage accelerate institutional belief?")
+    ax.legend()
+    ax.grid(alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(fig_dir / "fig7_authority.png", dpi=150)
+    plt.close(fig)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sweeps-dir", default=str(ROOT / "outputs" / "sweeps"))
@@ -256,6 +313,10 @@ def main() -> None:
     fig4_tolerance(out_root, fig_dir)
     if (out_root / "tolerance_graded" / "stats.json").exists():
         fig5_tolerance_graded(out_root, fig_dir)
+    if (out_root / "community" / "stats.json").exists():
+        fig6_community(out_root, fig_dir)
+    if (out_root / "authority" / "stats.json").exists():
+        fig7_authority(out_root, fig_dir)
     for p in sorted(fig_dir.glob("*.png")):
         print(p)
 
